@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juliet Falk - Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">JF</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#writing" class="nav-link">Writing</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, I'm <span class="highlight">Juliet Falk</span></h1>
+                <p class="hero-subtitle">AI Researcher • Writer • Developer</p>
+                <p class="hero-description">
+                    Exploring the intersection of artificial intelligence, creative writing, and innovative technology. 
+                    Passionate about building meaningful projects that make a difference.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#writing" class="btn btn-secondary">Read My Writing</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="floating-element" data-speed="2">🤖</div>
+                    <div class="floating-element" data-speed="1.5">💻</div>
+                    <div class="floating-element" data-speed="3">✍️</div>
+                    <div class="floating-element" data-speed="2.5">🚀</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a passionate individual working at the cutting edge of AI research and development. 
+                        My work spans from technical implementations to thoughtful analysis of how artificial 
+                        intelligence is shaping our world.
+                    </p>
+                    <p>
+                        When I'm not coding or researching, you can find me writing about technology, 
+                        exploring new ideas, or contributing to open-source projects that push the boundaries 
+                        of what's possible.
+                    </p>
+                    <div class="skills">
+                        <h3>Skills & Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AI/ML</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Data Analysis</span>
+                            <span class="skill-tag">Technical Writing</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user"></i>
+                        <p>Your Photo Here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>AI Research Project</h3>
+                        <p>A cutting-edge machine learning model for natural language processing with applications in creative writing assistance.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">NLP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Data Visualization Tool</h3>
+                        <p>An interactive dashboard for exploring complex datasets with real-time filtering and dynamic visualizations.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">DataViz</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>AI Writing Assistant</h3>
+                        <p>A sophisticated writing tool that helps authors develop characters, plot structures, and creative narratives.</p>
+                        <div class="project-tags">
+                            <span class="tag">OpenAI API</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Creative AI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Try It</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="writing" class="writing">
+        <div class="container">
+            <h2 class="section-title">Writing & Publications</h2>
+            <div class="writing-grid">
+                <article class="writing-card">
+                    <div class="writing-meta">
+                        <span class="writing-category">AI Research</span>
+                        <span class="writing-date">2024</span>
+                    </div>
+                    <h3>The Future of Creative AI</h3>
+                    <p>Exploring how artificial intelligence is transforming creative industries and what this means for human creativity.</p>
+                    <a href="#" class="writing-link">Read More <i class="fas fa-arrow-right"></i></a>
+                </article>
+
+                <article class="writing-card">
+                    <div class="writing-meta">
+                        <span class="writing-category">Technology</span>
+                        <span class="writing-date">2024</span>
+                    </div>
+                    <h3>Building Ethical AI Systems</h3>
+                    <p>A deep dive into the principles and practices of developing AI systems that are fair, transparent, and beneficial to society.</p>
+                    <a href="#" class="writing-link">Read More <i class="fas fa-arrow-right"></i></a>
+                </article>
+
+                <article class="writing-card">
+                    <div class="writing-meta">
+                        <span class="writing-category">Development</span>
+                        <span class="writing-date">2024</span>
+                    </div>
+                    <h3>Modern Web Development Trends</h3>
+                    <p>An analysis of current trends in web development and how they're shaping the future of digital experiences.</p>
+                    <a href="#" class="writing-link">Read More <i class="fas fa-arrow-right"></i></a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always interested in new opportunities, collaborations, or just having interesting conversations about AI, technology, and innovation.</p>
+                    <div class="contact-links">
+                        <a href="mailto:your.email@example.com" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            your.email@example.com
+                        </a>
+                        <a href="https://github.com/yourusername" class="contact-link">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" class="contact-link">
+                            <i class="fab fa-linkedin"></i>
+                            LinkedIn
+                        </a>
+                        <a href="https://twitter.com/yourusername" class="contact-link">
+                            <i class="fab fa-twitter"></i>
+                            Twitter
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Juliet Falk. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
