@@ -105,12 +105,40 @@ if (contactForm) {
 
 // Typing effect for hero title
 function typeWriter(element, text, speed = 100) {
+    // Create a temporary element to parse the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = text;
+    
+    // Get the text content without HTML tags for typing
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
+    
     let i = 0;
     element.innerHTML = '';
     
     function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
+        if (i < textContent.length) {
+            // Rebuild the HTML with the current text progress
+            let currentText = textContent.substring(0, i + 1);
+            
+            // Replace the text content while preserving HTML structure
+            if (text.includes('<span class="highlight">')) {
+                const beforeSpan = text.split('<span class="highlight">')[0];
+                const spanContent = text.match(/<span class="highlight">(.*?)<\/span>/)[1];
+                const afterSpan = text.split('</span>')[1];
+                
+                if (currentText.length <= beforeSpan.length) {
+                    element.innerHTML = currentText;
+                } else if (currentText.length <= beforeSpan.length + spanContent.length) {
+                    const spanProgress = currentText.substring(beforeSpan.length);
+                    element.innerHTML = beforeSpan + '<span class="highlight">' + spanProgress + '</span>';
+                } else {
+                    const afterProgress = currentText.substring(beforeSpan.length + spanContent.length);
+                    element.innerHTML = beforeSpan + '<span class="highlight">' + spanContent + '</span>' + afterProgress;
+                }
+            } else {
+                element.innerHTML = currentText;
+            }
+            
             i++;
             setTimeout(type, speed);
         }
@@ -120,16 +148,17 @@ function typeWriter(element, text, speed = 100) {
 }
 
 // Initialize typing effect when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.innerHTML;
-        // Start typing effect after a short delay
-        setTimeout(() => {
-            typeWriter(heroTitle, originalText, 50);
-        }, 500);
-    }
-});
+// DISABLED: Typing effect was breaking HTML rendering
+// document.addEventListener('DOMContentLoaded', () => {
+//     const heroTitle = document.querySelector('.hero-title');
+//     if (heroTitle) {
+//         const originalText = heroTitle.innerHTML;
+//         // Start typing effect after a short delay
+//         setTimeout(() => {
+//             typeWriter(heroTitle, originalText, 50);
+//         }, 500);
+//     }
+// });
 
 // Add hover effects for project cards
 document.querySelectorAll('.project-card').forEach(card => {
