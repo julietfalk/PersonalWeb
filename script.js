@@ -187,7 +187,39 @@ function typeWriter(element, text, speed = 100) {
 //     }
 // });
 
-// Hover effects are now handled by CSS
+// Enhanced scroll animations and mouse tracking
+document.addEventListener('DOMContentLoaded', () => {
+    // Mouse tracking for spotlight effect
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mouse-x', x + '%');
+            card.style.setProperty('--mouse-y', y + '%');
+        });
+    });
+
+    // Scroll-triggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    const animatedElements = document.querySelectorAll('.section-title, .project-card, .writing-card, .about-content, .contact-content');
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+});
 
 // Add loading animation
 window.addEventListener('load', () => {

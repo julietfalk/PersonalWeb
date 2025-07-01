@@ -141,6 +141,16 @@ p, span, div, a, li, button, input, textarea {
     align-items: center;
     position: relative;
     z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-title {
@@ -251,11 +261,17 @@ section {
     position: absolute;
     bottom: -10px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scaleX(0);
     width: 60px;
     height: 4px;
     background: linear-gradient(135deg, #c17f59, #a67c52);
     border-radius: 0;
+    transition: transform 0.8s ease;
+    transform-origin: center;
+}
+
+.section-title.animate::after {
+    transform: translateX(-50%) scaleX(1);
 }
 
 /* About Section */
@@ -271,6 +287,14 @@ section {
     align-items: center;
     grid-template-columns: 1fr;
     gap: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-content.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .about-text p {
@@ -301,6 +325,14 @@ section {
     font-weight: 500;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(193, 127, 89, 0.3);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+.skill-tag:hover {
+    transform: translateY(-2px);
+    background: rgba(193, 127, 89, 0.3);
+    box-shadow: 0 4px 8px rgba(193, 127, 89, 0.2);
 }
 
 .about-image {
@@ -345,19 +377,40 @@ section {
     padding: 2rem;
     backdrop-filter: blur(10px);
     border: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 4px 4px 0px rgba(107, 91, 71, 0.2);
     position: relative;
     overflow: visible;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.project-card.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .project-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
 }
 
 .project-card::before {
-    display: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(193, 127, 89, 0.1) 0%, transparent 50%);
+    border-radius: 18px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.project-card:hover::before {
+    opacity: 1;
 }
 
 .project-image {
@@ -444,15 +497,22 @@ section {
     backdrop-filter: blur(10px);
     border: none !important;
     border-image: none !important;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 4px 4px 0px rgba(107, 91, 71, 0.2);
     position: relative;
     overflow: visible;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.writing-card.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .writing-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
 }
 
 .writing-card::after, .writing-card::before {
@@ -517,6 +577,14 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-content.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .contact-info h3 {
