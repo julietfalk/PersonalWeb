@@ -339,11 +339,11 @@ section {
 
 .project-card {
     background: rgba(93, 109, 126, 0.8);
-    border-radius: 0;
+    border-radius: 18px;
     padding: 2rem;
     backdrop-filter: blur(10px);
-    border: 8px solid transparent;
-    border-image: url('data:image/svg+xml;utf8,<svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 22 Q10 18 20 22 T40 22 T60 22 T80 22 T100 22 T120 22" stroke="%232ecc71" stroke-width="3" fill="none"/><path d="M5 22 Q15 10 25 22 T45 22 T65 22 T85 22 T105 22 T115 22" stroke="%2349d18a" stroke-width="4" fill="none"/><ellipse cx="15" cy="21" rx="2" ry="5" fill="%2349d18a"/><ellipse cx="35" cy="21" rx="2.5" ry="6" fill="%232ecc71"/><ellipse cx="55" cy="21" rx="2" ry="5" fill="%2349d18a"/><ellipse cx="75" cy="21" rx="2.5" ry="6" fill="%232ecc71"/><ellipse cx="95" cy="21" rx="2" ry="5" fill="%2349d18a"/><ellipse cx="110" cy="21" rx="2.5" ry="6" fill="%232ecc71"/></svg>') 24 repeat;
+    border: 16px solid transparent;
+    border-image: url('data:image/svg+xml;utf8,<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" fill="none"/><g><path d="M2 62 Q8 50 16 62 T32 62 T48 62 T62 62" stroke="%232ecc71" stroke-width="4" fill="none"/><path d="M6 62 Q14 38 24 62 T40 62 T58 62" stroke="%2349d18a" stroke-width="5" fill="none"/><ellipse cx="12" cy="60" rx="3" ry="8" fill="%2349d18a"/><ellipse cx="32" cy="60" rx="4" ry="10" fill="%232ecc71"/><ellipse cx="52" cy="60" rx="3" ry="8" fill="%2349d18a"/></g><g><path d="M2 2 Q8 14 16 2 T32 2 T48 2 T62 2" stroke="%232ecc71" stroke-width="4" fill="none"/><path d="M6 2 Q14 26 24 2 T40 2 T58 2" stroke="%2349d18a" stroke-width="5" fill="none"/><ellipse cx="12" cy="4" rx="3" ry="8" fill="%2349d18a"/><ellipse cx="32" cy="4" rx="4" ry="10" fill="%232ecc71"/><ellipse cx="52" cy="4" rx="3" ry="8" fill="%2349d18a"/></g><g><path d="M2 2 Q14 8 2 16 T2 32 T2 48 T2 62" stroke="%232ecc71" stroke-width="4" fill="none"/><path d="M2 6 Q26 14 2 24 T2 40 T2 58" stroke="%2349d18a" stroke-width="5" fill="none"/><ellipse cx="4" cy="12" rx="8" ry="3" fill="%2349d18a"/><ellipse cx="4" cy="32" rx="10" ry="4" fill="%232ecc71"/><ellipse cx="4" cy="52" rx="8" ry="3" fill="%2349d18a"/></g><g><path d="M62 2 Q54 8 62 16 T62 32 T62 48 T62 62" stroke="%232ecc71" stroke-width="4" fill="none"/><path d="M62 6 Q38 14 62 24 T62 40 T62 58" stroke="%2349d18a" stroke-width="5" fill="none"/><ellipse cx="60" cy="12" rx="8" ry="3" fill="%2349d18a"/><ellipse cx="60" cy="32" rx="10" ry="4" fill="%232ecc71"/><ellipse cx="60" cy="52" rx="8" ry="3" fill="%2349d18a"/></g></svg>') 32 repeat;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
