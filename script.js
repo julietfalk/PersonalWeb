@@ -30,12 +30,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Navbar background change on scroll
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navLogo = document.querySelector('.nav-logo a');
+    
     if (window.scrollY > 100) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        
+        // Change text color to dark when background is white
+        navLinks.forEach(link => {
+            link.style.color = '#2c3e50';
+        });
+        
+        if (navLogo) {
+            navLogo.style.background = 'linear-gradient(135deg, #2c3e50, #34495e)';
+            navLogo.style.webkitBackgroundClip = 'text';
+            navLogo.style.webkitTextFillColor = 'transparent';
+            navLogo.style.backgroundClip = 'text';
+        }
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.background = 'rgba(93, 109, 126, 0.95)';
         navbar.style.boxShadow = 'none';
+        
+        // Change text color back to light when background is dark
+        navLinks.forEach(link => {
+            link.style.color = '#ecf0f1';
+        });
+        
+        if (navLogo) {
+            navLogo.style.background = 'linear-gradient(135deg, #ecf0f1, #bdc3c7)';
+            navLogo.style.webkitBackgroundClip = 'text';
+            navLogo.style.webkitTextFillColor = 'transparent';
+            navLogo.style.backgroundClip = 'text';
+        }
     }
 });
 

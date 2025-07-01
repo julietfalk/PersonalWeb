@@ -40,7 +40,7 @@ body {
 }
 
 .nav-logo a {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Bebas Neue', 'Arial Black', 'Helvetica Bold', sans-serif;
     font-size: 1.5rem;
     font-weight: 400;
     color: #ecf0f1;
@@ -132,7 +132,7 @@ body {
 }
 
 .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Bebas Neue', 'Arial Black', 'Helvetica Bold', sans-serif;
     font-size: 3.5rem;
     font-weight: 400;
     color: white;
@@ -223,7 +223,7 @@ section {
 }
 
 .section-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Bebas Neue', 'Arial Black', 'Helvetica Bold', sans-serif;
     font-size: 2.5rem;
     font-weight: 400;
     text-align: center;
