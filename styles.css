@@ -349,6 +349,11 @@ section {
     overflow: visible;
 }
 
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+}
+
 .project-card::before {
     display: none;
 }
@@ -441,6 +446,11 @@ section {
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: visible;
+}
+
+.writing-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
 }
 
 .writing-card::after, .writing-card::before {
