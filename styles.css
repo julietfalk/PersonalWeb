@@ -436,7 +436,8 @@ section {
     border-radius: 0;
     padding: 2rem;
     backdrop-filter: blur(10px);
-    border: none;
+    border: none !important;
+    border-image: none !important;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
