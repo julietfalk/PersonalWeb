@@ -346,7 +346,7 @@ section {
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .project-card::before {
@@ -364,16 +364,14 @@ section {
 .project-card::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 5%;
-    right: 5%;
-    height: 20px;
-    background: linear-gradient(180deg, transparent 0%, #27ae60 100%);
-    border-radius: 50%;
-    z-index: 11;
-    box-shadow: 
-        0 0 0 3px rgba(46, 204, 113, 0.4),
-        0 0 0 6px rgba(39, 174, 96, 0.3);
+    left: 0;
+    right: 0;
+    bottom: -28px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 20;
+    background: url('data:image/svg+xml;utf8,<svg width="100%25" height="40" viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg"><g><path d="M0,40 Q10,20 20,40 T40,40 T60,40 T80,40 T100,40 T120,40 T140,40 T160,40 T180,40 T200,40 T220,40 T240,40 T260,40 T280,40 T300,40 T320,40 T340,40 T360,40 T380,40 T400,40 V0 H0 Z" fill="%232ecc71"/><path d="M10,40 Q20,10 30,40 T50,40 T70,40 T90,40 T110,40 T130,40 T150,40 T170,40 T190,40 T210,40 T230,40 T250,40 T270,40 T290,40 T310,40 T330,40 T350,40 T370,40 T390,40" fill="none" stroke="%2327ae60" stroke-width="4"/></g></svg>') bottom center repeat-x;
+    background-size: 100% 40px;
 }
 
 .project-card:hover {
@@ -469,7 +467,7 @@ section {
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .writing-card::before {
@@ -487,16 +485,14 @@ section {
 .writing-card::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 5%;
-    right: 5%;
-    height: 20px;
-    background: linear-gradient(180deg, transparent 0%, #27ae60 100%);
-    border-radius: 50%;
-    z-index: 11;
-    box-shadow: 
-        0 0 0 3px rgba(46, 204, 113, 0.4),
-        0 0 0 6px rgba(39, 174, 96, 0.3);
+    left: 0;
+    right: 0;
+    bottom: -28px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 20;
+    background: url('data:image/svg+xml;utf8,<svg width="100%25" height="40" viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg"><g><path d="M0,40 Q10,20 20,40 T40,40 T60,40 T80,40 T100,40 T120,40 T140,40 T160,40 T180,40 T200,40 T220,40 T240,40 T260,40 T280,40 T300,40 T320,40 T340,40 T360,40 T380,40 T400,40 V0 H0 Z" fill="%232ecc71"/><path d="M10,40 Q20,10 30,40 T50,40 T70,40 T90,40 T110,40 T130,40 T150,40 T170,40 T190,40 T210,40 T230,40 T250,40 T270,40 T290,40 T310,40 T330,40 T350,40 T370,40 T390,40" fill="none" stroke="%2327ae60" stroke-width="4"/></g></svg>') bottom center repeat-x;
+    background-size: 100% 40px;
 }
 
 .writing-card:hover {
