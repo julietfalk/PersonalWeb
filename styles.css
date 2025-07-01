@@ -151,7 +151,8 @@ p, span, div, a, li, button, input, textarea {
     letter-spacing: 2px;
 }
 
-.highlight {
+.hero-title .highlight {
+    font-family: 'Bebas Neue', 'Arial Black', 'Helvetica Bold', sans-serif;
     background: linear-gradient(135deg, #5dade2, #3498db);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -344,6 +345,35 @@ section {
     border: 2px solid #85929e;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(180deg, transparent 0%, #2ecc71 50%, #27ae60 100%);
+    border-radius: 0 0 0 0;
+    z-index: 1;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    right: 10%;
+    height: 15px;
+    background: linear-gradient(180deg, transparent 0%, #27ae60 100%);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 
+        0 0 0 2px rgba(46, 204, 113, 0.3),
+        0 0 0 4px rgba(39, 174, 96, 0.2);
 }
 
 .project-card:hover {
@@ -438,6 +468,35 @@ section {
     border: 2px solid #85929e;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.writing-card::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(180deg, transparent 0%, #2ecc71 50%, #27ae60 100%);
+    border-radius: 0 0 0 0;
+    z-index: 1;
+}
+
+.writing-card::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    right: 10%;
+    height: 15px;
+    background: linear-gradient(180deg, transparent 0%, #27ae60 100%);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 
+        0 0 0 2px rgba(46, 204, 113, 0.3),
+        0 0 0 4px rgba(39, 174, 96, 0.2);
 }
 
 .writing-card:hover {
