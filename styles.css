@@ -8,43 +8,41 @@
 /* Custom cursor trail */
 .cursor-trail {
     position: fixed;
-    width: 8px;
-    height: 8px;
-    background: radial-gradient(circle, rgba(193, 127, 89, 0.8) 0%, rgba(193, 127, 89, 0.4) 50%, transparent 100%);
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, rgba(193, 127, 89, 0.9) 0%, rgba(193, 127, 89, 0.6) 50%, transparent 100%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: all 0.1s ease;
     mix-blend-mode: screen;
 }
 
-.cursor-trail::before {
+.cursor-trail::before,
+.cursor-trail::after {
     content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle, rgba(193, 127, 89, 0.3) 0%, transparent 70%);
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(193, 127, 89, 0.7) 0%, rgba(193, 127, 89, 0.4) 50%, transparent 100%);
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 2s infinite;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 9998;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.3;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0.1;
-    }
+.cursor-trail::before {
+    left: var(--trail2-x, 0px);
+    top: var(--trail2-y, 0px);
 }
 
-/* Hide default cursor on interactive elements */
+.cursor-trail::after {
+    left: var(--trail3-x, 0px);
+    top: var(--trail3-y, 0px);
+}
+
+/* Keep cursor visible but add custom trail */
 a, button, .project-card, .writing-card {
-    cursor: none;
+    cursor: auto;
 }
 
 /* Show default cursor on mobile */
@@ -567,7 +565,7 @@ section {
     box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
 }
 
-.writing-card::after, .writing-card::before {
+.writing-card::after {
     display: none !important;
 }
 

@@ -189,28 +189,45 @@ function typeWriter(element, text, speed = 100) {
 
 // Enhanced scroll animations and mouse tracking
 document.addEventListener('DOMContentLoaded', () => {
-    // Create cursor trail element
+    // Create cursor trail elements (3 dots)
     const cursorTrail = document.createElement('div');
     cursorTrail.className = 'cursor-trail';
     document.body.appendChild(cursorTrail);
 
-    // Cursor trail effect
+    // Cursor trail effect with 3 dots
     let mouseX = 0, mouseY = 0;
-    let trailX = 0, trailY = 0;
+    let trail1X = 0, trail1Y = 0;
+    let trail2X = 0, trail2Y = 0;
+    let trail3X = 0, trail3Y = 0;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
 
-    // Animate cursor trail with delay
+    // Animate cursor trail with different delays for each dot
     function animateCursorTrail() {
-        // Smooth follow with delay
-        trailX += (mouseX - trailX) * 0.1;
-        trailY += (mouseY - trailY) * 0.1;
+        // First dot (closest to cursor)
+        trail1X += (mouseX - trail1X) * 0.15;
+        trail1Y += (mouseY - trail1Y) * 0.15;
         
-        cursorTrail.style.left = trailX + 'px';
-        cursorTrail.style.top = trailY + 'px';
+        // Second dot (medium delay)
+        trail2X += (mouseX - trail2X) * 0.08;
+        trail2Y += (mouseY - trail2Y) * 0.08;
+        
+        // Third dot (longest delay)
+        trail3X += (mouseX - trail3X) * 0.05;
+        trail3Y += (mouseY - trail3Y) * 0.05;
+        
+        // Update positions
+        cursorTrail.style.left = trail1X + 'px';
+        cursorTrail.style.top = trail1Y + 'px';
+        
+        // Update pseudo-elements for the other dots
+        cursorTrail.style.setProperty('--trail2-x', trail2X + 'px');
+        cursorTrail.style.setProperty('--trail2-y', trail2Y + 'px');
+        cursorTrail.style.setProperty('--trail3-x', trail3X + 'px');
+        cursorTrail.style.setProperty('--trail3-y', trail3Y + 'px');
         
         requestAnimationFrame(animateCursorTrail);
     }
