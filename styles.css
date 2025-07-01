@@ -350,28 +350,7 @@ section {
 }
 
 .project-card::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: #357b3e;
-    border-radius: 25px;
-    z-index: -1;
-    background-image: 
-        radial-gradient(ellipse 8px 15px at 20% 100%, #2ecc71 50%, transparent 50%),
-        radial-gradient(ellipse 10px 18px at 50% 100%, #49d18a 50%, transparent 50%),
-        radial-gradient(ellipse 8px 15px at 80% 100%, #2ecc71 50%, transparent 50%),
-        radial-gradient(ellipse 8px 15px at 20% 0%, #2ecc71 50%, transparent 50%),
-        radial-gradient(ellipse 10px 18px at 50% 0%, #49d18a 50%, transparent 50%),
-        radial-gradient(ellipse 8px 15px at 80% 0%, #2ecc71 50%, transparent 50%),
-        radial-gradient(ellipse 15px 8px at 0% 20%, #2ecc71 50%, transparent 50%),
-        radial-gradient(ellipse 18px 10px at 0% 50%, #49d18a 50%, transparent 50%),
-        radial-gradient(ellipse 15px 8px at 0% 80%, #2ecc71 50%, transparent 50%),
-        radial-gradient(ellipse 15px 8px at 100% 20%, #2ecc71 50%, transparent 50%),
-        radial-gradient(ellipse 18px 10px at 100% 50%, #49d18a 50%, transparent 50%),
-        radial-gradient(ellipse 15px 8px at 100% 80%, #2ecc71 50%, transparent 50%);
+    display: none;
 }
 
 .project-image {
