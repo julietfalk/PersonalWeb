@@ -343,7 +343,7 @@ section {
     padding: 2rem;
     backdrop-filter: blur(10px);
     border: 8px solid transparent;
-    border-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 40 Q10 30 15 40 T25 40 T35 40" stroke="%232ecc71" stroke-width="3" fill="none"/><path d="M0 40 Q10 20 20 40 T40 40" stroke="%2349d18a" stroke-width="4" fill="none"/><ellipse cx="10" cy="38" rx="2" ry="6" fill="%2349d18a"/><ellipse cx="20" cy="38" rx="2.5" ry="7" fill="%232ecc71"/><ellipse cx="30" cy="38" rx="2" ry="6" fill="%2349d18a"/></svg>') 20 repeat;
+    border-image: url('data:image/svg+xml;utf8,<svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 22 Q10 18 20 22 T40 22 T60 22 T80 22 T100 22 T120 22" stroke="%232ecc71" stroke-width="3" fill="none"/><path d="M5 22 Q15 10 25 22 T45 22 T65 22 T85 22 T105 22 T115 22" stroke="%2349d18a" stroke-width="4" fill="none"/><ellipse cx="15" cy="21" rx="2" ry="5" fill="%2349d18a"/><ellipse cx="35" cy="21" rx="2.5" ry="6" fill="%232ecc71"/><ellipse cx="55" cy="21" rx="2" ry="5" fill="%2349d18a"/><ellipse cx="75" cy="21" rx="2.5" ry="6" fill="%232ecc71"/><ellipse cx="95" cy="21" rx="2" ry="5" fill="%2349d18a"/><ellipse cx="110" cy="21" rx="2.5" ry="6" fill="%232ecc71"/></svg>') 24 repeat;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -436,8 +436,7 @@ section {
     border-radius: 0;
     padding: 2rem;
     backdrop-filter: blur(10px);
-    border: 8px solid transparent;
-    border-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 40 Q10 30 15 40 T25 40 T35 40" stroke="%232ecc71" stroke-width="3" fill="none"/><path d="M0 40 Q10 20 20 40 T40 40" stroke="%2349d18a" stroke-width="4" fill="none"/><ellipse cx="10" cy="38" rx="2" ry="6" fill="%2349d18a"/><ellipse cx="20" cy="38" rx="2.5" ry="7" fill="%232ecc71"/><ellipse cx="30" cy="38" rx="2" ry="6" fill="%2349d18a"/></svg>') 20 repeat;
+    border: none;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
