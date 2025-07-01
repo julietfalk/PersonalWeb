@@ -190,7 +190,7 @@ const createScrollProgress = () => {
         left: 0;
         width: 0%;
         height: 3px;
-        background: linear-gradient(135deg, #ffd89b, #19547b);
+        background: linear-gradient(135deg, #3498db, #2980b9);
         z-index: 1001;
         transition: width 0.1s ease;
     `;
@@ -207,52 +207,6 @@ const createScrollProgress = () => {
 // Initialize scroll progress
 createScrollProgress();
 
-// Add particle effect to hero section
-const createParticles = () => {
-    const hero = document.querySelector('.hero');
-    if (!hero) return;
-    
-    for (let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.style.cssText = `
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float-particle ${Math.random() * 10 + 10}s infinite linear;
-        `;
-        
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 10 + 's';
-        
-        hero.appendChild(particle);
-    }
-};
-
-// Add CSS for particle animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes float-particle {
-        0% {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
 // Initialize particles
-createParticles(); 
+// DISABLED: Particles don't fit brutalist aesthetic
+// createParticles(); 
