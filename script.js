@@ -189,8 +189,46 @@ function typeWriter(element, text, speed = 100) {
 
 // Enhanced scroll animations and mouse tracking
 document.addEventListener('DOMContentLoaded', () => {
-    // Mouse tracking for spotlight effect
+    // Create cursor trail element
+    const cursorTrail = document.createElement('div');
+    cursorTrail.className = 'cursor-trail';
+    document.body.appendChild(cursorTrail);
+
+    // Cursor trail effect
+    let mouseX = 0, mouseY = 0;
+    let trailX = 0, trailY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Animate cursor trail with delay
+    function animateCursorTrail() {
+        // Smooth follow with delay
+        trailX += (mouseX - trailX) * 0.1;
+        trailY += (mouseY - trailY) * 0.1;
+        
+        cursorTrail.style.left = trailX + 'px';
+        cursorTrail.style.top = trailY + 'px';
+        
+        requestAnimationFrame(animateCursorTrail);
+    }
+    animateCursorTrail();
+
+    // Mouse tracking for spotlight effect on project cards
     document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mouse-x', x + '%');
+            card.style.setProperty('--mouse-y', y + '%');
+        });
+    });
+
+    // Mouse tracking for spotlight effect on writing cards
+    document.querySelectorAll('.writing-card').forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;

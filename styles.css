@@ -5,6 +5,58 @@
     box-sizing: border-box;
 }
 
+/* Custom cursor trail */
+.cursor-trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(193, 127, 89, 0.8) 0%, rgba(193, 127, 89, 0.4) 50%, transparent 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+    mix-blend-mode: screen;
+}
+
+.cursor-trail::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(193, 127, 89, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.1;
+    }
+}
+
+/* Hide default cursor on interactive elements */
+a, button, .project-card, .writing-card {
+    cursor: none;
+}
+
+/* Show default cursor on mobile */
+@media (max-width: 768px) {
+    .cursor-trail {
+        display: none;
+    }
+    a, button, .project-card, .writing-card {
+        cursor: auto;
+    }
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -517,6 +569,24 @@ section {
 
 .writing-card::after, .writing-card::before {
     display: none !important;
+}
+
+.writing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(193, 127, 89, 0.1) 0%, transparent 50%);
+    border-radius: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.writing-card:hover::before {
+    opacity: 1;
 }
 
 .writing-meta {
