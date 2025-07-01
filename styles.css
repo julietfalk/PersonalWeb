@@ -342,43 +342,16 @@ section {
     border-radius: 0;
     padding: 2rem;
     backdrop-filter: blur(10px);
-    border: 2px solid #85929e;
+    border: 8px solid transparent;
+    border-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 40 Q10 30 15 40 T25 40 T35 40" stroke="%232ecc71" stroke-width="3" fill="none"/><path d="M0 40 Q10 20 20 40 T40 40" stroke="%2349d18a" stroke-width="4" fill="none"/><ellipse cx="10" cy="38" rx="2" ry="6" fill="%2349d18a"/><ellipse cx="20" cy="38" rx="2.5" ry="7" fill="%232ecc71"/><ellipse cx="30" cy="38" rx="2" ry="6" fill="%2349d18a"/></svg>') 20 repeat;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: visible;
 }
 
-.project-card::before {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: -5px;
-    right: -5px;
-    height: 30px;
-    background: linear-gradient(180deg, transparent 0%, #2ecc71 50%, #27ae60 100%);
-    border-radius: 0 0 0 0;
-    z-index: 10;
-}
-
-.project-card::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -28px;
-    height: 40px;
-    pointer-events: none;
-    z-index: 20;
-    background: url('data:image/svg+xml;utf8,<svg width="100%25" height="40" viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg"><g><path d="M0,40 Q10,20 20,40 T40,40 T60,40 T80,40 T100,40 T120,40 T140,40 T160,40 T180,40 T200,40 T220,40 T240,40 T260,40 T280,40 T300,40 T320,40 T340,40 T360,40 T380,40 T400,40 V0 H0 Z" fill="%232ecc71"/><path d="M10,40 Q20,10 30,40 T50,40 T70,40 T90,40 T110,40 T130,40 T150,40 T170,40 T190,40 T210,40 T230,40 T250,40 T270,40 T290,40 T310,40 T330,40 T350,40 T370,40 T390,40" fill="none" stroke="%2327ae60" stroke-width="4"/></g></svg>') bottom center repeat-x;
-    background-size: 100% 40px;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
-    background: rgba(133, 146, 158, 0.9);
-    border-color: #5dade2;
+.project-card::after, .project-card::before {
+    display: none !important;
 }
 
 .project-image {
@@ -463,43 +436,16 @@ section {
     border-radius: 0;
     padding: 2rem;
     backdrop-filter: blur(10px);
-    border: 2px solid #85929e;
+    border: 8px solid transparent;
+    border-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 40 Q10 30 15 40 T25 40 T35 40" stroke="%232ecc71" stroke-width="3" fill="none"/><path d="M0 40 Q10 20 20 40 T40 40" stroke="%2349d18a" stroke-width="4" fill="none"/><ellipse cx="10" cy="38" rx="2" ry="6" fill="%2349d18a"/><ellipse cx="20" cy="38" rx="2.5" ry="7" fill="%232ecc71"/><ellipse cx="30" cy="38" rx="2" ry="6" fill="%2349d18a"/></svg>') 20 repeat;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: visible;
 }
 
-.writing-card::before {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: -5px;
-    right: -5px;
-    height: 30px;
-    background: linear-gradient(180deg, transparent 0%, #2ecc71 50%, #27ae60 100%);
-    border-radius: 0 0 0 0;
-    z-index: 10;
-}
-
-.writing-card::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -28px;
-    height: 40px;
-    pointer-events: none;
-    z-index: 20;
-    background: url('data:image/svg+xml;utf8,<svg width="100%25" height="40" viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg"><g><path d="M0,40 Q10,20 20,40 T40,40 T60,40 T80,40 T100,40 T120,40 T140,40 T160,40 T180,40 T200,40 T220,40 T240,40 T260,40 T280,40 T300,40 T320,40 T340,40 T360,40 T380,40 T400,40 V0 H0 Z" fill="%232ecc71"/><path d="M10,40 Q20,10 30,40 T50,40 T70,40 T90,40 T110,40 T130,40 T150,40 T170,40 T190,40 T210,40 T230,40 T250,40 T270,40 T290,40 T310,40 T330,40 T350,40 T370,40 T390,40" fill="none" stroke="%2327ae60" stroke-width="4"/></g></svg>') bottom center repeat-x;
-    background-size: 100% 40px;
-}
-
-.writing-card:hover {
-    transform: translateY(-3px);
-    background: rgba(133, 146, 158, 0.9);
-    border-color: #5dade2;
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+.writing-card::after, .writing-card::before {
+    display: none !important;
 }
 
 .writing-meta {
