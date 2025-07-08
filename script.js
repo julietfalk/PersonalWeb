@@ -316,7 +316,7 @@ createScrollProgress();
 // DISABLED: Particles don't fit brutalist aesthetic
 // createParticles(); 
 
-// Enhanced cursor-responsive hero background animation
+// Enhanced cursor-responsive hero background animation with gold ripples
 function animateHeroBackground() {
     const canvas = document.getElementById('hero-bg-canvas');
     if (!canvas) return;
@@ -327,77 +327,88 @@ function animateHeroBackground() {
     let mouseY = height / 2;
     let time = 0;
     
-    // Particle system
-    const particles = [];
-    const numParticles = 15;
+    // Ripple system
+    const ripples = [];
+    const maxRipples = 8;
     
-    class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.size = Math.random() * 3 + 1;
-            this.opacity = Math.random() * 0.3 + 0.1;
-            this.originalX = this.x;
-            this.originalY = this.y;
+    class Ripple {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.radius = 0;
+            this.maxRadius = Math.max(width, height) * 0.8;
+            this.opacity = 0.8;
+            this.speed = 2;
+            this.thickness = 2;
+            this.created = time;
         }
         
         update() {
-            // Move towards mouse with subtle attraction
-            const dx = mouseX - this.x;
-            const dy = mouseY - this.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
-            if (distance < 200) {
-                const force = (200 - distance) / 200;
-                this.vx += dx * force * 0.0005;
-                this.vy += dy * force * 0.0005;
-            }
-            
-            // Return to original position gradually
-            this.vx += (this.originalX - this.x) * 0.0001;
-            this.vy += (this.originalY - this.y) * 0.0001;
-            
-            // Apply velocity
-            this.x += this.vx;
-            this.y += this.vy;
-            
-            // Damping
-            this.vx *= 0.99;
-            this.vy *= 0.99;
-            
-            // Wrap around edges
-            if (this.x < 0) this.x = width;
-            if (this.x > width) this.x = 0;
-            if (this.y < 0) this.y = height;
-            if (this.y > height) this.y = 0;
+            this.radius += this.speed;
+            this.opacity = Math.max(0, 0.8 - (this.radius / this.maxRadius) * 0.8);
+            return this.opacity > 0;
         }
         
         draw() {
             ctx.save();
-            ctx.globalAlpha = this.opacity;
-            ctx.fillStyle = '#d4af37'; // Gold color
+            ctx.strokeStyle = '#d4af37';
+            ctx.lineWidth = this.thickness;
+            ctx.globalAlpha = this.opacity * 0.4; // Reduced opacity for subtlety
+            
+            // Create gradient for shining effect
+            const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+            gradient.addColorStop(0, 'rgba(212, 175, 55, 0.6)');
+            gradient.addColorStop(0.5, 'rgba(212, 175, 55, 0.3)');
+            gradient.addColorStop(1, 'rgba(212, 175, 55, 0)');
+            
+            ctx.strokeStyle = gradient;
+            
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.stroke();
             ctx.restore();
         }
     }
     
-    // Initialize particles
-    for (let i = 0; i < numParticles; i++) {
-        particles.push(new Particle());
+    // Grid of connection points
+    const gridPoints = [];
+    const gridSize = 80;
+    const cols = Math.ceil(width / gridSize);
+    const rows = Math.ceil(height / gridSize);
+    
+    for (let i = 0; i <= cols; i++) {
+        for (let j = 0; j <= rows; j++) {
+            gridPoints.push({
+                x: i * gridSize,
+                y: j * gridSize,
+                originalX: i * gridSize,
+                originalY: j * gridSize,
+                vx: 0,
+                vy: 0
+            });
+        }
     }
     
     function resize() {
         width = canvas.offsetWidth = canvas.parentElement.offsetWidth;
         height = canvas.offsetHeight = canvas.parentElement.offsetHeight;
         
-        // Reinitialize particles for new size
-        particles.length = 0;
-        for (let i = 0; i < numParticles; i++) {
-            particles.push(new Particle());
+        // Reinitialize grid points
+        gridPoints.length = 0;
+        const cols = Math.ceil(width / gridSize);
+        const rows = Math.ceil(height / gridSize);
+        
+        for (let i = 0; i <= cols; i++) {
+            for (let j = 0; j <= rows; j++) {
+                gridPoints.push({
+                    x: i * gridSize,
+                    y: j * gridSize,
+                    originalX: i * gridSize,
+                    originalY: j * gridSize,
+                    vx: 0,
+                    vy: 0
+                });
+            }
         }
     }
     window.addEventListener('resize', resize);
@@ -408,6 +419,11 @@ function animateHeroBackground() {
         const rect = canvas.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
+        
+        // Create new ripple occasionally
+        if (Math.random() < 0.1 && ripples.length < maxRipples) {
+            ripples.push(new Ripple(mouseX, mouseY));
+        }
     });
     
     window.addEventListener('mousemove', (e) => {
@@ -426,60 +442,92 @@ function animateHeroBackground() {
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
         
-        // Draw connecting lines between nearby particles
-        ctx.save();
-        ctx.strokeStyle = '#d4af37';
-        ctx.lineWidth = 0.5;
-        ctx.globalAlpha = 0.3;
-        
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
+        // Update grid points based on ripples
+        gridPoints.forEach(point => {
+            let totalForceX = 0;
+            let totalForceY = 0;
+            
+            // Calculate force from all ripples
+            ripples.forEach(ripple => {
+                const dx = point.x - ripple.x;
+                const dy = point.y - ripple.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                if (distance < 100) {
-                    ctx.globalAlpha = (100 - distance) / 100 * 0.3;
+                if (distance < ripple.radius && distance > ripple.radius - 50) {
+                    const force = (ripple.radius - distance) / 50 * ripple.opacity * 0.3;
+                    const angle = Math.atan2(dy, dx);
+                    totalForceX += Math.cos(angle) * force;
+                    totalForceY += Math.sin(angle) * force;
+                }
+            });
+            
+            // Apply forces
+            point.vx += totalForceX;
+            point.vy += totalForceY;
+            
+            // Return to original position
+            point.vx += (point.originalX - point.x) * 0.02;
+            point.vy += (point.originalY - point.y) * 0.02;
+            
+            // Update position
+            point.x += point.vx;
+            point.y += point.vy;
+            
+            // Damping
+            point.vx *= 0.95;
+            point.vy *= 0.95;
+        });
+        
+        // Draw connecting lines with soft gold effect
+        ctx.save();
+        ctx.strokeStyle = '#d4af37';
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.15; // Very subtle
+        
+        for (let i = 0; i < gridPoints.length; i++) {
+            for (let j = i + 1; j < gridPoints.length; j++) {
+                const dx = gridPoints[i].x - gridPoints[j].x;
+                const dy = gridPoints[i].y - gridPoints[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < gridSize * 1.5) {
+                    // Create gradient for shining effect
+                    const gradient = ctx.createLinearGradient(
+                        gridPoints[i].x, gridPoints[i].y, 
+                        gridPoints[j].x, gridPoints[j].y
+                    );
+                    gradient.addColorStop(0, 'rgba(212, 175, 55, 0.2)');
+                    gradient.addColorStop(0.5, 'rgba(255, 215, 0, 0.3)');
+                    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.2)');
+                    
+                    ctx.strokeStyle = gradient;
+                    ctx.globalAlpha = (gridSize * 1.5 - distance) / (gridSize * 1.5) * 0.15;
+                    
                     ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.moveTo(gridPoints[i].x, gridPoints[i].y);
+                    ctx.lineTo(gridPoints[j].x, gridPoints[j].y);
                     ctx.stroke();
                 }
             }
         }
         ctx.restore();
         
-        // Update and draw particles
-        particles.forEach(particle => {
-            particle.update();
-            particle.draw();
-        });
-        
-        // Subtle wave effect at bottom
-        ctx.save();
-        ctx.globalAlpha = 0.15;
-        ctx.beginPath();
-        const waveHeight = 20 + 15 * Math.sin(time / 80);
-        const waveLength = width / 2;
-        const mouseInfluence = ((mouseX / width) - 0.5) * 1.5;
-        
-        ctx.moveTo(0, height * 0.8);
-        for (let x = 0; x <= width; x += 3) {
-            const y = height * 0.8 +
-                Math.sin((x / waveLength) * 2 * Math.PI + time / 60 + mouseInfluence) * waveHeight +
-                Math.cos((x / waveLength) * 2 * Math.PI - time / 80 - mouseInfluence) * 5;
-            ctx.lineTo(x, y);
+        // Update and draw ripples
+        for (let i = ripples.length - 1; i >= 0; i--) {
+            if (!ripples[i].update()) {
+                ripples.splice(i, 1);
+            } else {
+                ripples[i].draw();
+            }
         }
-        ctx.lineTo(width, height);
-        ctx.lineTo(0, height);
-        ctx.closePath();
         
-        const waveGrad = ctx.createLinearGradient(0, height * 0.8, 0, height);
-        waveGrad.addColorStop(0, '#d4af37');
-        waveGrad.addColorStop(1, '#b8860b');
-        ctx.fillStyle = waveGrad;
-        ctx.fill();
-        ctx.restore();
+        // Add subtle ambient ripples
+        if (Math.random() < 0.02 && ripples.length < maxRipples) {
+            ripples.push(new Ripple(
+                Math.random() * width,
+                Math.random() * height
+            ));
+        }
         
         time++;
         requestAnimationFrame(draw);
