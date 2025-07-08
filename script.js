@@ -316,8 +316,8 @@ createScrollProgress();
 // DISABLED: Particles don't fit brutalist aesthetic
 // createParticles(); 
 
-// Animated gradient/wave background for hero section
-function animateHeroWave() {
+// Enhanced cursor-responsive hero background animation
+function animateHeroBackground() {
     const canvas = document.getElementById('hero-bg-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -326,59 +326,161 @@ function animateHeroWave() {
     let mouseX = width / 2;
     let mouseY = height / 2;
     let time = 0;
-
+    
+    // Particle system
+    const particles = [];
+    const numParticles = 15;
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 3 + 1;
+            this.opacity = Math.random() * 0.3 + 0.1;
+            this.originalX = this.x;
+            this.originalY = this.y;
+        }
+        
+        update() {
+            // Move towards mouse with subtle attraction
+            const dx = mouseX - this.x;
+            const dy = mouseY - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 200) {
+                const force = (200 - distance) / 200;
+                this.vx += dx * force * 0.0005;
+                this.vy += dy * force * 0.0005;
+            }
+            
+            // Return to original position gradually
+            this.vx += (this.originalX - this.x) * 0.0001;
+            this.vy += (this.originalY - this.y) * 0.0001;
+            
+            // Apply velocity
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            // Damping
+            this.vx *= 0.99;
+            this.vy *= 0.99;
+            
+            // Wrap around edges
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+        }
+        
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = '#d4af37'; // Gold color
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+    
+    // Initialize particles
+    for (let i = 0; i < numParticles; i++) {
+        particles.push(new Particle());
+    }
+    
     function resize() {
         width = canvas.offsetWidth = canvas.parentElement.offsetWidth;
         height = canvas.offsetHeight = canvas.parentElement.offsetHeight;
+        
+        // Reinitialize particles for new size
+        particles.length = 0;
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
     }
     window.addEventListener('resize', resize);
     resize();
-
+    
+    // Mouse tracking
     canvas.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
     });
-    // Also respond to mousemove on window for pointer-events:none
+    
     window.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
     });
-
+    
     function draw() {
         ctx.clearRect(0, 0, width, height);
-        // Gradient background
+        
+        // Subtle gradient background
         const grad = ctx.createLinearGradient(0, 0, width, height);
         grad.addColorStop(0, '#f8f6f2');
-        grad.addColorStop(1, '#c17f59');
+        grad.addColorStop(1, '#f4e4bc');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
-
-        // Animated wave
+        
+        // Draw connecting lines between nearby particles
         ctx.save();
-        ctx.globalAlpha = 0.5;
+        ctx.strokeStyle = '#d4af37';
+        ctx.lineWidth = 0.5;
+        ctx.globalAlpha = 0.3;
+        
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    ctx.globalAlpha = (100 - distance) / 100 * 0.3;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        ctx.restore();
+        
+        // Update and draw particles
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        // Subtle wave effect at bottom
+        ctx.save();
+        ctx.globalAlpha = 0.15;
         ctx.beginPath();
-        const waveHeight = 40 + 30 * Math.sin(time / 60);
-        const waveLength = width / 1.5;
-        const mouseInfluence = ((mouseX / width) - 0.5) * 2;
-        ctx.moveTo(0, height * 0.6);
-        for (let x = 0; x <= width; x += 4) {
-            const y = height * 0.6 +
-                Math.sin((x / waveLength) * 2 * Math.PI + time / 40 + mouseInfluence) * waveHeight * (0.7 + 0.3 * Math.cos(time / 80)) +
-                Math.cos((x / waveLength) * 2 * Math.PI - time / 50 - mouseInfluence) * 10;
+        const waveHeight = 20 + 15 * Math.sin(time / 80);
+        const waveLength = width / 2;
+        const mouseInfluence = ((mouseX / width) - 0.5) * 1.5;
+        
+        ctx.moveTo(0, height * 0.8);
+        for (let x = 0; x <= width; x += 3) {
+            const y = height * 0.8 +
+                Math.sin((x / waveLength) * 2 * Math.PI + time / 60 + mouseInfluence) * waveHeight +
+                Math.cos((x / waveLength) * 2 * Math.PI - time / 80 - mouseInfluence) * 5;
             ctx.lineTo(x, y);
         }
         ctx.lineTo(width, height);
         ctx.lineTo(0, height);
         ctx.closePath();
-        const waveGrad = ctx.createLinearGradient(0, height * 0.6, 0, height);
-        waveGrad.addColorStop(0, 'rgba(198, 127, 89, 0.25)');
-        waveGrad.addColorStop(1, 'rgba(166, 124, 82, 0.12)');
+        
+        const waveGrad = ctx.createLinearGradient(0, height * 0.8, 0, height);
+        waveGrad.addColorStop(0, '#d4af37');
+        waveGrad.addColorStop(1, '#b8860b');
         ctx.fillStyle = waveGrad;
         ctx.fill();
         ctx.restore();
-
+        
         time++;
         requestAnimationFrame(draw);
     }
@@ -386,5 +488,5 @@ function animateHeroWave() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    animateHeroWave();
+    animateHeroBackground();
 }); 
