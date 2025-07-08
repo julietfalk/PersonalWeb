@@ -393,9 +393,9 @@ function animateHeroBackground() {
         }
     }
     
-    // Grid of connection points - organic spiderweb pattern
+    // Grid of connection points - organic water-like pattern
     const gridPoints = [];
-    const baseGridSize = 100;
+    const baseGridSize = 120; // Larger spacing for smoother movement
     const cols = Math.ceil(width / baseGridSize);
     const rows = Math.ceil(height / baseGridSize);
     
@@ -403,8 +403,8 @@ function animateHeroBackground() {
     for (let i = 0; i <= cols; i++) {
         for (let j = 0; j <= rows; j++) {
             // Add some randomness to create organic feel
-            const offsetX = (Math.random() - 0.5) * 30;
-            const offsetY = (Math.random() - 0.5) * 30;
+            const offsetX = (Math.random() - 0.5) * 40;
+            const offsetY = (Math.random() - 0.5) * 40;
             
             gridPoints.push({
                 x: i * baseGridSize + offsetX,
@@ -418,7 +418,7 @@ function animateHeroBackground() {
         }
     }
     
-    // Create organic connections (like spiderweb)
+    // Create water-like connections (fewer, more fluid)
     gridPoints.forEach((point, index) => {
         const connections = [];
         gridPoints.forEach((otherPoint, otherIndex) => {
@@ -427,8 +427,8 @@ function animateHeroBackground() {
                 const dy = point.y - otherPoint.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                // Connect to nearby points with some randomness
-                if (distance < baseGridSize * 1.8 && Math.random() < 0.6) {
+                // Connect to fewer nearby points for smoother water-like effect
+                if (distance < baseGridSize * 1.4 && Math.random() < 0.4) {
                     connections.push(otherIndex);
                 }
             }
@@ -447,8 +447,8 @@ function animateHeroBackground() {
         
         for (let i = 0; i <= cols; i++) {
             for (let j = 0; j <= rows; j++) {
-                const offsetX = (Math.random() - 0.5) * 30;
-                const offsetY = (Math.random() - 0.5) * 30;
+                const offsetX = (Math.random() - 0.5) * 40;
+                const offsetY = (Math.random() - 0.5) * 40;
                 gridPoints.push({
                     x: i * baseGridSize + offsetX,
                     y: j * baseGridSize + offsetY,
@@ -469,7 +469,7 @@ function animateHeroBackground() {
                     const dy = point.y - otherPoint.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (distance < baseGridSize * 1.8 && Math.random() < 0.6) {
+                    if (distance < baseGridSize * 1.4 && Math.random() < 0.4) {
                         connections.push(otherIndex);
                     }
                 }
@@ -530,14 +530,7 @@ function animateHeroBackground() {
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
         
-        // Add immediate visual feedback - draw a test circle
-        ctx.save();
-        ctx.fillStyle = '#ffd700'; // More golden color
-        ctx.globalAlpha = 0.6; // Brighter test circle
-        ctx.beginPath();
-        ctx.arc(width/2, height/2, 50, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
+
         
         // Check if cursor is in the hero area
         const isCursorInHero = mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height;
@@ -555,8 +548,8 @@ function animateHeroBackground() {
                     const dy = point.y - ripple.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (distance < ripple.radius && distance > ripple.radius - 50) {
-                        const force = (ripple.radius - distance) / 50 * ripple.opacity * 0.3; // Reduced force for less wobble
+                    if (distance < ripple.radius && distance > ripple.radius - 60) {
+                        const force = (ripple.radius - distance) / 60 * ripple.opacity * 0.2; // Even gentler force for smoother movement
                         const angle = Math.atan2(dy, dx);
                         totalForceX += Math.cos(angle) * force;
                         totalForceY += Math.sin(angle) * force;
@@ -564,12 +557,12 @@ function animateHeroBackground() {
                 });
             }
             
-            // Apply forces
+            // Apply forces with smoother physics
             point.vx += totalForceX;
             point.vy += totalForceY;
             
-            // Return to original position (stronger when cursor is not in area or not moving)
-            const returnStrength = (isCursorInHero && isMouseMoving) ? 0.05 : 0.15; // Faster return when not moving
+            // Return to original position (smoother return)
+            const returnStrength = (isCursorInHero && isMouseMoving) ? 0.03 : 0.12; // Gentler return when moving
             point.vx += (point.originalX - point.x) * returnStrength;
             point.vy += (point.originalY - point.y) * returnStrength;
             
@@ -577,43 +570,49 @@ function animateHeroBackground() {
             point.x += point.vx;
             point.y += point.vy;
             
-            // Damping (stronger when cursor is not in area or not moving)
-            const damping = (isCursorInHero && isMouseMoving) ? 0.98 : 0.9;
+            // Smoother damping (more water-like)
+            const damping = (isCursorInHero && isMouseMoving) ? 0.99 : 0.92;
             point.vx *= damping;
             point.vy *= damping;
         });
         
-        // Draw organic connecting lines with golden glowing effect
+        // Draw connecting lines with water-like fluidity
         ctx.save();
-        ctx.strokeStyle = '#ffd700'; // Golden color
-        ctx.lineWidth = 1.5;
-        ctx.globalAlpha = 0.5; // Brighter lines
         
         // Draw only the organic connections
         gridPoints.forEach((point, index) => {
             point.connections.forEach(connectionIndex => {
                 const connectedPoint = gridPoints[connectionIndex];
                 if (connectedPoint) {
-                    const dx = point.x - connectedPoint.x;
-                    const dy = point.y - connectedPoint.y;
+                    const dx = connectedPoint.x - point.x;
+                    const dy = connectedPoint.y - point.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    // Create gradient for golden glowing effect
-                    const gradient = ctx.createLinearGradient(
-                        point.x, point.y, 
-                        connectedPoint.x, connectedPoint.y
-                    );
-                    gradient.addColorStop(0, 'rgba(255, 215, 0, 0.7)'); // Golden
-                    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.9)'); // White glow in center
-                    gradient.addColorStop(1, 'rgba(255, 215, 0, 0.7)'); // Golden
-                    
-                    ctx.strokeStyle = gradient;
-                    ctx.globalAlpha = 0.5; // Brighter opacity
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(point.x, point.y);
-                    ctx.lineTo(connectedPoint.x, connectedPoint.y);
-                    ctx.stroke();
+                    // Only draw lines within reasonable distance
+                    if (distance < baseGridSize * 2) {
+                        // Calculate line opacity based on distance and movement
+                        const baseOpacity = 0.15; // More subtle base opacity
+                        const movementOpacity = Math.abs(point.vx) + Math.abs(point.vy) + 
+                                              Math.abs(connectedPoint.vx) + Math.abs(connectedPoint.vy);
+                        const opacity = baseOpacity + movementOpacity * 0.3;
+                        
+                        // Create gradient for golden glowing effect
+                        const gradient = ctx.createLinearGradient(
+                            point.x, point.y, 
+                            connectedPoint.x, connectedPoint.y
+                        );
+                        gradient.addColorStop(0, `rgba(255, 215, 0, ${opacity})`); // Golden
+                        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${opacity * 1.5})`); // White glow in center
+                        gradient.addColorStop(1, `rgba(255, 215, 0, ${opacity})`); // Golden
+                        
+                        ctx.strokeStyle = gradient;
+                        ctx.lineWidth = 0.8; // Thinner lines for more fluid look
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(point.x, point.y);
+                        ctx.lineTo(connectedPoint.x, connectedPoint.y);
+                        ctx.stroke();
+                    }
                 }
             });
         });
