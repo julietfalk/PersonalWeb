@@ -188,8 +188,12 @@ function typeWriter(element, text, speed = 100) {
 // Enhanced scroll animations and mouse tracking
 // Single DOMContentLoaded event listener to handle all initialization
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event fired');
+    
     // Initialize hero background animation
+    console.log('About to call animateHeroBackground');
     animateHeroBackground();
+    console.log('animateHeroBackground called');
     
     // Initialize cursor trail
     const cursorTrail = document.createElement('div');
@@ -320,14 +324,28 @@ const createScrollProgress = () => {
 
 // Enhanced cursor-responsive hero background animation with gold ripples
 function animateHeroBackground() {
+    console.log('animateHeroBackground called');
     const canvas = document.getElementById('hero-bg-canvas');
-    if (!canvas) return;
+    if (!canvas) {
+        console.error('Canvas element not found!');
+        return;
+    }
+    console.log('Canvas found:', canvas);
+    
     const ctx = canvas.getContext('2d');
+    if (!ctx) {
+        console.error('Could not get 2D context!');
+        return;
+    }
+    console.log('2D context obtained');
+    
     let width = canvas.offsetWidth;
     let height = canvas.offsetHeight;
     let mouseX = width / 2;
     let mouseY = height / 2;
     let time = 0;
+    
+    console.log('Canvas dimensions:', width, height);
     
     // Ripple system
     const ripples = [];
