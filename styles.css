@@ -452,7 +452,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(193, 127, 89, 0.25) 0%, transparent 60%);
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(193, 127, 89, 0.14) 0%, transparent 45%);
     border-radius: 18px;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -576,7 +576,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(193, 127, 89, 0.22) 0%, transparent 60%);
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(193, 127, 89, 0.11) 0%, transparent 45%);
     border-radius: 0;
     opacity: 0;
     transition: opacity 0.3s ease;
