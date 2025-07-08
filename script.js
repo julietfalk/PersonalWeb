@@ -393,24 +393,20 @@ function animateHeroBackground() {
         }
     }
     
-    // Grid of connection points - organic water-like pattern
+    // Grid of connection points - notebook/graph paper pattern
     const gridPoints = [];
-    const baseGridSize = 120; // Larger spacing for smoother movement
+    const baseGridSize = 80; // Smaller spacing for notebook lines
     const cols = Math.ceil(width / baseGridSize);
     const rows = Math.ceil(height / baseGridSize);
     
-    // Create organic pattern with varying distances and connections
+    // Create regular grid pattern (like notebook paper)
     for (let i = 0; i <= cols; i++) {
         for (let j = 0; j <= rows; j++) {
-            // Add some randomness to create organic feel
-            const offsetX = (Math.random() - 0.5) * 40;
-            const offsetY = (Math.random() - 0.5) * 40;
-            
             gridPoints.push({
-                x: i * baseGridSize + offsetX,
-                y: j * baseGridSize + offsetY,
-                originalX: i * baseGridSize + offsetX,
-                originalY: j * baseGridSize + offsetY,
+                x: i * baseGridSize,
+                y: j * baseGridSize,
+                originalX: i * baseGridSize,
+                originalY: j * baseGridSize,
                 vx: 0,
                 vy: 0,
                 connections: [] // Track which points this connects to
@@ -418,17 +414,21 @@ function animateHeroBackground() {
         }
     }
     
-    // Create water-like connections (fewer, more fluid)
+    // Create notebook grid connections (horizontal and vertical lines)
     gridPoints.forEach((point, index) => {
         const connections = [];
+        const col = Math.round(point.originalX / baseGridSize);
+        const row = Math.round(point.originalY / baseGridSize);
+        
+        // Connect to adjacent points in a grid pattern
         gridPoints.forEach((otherPoint, otherIndex) => {
             if (index !== otherIndex) {
-                const dx = point.x - otherPoint.x;
-                const dy = point.y - otherPoint.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+                const otherCol = Math.round(otherPoint.originalX / baseGridSize);
+                const otherRow = Math.round(otherPoint.originalY / baseGridSize);
                 
-                // Connect to fewer nearby points for smoother water-like effect
-                if (distance < baseGridSize * 1.4 && Math.random() < 0.4) {
+                // Connect horizontally and vertically (like notebook lines)
+                if ((otherCol === col && Math.abs(otherRow - row) === 1) || 
+                    (otherRow === row && Math.abs(otherCol - col) === 1)) {
                     connections.push(otherIndex);
                 }
             }
@@ -447,13 +447,11 @@ function animateHeroBackground() {
         
         for (let i = 0; i <= cols; i++) {
             for (let j = 0; j <= rows; j++) {
-                const offsetX = (Math.random() - 0.5) * 40;
-                const offsetY = (Math.random() - 0.5) * 40;
                 gridPoints.push({
-                    x: i * baseGridSize + offsetX,
-                    y: j * baseGridSize + offsetY,
-                    originalX: i * baseGridSize + offsetX,
-                    originalY: j * baseGridSize + offsetY,
+                    x: i * baseGridSize,
+                    y: j * baseGridSize,
+                    originalX: i * baseGridSize,
+                    originalY: j * baseGridSize,
                     vx: 0,
                     vy: 0,
                     connections: []
@@ -463,13 +461,16 @@ function animateHeroBackground() {
         // Re-establish connections after resize
         gridPoints.forEach((point, index) => {
             const connections = [];
+            const col = Math.round(point.originalX / baseGridSize);
+            const row = Math.round(point.originalY / baseGridSize);
+            
             gridPoints.forEach((otherPoint, otherIndex) => {
                 if (index !== otherIndex) {
-                    const dx = point.x - otherPoint.x;
-                    const dy = point.y - otherPoint.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const otherCol = Math.round(otherPoint.originalX / baseGridSize);
+                    const otherRow = Math.round(otherPoint.originalY / baseGridSize);
                     
-                    if (distance < baseGridSize * 1.4 && Math.random() < 0.4) {
+                    if ((otherCol === col && Math.abs(otherRow - row) === 1) || 
+                        (otherRow === row && Math.abs(otherCol - col) === 1)) {
                         connections.push(otherIndex);
                     }
                 }
@@ -576,10 +577,10 @@ function animateHeroBackground() {
             point.vy *= damping;
         });
         
-        // Draw connecting lines with water-like fluidity
+        // Draw notebook grid lines with water physics
         ctx.save();
         
-        // Draw only the organic connections
+        // Draw the grid connections (like notebook paper)
         gridPoints.forEach((point, index) => {
             point.connections.forEach(connectionIndex => {
                 const connectedPoint = gridPoints[connectionIndex];
@@ -588,34 +589,50 @@ function animateHeroBackground() {
                     const dy = connectedPoint.y - point.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    // Only draw lines within reasonable distance
-                    if (distance < baseGridSize * 2) {
-                        // Calculate line opacity based on distance and movement
-                        const baseOpacity = 0.15; // More subtle base opacity
-                        const movementOpacity = Math.abs(point.vx) + Math.abs(point.vy) + 
-                                              Math.abs(connectedPoint.vx) + Math.abs(connectedPoint.vy);
-                        const opacity = baseOpacity + movementOpacity * 0.3;
-                        
-                        // Create gradient for golden glowing effect
-                        const gradient = ctx.createLinearGradient(
-                            point.x, point.y, 
-                            connectedPoint.x, connectedPoint.y
-                        );
-                        gradient.addColorStop(0, `rgba(255, 215, 0, ${opacity})`); // Golden
-                        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${opacity * 1.5})`); // White glow in center
-                        gradient.addColorStop(1, `rgba(255, 215, 0, ${opacity})`); // Golden
-                        
-                        ctx.strokeStyle = gradient;
-                        ctx.lineWidth = 0.8; // Thinner lines for more fluid look
-                        
-                        ctx.beginPath();
-                        ctx.moveTo(point.x, point.y);
-                        ctx.lineTo(connectedPoint.x, connectedPoint.y);
-                        ctx.stroke();
-                    }
+                    // Calculate line opacity based on movement (more visible when moving)
+                    const baseOpacity = 0.08; // Very subtle base opacity like faint notebook lines
+                    const movementOpacity = Math.abs(point.vx) + Math.abs(point.vy) + 
+                                          Math.abs(connectedPoint.vx) + Math.abs(connectedPoint.vy);
+                    const opacity = baseOpacity + movementOpacity * 0.4;
+                    
+                    // Use a subtle gray color like notebook paper
+                    ctx.strokeStyle = `rgba(200, 200, 200, ${opacity})`;
+                    ctx.lineWidth = 0.5; // Very thin lines like notebook paper
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(point.x, point.y);
+                    ctx.lineTo(connectedPoint.x, connectedPoint.y);
+                    ctx.stroke();
                 }
             });
         });
+        
+        // Add subtle horizontal writing lines (like notebook paper)
+        const lineSpacing = baseGridSize / 4; // Lines between grid points
+        for (let y = lineSpacing; y < height; y += lineSpacing) {
+            // Find the grid points that would be affected by this line
+            const affectedPoints = gridPoints.filter(point => 
+                Math.abs(point.y - y) < baseGridSize / 2
+            );
+            
+            if (affectedPoints.length > 0) {
+                // Calculate average movement of affected points
+                const avgMovement = affectedPoints.reduce((sum, point) => 
+                    sum + Math.abs(point.vx) + Math.abs(point.vy), 0
+                ) / affectedPoints.length;
+                
+                const lineOpacity = 0.04 + avgMovement * 0.2; // Very subtle writing lines
+                
+                ctx.strokeStyle = `rgba(180, 180, 180, ${lineOpacity})`;
+                ctx.lineWidth = 0.3; // Even thinner for writing lines
+                
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+        }
+        
         ctx.restore();
         
         // Update and draw ripples with golden colors
