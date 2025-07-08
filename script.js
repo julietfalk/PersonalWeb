@@ -344,6 +344,9 @@ function animateHeroBackground() {
     let mouseX = width / 2;
     let mouseY = height / 2;
     let time = 0;
+    let lastMouseX = mouseX;
+    let lastMouseY = mouseY;
+    let isMouseMoving = false;
     
     console.log('Canvas dimensions:', width, height);
     
@@ -371,15 +374,15 @@ function animateHeroBackground() {
         
         draw() {
             ctx.save();
-            ctx.strokeStyle = '#d4af37';
+            ctx.strokeStyle = '#ffd700'; // Golden color
             ctx.lineWidth = this.thickness;
-            ctx.globalAlpha = this.opacity * 0.7; // Increased opacity for darker ripples
+            ctx.globalAlpha = this.opacity * 0.8; // Brighter ripples
             
-            // Create gradient for shining effect
+            // Create gradient for golden glowing effect
             const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-            gradient.addColorStop(0, 'rgba(212, 175, 55, 0.8)'); // Darker center
-            gradient.addColorStop(0.5, 'rgba(212, 175, 55, 0.5)'); // Darker middle
-            gradient.addColorStop(1, 'rgba(212, 175, 55, 0)');
+            gradient.addColorStop(0, 'rgba(255, 215, 0, 0.9)'); // Bright golden center
+            gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.7)'); // White glow in middle
+            gradient.addColorStop(1, 'rgba(255, 215, 0, 0)'); // Fade to transparent
             
             ctx.strokeStyle = gradient;
             
@@ -480,19 +483,41 @@ function animateHeroBackground() {
     // Mouse tracking
     canvas.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
+        const newMouseX = e.clientX - rect.left;
+        const newMouseY = e.clientY - rect.top;
         
-        // Create new ripple occasionally
-        if (Math.random() < 0.1 && ripples.length < maxRipples) {
+        // Check if mouse is actually moving
+        const mouseDelta = Math.sqrt((newMouseX - lastMouseX) ** 2 + (newMouseY - lastMouseY) ** 2);
+        isMouseMoving = mouseDelta > 2; // Only consider it moving if it moved more than 2 pixels
+        
+        // Reduce responsiveness on the right side (reduce force by 50% on right half)
+        const rightSideFactor = newMouseX > width / 2 ? 0.5 : 1.0;
+        
+        mouseX = newMouseX;
+        mouseY = newMouseY;
+        
+        // Create new ripple occasionally, but only when actually moving
+        if (isMouseMoving && Math.random() < 0.15 && ripples.length < maxRipples) {
             ripples.push(new Ripple(mouseX, mouseY));
         }
+        
+        lastMouseX = newMouseX;
+        lastMouseY = newMouseY;
     });
     
     window.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
+        const newMouseX = e.clientX - rect.left;
+        const newMouseY = e.clientY - rect.top;
+        
+        // Check if mouse is actually moving
+        const mouseDelta = Math.sqrt((newMouseX - lastMouseX) ** 2 + (newMouseY - lastMouseY) ** 2);
+        isMouseMoving = mouseDelta > 2;
+        
+        mouseX = newMouseX;
+        mouseY = newMouseY;
+        lastMouseX = newMouseX;
+        lastMouseY = newMouseY;
     });
     
     function draw() {
@@ -507,8 +532,8 @@ function animateHeroBackground() {
         
         // Add immediate visual feedback - draw a test circle
         ctx.save();
-        ctx.fillStyle = '#d4af37';
-        ctx.globalAlpha = 0.5; // Darker test circle
+        ctx.fillStyle = '#ffd700'; // More golden color
+        ctx.globalAlpha = 0.6; // Brighter test circle
         ctx.beginPath();
         ctx.arc(width/2, height/2, 50, 0, Math.PI * 2);
         ctx.fill();
@@ -522,8 +547,8 @@ function animateHeroBackground() {
             let totalForceX = 0;
             let totalForceY = 0;
             
-            // Only apply forces if cursor is in the area
-            if (isCursorInHero) {
+            // Only apply forces if cursor is in the area AND mouse is moving
+            if (isCursorInHero && isMouseMoving) {
                 // Calculate force from all ripples
                 ripples.forEach(ripple => {
                     const dx = point.x - ripple.x;
@@ -531,7 +556,7 @@ function animateHeroBackground() {
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
                     if (distance < ripple.radius && distance > ripple.radius - 50) {
-                        const force = (ripple.radius - distance) / 50 * ripple.opacity * 0.5; // Increased force
+                        const force = (ripple.radius - distance) / 50 * ripple.opacity * 0.3; // Reduced force for less wobble
                         const angle = Math.atan2(dy, dx);
                         totalForceX += Math.cos(angle) * force;
                         totalForceY += Math.sin(angle) * force;
@@ -543,8 +568,8 @@ function animateHeroBackground() {
             point.vx += totalForceX;
             point.vy += totalForceY;
             
-            // Return to original position (stronger when cursor is not in area)
-            const returnStrength = isCursorInHero ? 0.02 : 0.1; // Faster return when cursor is away
+            // Return to original position (stronger when cursor is not in area or not moving)
+            const returnStrength = (isCursorInHero && isMouseMoving) ? 0.05 : 0.15; // Faster return when not moving
             point.vx += (point.originalX - point.x) * returnStrength;
             point.vy += (point.originalY - point.y) * returnStrength;
             
@@ -552,17 +577,17 @@ function animateHeroBackground() {
             point.x += point.vx;
             point.y += point.vy;
             
-            // Damping (stronger when cursor is not in area)
-            const damping = isCursorInHero ? 0.95 : 0.85;
+            // Damping (stronger when cursor is not in area or not moving)
+            const damping = (isCursorInHero && isMouseMoving) ? 0.98 : 0.9;
             point.vx *= damping;
             point.vy *= damping;
         });
         
-        // Draw organic connecting lines with darker gold effect
+        // Draw organic connecting lines with golden glowing effect
         ctx.save();
-        ctx.strokeStyle = '#d4af37';
-        ctx.lineWidth = 1.5; // Slightly thicker lines
-        ctx.globalAlpha = 0.4; // Darker lines
+        ctx.strokeStyle = '#ffd700'; // Golden color
+        ctx.lineWidth = 1.5;
+        ctx.globalAlpha = 0.5; // Brighter lines
         
         // Draw only the organic connections
         gridPoints.forEach((point, index) => {
@@ -573,17 +598,17 @@ function animateHeroBackground() {
                     const dy = point.y - connectedPoint.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    // Create gradient for shining effect
+                    // Create gradient for golden glowing effect
                     const gradient = ctx.createLinearGradient(
                         point.x, point.y, 
                         connectedPoint.x, connectedPoint.y
                     );
-                    gradient.addColorStop(0, 'rgba(212, 175, 55, 0.6)');
-                    gradient.addColorStop(0.5, 'rgba(255, 215, 0, 0.8)');
-                    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.6)');
+                    gradient.addColorStop(0, 'rgba(255, 215, 0, 0.7)'); // Golden
+                    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.9)'); // White glow in center
+                    gradient.addColorStop(1, 'rgba(255, 215, 0, 0.7)'); // Golden
                     
                     ctx.strokeStyle = gradient;
-                    ctx.globalAlpha = 0.4; // Darker opacity
+                    ctx.globalAlpha = 0.5; // Brighter opacity
                     
                     ctx.beginPath();
                     ctx.moveTo(point.x, point.y);
@@ -594,7 +619,7 @@ function animateHeroBackground() {
         });
         ctx.restore();
         
-        // Update and draw ripples with darker colors
+        // Update and draw ripples with golden colors
         for (let i = ripples.length - 1; i >= 0; i--) {
             if (!ripples[i].update()) {
                 ripples.splice(i, 1);
@@ -603,8 +628,8 @@ function animateHeroBackground() {
             }
         }
         
-        // Add subtle ambient ripples only when cursor is in area
-        if (isCursorInHero && Math.random() < 0.03 && ripples.length < maxRipples) {
+        // Add subtle ambient ripples only when cursor is in area AND moving
+        if (isCursorInHero && isMouseMoving && Math.random() < 0.02 && ripples.length < maxRipples) {
             ripples.push(new Ripple(
                 Math.random() * width,
                 Math.random() * height
