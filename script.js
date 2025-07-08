@@ -94,15 +94,13 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe all cards and sections for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.project-card, .writing-card, .about-content, .contact-content');
-    
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
+const animatedElements = document.querySelectorAll('.project-card, .writing-card, .about-content, .contact-content');
+
+animatedElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
 });
 
 // Form submission handling
@@ -188,8 +186,12 @@ function typeWriter(element, text, speed = 100) {
 // });
 
 // Enhanced scroll animations and mouse tracking
+// Single DOMContentLoaded event listener to handle all initialization
 document.addEventListener('DOMContentLoaded', () => {
-    // Create cursor trail elements (3 dots)
+    // Initialize hero background animation
+    animateHeroBackground();
+    
+    // Initialize cursor trail
     const cursorTrail = document.createElement('div');
     cursorTrail.className = 'cursor-trail';
     document.body.appendChild(cursorTrail);
@@ -274,6 +276,9 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach(el => {
         observer.observe(el);
     });
+    
+    // Initialize scroll progress
+    createScrollProgress();
 });
 
 // Add loading animation
@@ -308,9 +313,6 @@ const createScrollProgress = () => {
         progressBar.style.width = scrollPercent + '%';
     });
 };
-
-// Initialize scroll progress
-createScrollProgress();
 
 // Initialize particles
 // DISABLED: Particles don't fit brutalist aesthetic
@@ -535,6 +537,3 @@ function animateHeroBackground() {
     draw();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    animateHeroBackground();
-}); 
