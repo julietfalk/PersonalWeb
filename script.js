@@ -315,3 +315,76 @@ createScrollProgress();
 // Initialize particles
 // DISABLED: Particles don't fit brutalist aesthetic
 // createParticles(); 
+
+// Animated gradient/wave background for hero section
+function animateHeroWave() {
+    const canvas = document.getElementById('hero-bg-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.offsetWidth;
+    let height = canvas.offsetHeight;
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+    let time = 0;
+
+    function resize() {
+        width = canvas.offsetWidth = canvas.parentElement.offsetWidth;
+        height = canvas.offsetHeight = canvas.parentElement.offsetHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+    });
+    // Also respond to mousemove on window for pointer-events:none
+    window.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+    });
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        // Gradient background
+        const grad = ctx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, '#f8f6f2');
+        grad.addColorStop(1, '#c17f59');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        // Animated wave
+        ctx.save();
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath();
+        const waveHeight = 40 + 30 * Math.sin(time / 60);
+        const waveLength = width / 1.5;
+        const mouseInfluence = ((mouseX / width) - 0.5) * 2;
+        ctx.moveTo(0, height * 0.6);
+        for (let x = 0; x <= width; x += 4) {
+            const y = height * 0.6 +
+                Math.sin((x / waveLength) * 2 * Math.PI + time / 40 + mouseInfluence) * waveHeight * (0.7 + 0.3 * Math.cos(time / 80)) +
+                Math.cos((x / waveLength) * 2 * Math.PI - time / 50 - mouseInfluence) * 10;
+            ctx.lineTo(x, y);
+        }
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+        const waveGrad = ctx.createLinearGradient(0, height * 0.6, 0, height);
+        waveGrad.addColorStop(0, 'rgba(198, 127, 89, 0.25)');
+        waveGrad.addColorStop(1, 'rgba(166, 124, 82, 0.12)');
+        ctx.fillStyle = waveGrad;
+        ctx.fill();
+        ctx.restore();
+
+        time++;
+        requestAnimationFrame(draw);
+    }
+    draw();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    animateHeroWave();
+}); 
