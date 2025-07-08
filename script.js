@@ -373,12 +373,12 @@ function animateHeroBackground() {
             ctx.save();
             ctx.strokeStyle = '#d4af37';
             ctx.lineWidth = this.thickness;
-            ctx.globalAlpha = this.opacity * 0.4; // Reduced opacity for subtlety
+            ctx.globalAlpha = this.opacity * 0.7; // Increased opacity for darker ripples
             
             // Create gradient for shining effect
             const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-            gradient.addColorStop(0, 'rgba(212, 175, 55, 0.6)');
-            gradient.addColorStop(0.5, 'rgba(212, 175, 55, 0.3)');
+            gradient.addColorStop(0, 'rgba(212, 175, 55, 0.8)'); // Darker center
+            gradient.addColorStop(0.5, 'rgba(212, 175, 55, 0.5)'); // Darker middle
             gradient.addColorStop(1, 'rgba(212, 175, 55, 0)');
             
             ctx.strokeStyle = gradient;
@@ -390,24 +390,48 @@ function animateHeroBackground() {
         }
     }
     
-    // Grid of connection points
+    // Grid of connection points - organic spiderweb pattern
     const gridPoints = [];
-    const gridSize = 80;
-    const cols = Math.ceil(width / gridSize);
-    const rows = Math.ceil(height / gridSize);
+    const baseGridSize = 100;
+    const cols = Math.ceil(width / baseGridSize);
+    const rows = Math.ceil(height / baseGridSize);
     
+    // Create organic pattern with varying distances and connections
     for (let i = 0; i <= cols; i++) {
         for (let j = 0; j <= rows; j++) {
+            // Add some randomness to create organic feel
+            const offsetX = (Math.random() - 0.5) * 30;
+            const offsetY = (Math.random() - 0.5) * 30;
+            
             gridPoints.push({
-                x: i * gridSize,
-                y: j * gridSize,
-                originalX: i * gridSize,
-                originalY: j * gridSize,
+                x: i * baseGridSize + offsetX,
+                y: j * baseGridSize + offsetY,
+                originalX: i * baseGridSize + offsetX,
+                originalY: j * baseGridSize + offsetY,
                 vx: 0,
-                vy: 0
+                vy: 0,
+                connections: [] // Track which points this connects to
             });
         }
     }
+    
+    // Create organic connections (like spiderweb)
+    gridPoints.forEach((point, index) => {
+        const connections = [];
+        gridPoints.forEach((otherPoint, otherIndex) => {
+            if (index !== otherIndex) {
+                const dx = point.x - otherPoint.x;
+                const dy = point.y - otherPoint.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Connect to nearby points with some randomness
+                if (distance < baseGridSize * 1.8 && Math.random() < 0.6) {
+                    connections.push(otherIndex);
+                }
+            }
+        });
+        point.connections = connections;
+    });
     
     function resize() {
         width = canvas.offsetWidth = canvas.parentElement.offsetWidth;
@@ -415,21 +439,40 @@ function animateHeroBackground() {
         
         // Reinitialize grid points
         gridPoints.length = 0;
-        const cols = Math.ceil(width / gridSize);
-        const rows = Math.ceil(height / gridSize);
+        const cols = Math.ceil(width / baseGridSize);
+        const rows = Math.ceil(height / baseGridSize);
         
         for (let i = 0; i <= cols; i++) {
             for (let j = 0; j <= rows; j++) {
+                const offsetX = (Math.random() - 0.5) * 30;
+                const offsetY = (Math.random() - 0.5) * 30;
                 gridPoints.push({
-                    x: i * gridSize,
-                    y: j * gridSize,
-                    originalX: i * gridSize,
-                    originalY: j * gridSize,
+                    x: i * baseGridSize + offsetX,
+                    y: j * baseGridSize + offsetY,
+                    originalX: i * baseGridSize + offsetX,
+                    originalY: j * baseGridSize + offsetY,
                     vx: 0,
-                    vy: 0
+                    vy: 0,
+                    connections: []
                 });
             }
         }
+        // Re-establish connections after resize
+        gridPoints.forEach((point, index) => {
+            const connections = [];
+            gridPoints.forEach((otherPoint, otherIndex) => {
+                if (index !== otherIndex) {
+                    const dx = point.x - otherPoint.x;
+                    const dy = point.y - otherPoint.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < baseGridSize * 1.8 && Math.random() < 0.6) {
+                        connections.push(otherIndex);
+                    }
+                }
+            });
+            point.connections = connections;
+        });
     }
     window.addEventListener('resize', resize);
     resize();
@@ -465,83 +508,93 @@ function animateHeroBackground() {
         // Add immediate visual feedback - draw a test circle
         ctx.save();
         ctx.fillStyle = '#d4af37';
-        ctx.globalAlpha = 0.3;
+        ctx.globalAlpha = 0.5; // Darker test circle
         ctx.beginPath();
         ctx.arc(width/2, height/2, 50, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
+        
+        // Check if cursor is in the hero area
+        const isCursorInHero = mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height;
         
         // Update grid points based on ripples
         gridPoints.forEach(point => {
             let totalForceX = 0;
             let totalForceY = 0;
             
-            // Calculate force from all ripples
-            ripples.forEach(ripple => {
-                const dx = point.x - ripple.x;
-                const dy = point.y - ripple.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < ripple.radius && distance > ripple.radius - 50) {
-                    const force = (ripple.radius - distance) / 50 * ripple.opacity * 0.3;
-                    const angle = Math.atan2(dy, dx);
-                    totalForceX += Math.cos(angle) * force;
-                    totalForceY += Math.sin(angle) * force;
-                }
-            });
+            // Only apply forces if cursor is in the area
+            if (isCursorInHero) {
+                // Calculate force from all ripples
+                ripples.forEach(ripple => {
+                    const dx = point.x - ripple.x;
+                    const dy = point.y - ripple.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < ripple.radius && distance > ripple.radius - 50) {
+                        const force = (ripple.radius - distance) / 50 * ripple.opacity * 0.5; // Increased force
+                        const angle = Math.atan2(dy, dx);
+                        totalForceX += Math.cos(angle) * force;
+                        totalForceY += Math.sin(angle) * force;
+                    }
+                });
+            }
             
             // Apply forces
             point.vx += totalForceX;
             point.vy += totalForceY;
             
-            // Return to original position
-            point.vx += (point.originalX - point.x) * 0.02;
-            point.vy += (point.originalY - point.y) * 0.02;
+            // Return to original position (stronger when cursor is not in area)
+            const returnStrength = isCursorInHero ? 0.02 : 0.1; // Faster return when cursor is away
+            point.vx += (point.originalX - point.x) * returnStrength;
+            point.vy += (point.originalY - point.y) * returnStrength;
             
             // Update position
             point.x += point.vx;
             point.y += point.vy;
             
-            // Damping
-            point.vx *= 0.95;
-            point.vy *= 0.95;
+            // Damping (stronger when cursor is not in area)
+            const damping = isCursorInHero ? 0.95 : 0.85;
+            point.vx *= damping;
+            point.vy *= damping;
         });
         
-        // Draw connecting lines with soft gold effect
+        // Draw organic connecting lines with darker gold effect
         ctx.save();
         ctx.strokeStyle = '#d4af37';
-        ctx.lineWidth = 1;
-        ctx.globalAlpha = 0.3; // Increased opacity for visibility
+        ctx.lineWidth = 1.5; // Slightly thicker lines
+        ctx.globalAlpha = 0.4; // Darker lines
         
-        for (let i = 0; i < gridPoints.length; i++) {
-            for (let j = i + 1; j < gridPoints.length; j++) {
-                const dx = gridPoints[i].x - gridPoints[j].x;
-                const dy = gridPoints[i].y - gridPoints[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < gridSize * 1.5) {
+        // Draw only the organic connections
+        gridPoints.forEach((point, index) => {
+            point.connections.forEach(connectionIndex => {
+                const connectedPoint = gridPoints[connectionIndex];
+                if (connectedPoint) {
+                    const dx = point.x - connectedPoint.x;
+                    const dy = point.y - connectedPoint.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
                     // Create gradient for shining effect
                     const gradient = ctx.createLinearGradient(
-                        gridPoints[i].x, gridPoints[i].y, 
-                        gridPoints[j].x, gridPoints[j].y
+                        point.x, point.y, 
+                        connectedPoint.x, connectedPoint.y
                     );
-                    gradient.addColorStop(0, 'rgba(212, 175, 55, 0.4)');
-                    gradient.addColorStop(0.5, 'rgba(255, 215, 0, 0.6)');
-                    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.4)');
+                    gradient.addColorStop(0, 'rgba(212, 175, 55, 0.6)');
+                    gradient.addColorStop(0.5, 'rgba(255, 215, 0, 0.8)');
+                    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.6)');
                     
                     ctx.strokeStyle = gradient;
-                    ctx.globalAlpha = (gridSize * 1.5 - distance) / (gridSize * 1.5) * 0.3;
+                    ctx.globalAlpha = 0.4; // Darker opacity
                     
                     ctx.beginPath();
-                    ctx.moveTo(gridPoints[i].x, gridPoints[i].y);
-                    ctx.lineTo(gridPoints[j].x, gridPoints[j].y);
+                    ctx.moveTo(point.x, point.y);
+                    ctx.lineTo(connectedPoint.x, connectedPoint.y);
                     ctx.stroke();
                 }
-            }
-        }
+            });
+        });
         ctx.restore();
         
-        // Update and draw ripples
+        // Update and draw ripples with darker colors
         for (let i = ripples.length - 1; i >= 0; i--) {
             if (!ripples[i].update()) {
                 ripples.splice(i, 1);
@@ -550,8 +603,8 @@ function animateHeroBackground() {
             }
         }
         
-        // Add subtle ambient ripples more frequently
-        if (Math.random() < 0.05 && ripples.length < maxRipples) {
+        // Add subtle ambient ripples only when cursor is in area
+        if (isCursorInHero && Math.random() < 0.03 && ripples.length < maxRipples) {
             ripples.push(new Ripple(
                 Math.random() * width,
                 Math.random() * height
