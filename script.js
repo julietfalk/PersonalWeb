@@ -414,21 +414,20 @@ function animateHeroBackground() {
         }
     }
     
-    // Create notebook grid connections (horizontal and vertical lines)
+    // Create notebook grid connections (horizontal lines only)
     gridPoints.forEach((point, index) => {
         const connections = [];
         const col = Math.round(point.originalX / baseGridSize);
         const row = Math.round(point.originalY / baseGridSize);
         
-        // Connect to adjacent points in a grid pattern
+        // Connect only horizontally (same row, adjacent columns)
         gridPoints.forEach((otherPoint, otherIndex) => {
             if (index !== otherIndex) {
                 const otherCol = Math.round(otherPoint.originalX / baseGridSize);
                 const otherRow = Math.round(otherPoint.originalY / baseGridSize);
                 
-                // Connect horizontally and vertically (like notebook lines)
-                if ((otherCol === col && Math.abs(otherRow - row) === 1) || 
-                    (otherRow === row && Math.abs(otherCol - col) === 1)) {
+                // Connect only horizontally (like notebook writing lines)
+                if (otherRow === row && Math.abs(otherCol - col) === 1) {
                     connections.push(otherIndex);
                 }
             }
@@ -469,8 +468,7 @@ function animateHeroBackground() {
                     const otherCol = Math.round(otherPoint.originalX / baseGridSize);
                     const otherRow = Math.round(otherPoint.originalY / baseGridSize);
                     
-                    if ((otherCol === col && Math.abs(otherRow - row) === 1) || 
-                        (otherRow === row && Math.abs(otherCol - col) === 1)) {
+                    if (otherRow === row && Math.abs(otherCol - col) === 1) {
                         connections.push(otherIndex);
                     }
                 }
@@ -562,8 +560,8 @@ function animateHeroBackground() {
             point.vx += totalForceX;
             point.vy += totalForceY;
             
-            // Return to original position (smoother return)
-            const returnStrength = (isCursorInHero && isMouseMoving) ? 0.03 : 0.12; // Gentler return when moving
+            // Return to original position (stronger return when not interacting)
+            const returnStrength = (isCursorInHero && isMouseMoving) ? 0.03 : 0.25; // Much stronger return when not moving
             point.vx += (point.originalX - point.x) * returnStrength;
             point.vy += (point.originalY - point.y) * returnStrength;
             
@@ -571,8 +569,8 @@ function animateHeroBackground() {
             point.x += point.vx;
             point.y += point.vy;
             
-            // Smoother damping (more water-like)
-            const damping = (isCursorInHero && isMouseMoving) ? 0.99 : 0.92;
+            // Stronger damping when not interacting (more stillness)
+            const damping = (isCursorInHero && isMouseMoving) ? 0.99 : 0.85;
             point.vx *= damping;
             point.vy *= damping;
         });
@@ -580,35 +578,38 @@ function animateHeroBackground() {
         // Draw notebook grid lines with water physics
         ctx.save();
         
-        // Draw the grid connections (like notebook paper)
+        // Draw only horizontal lines (like notebook writing lines)
         gridPoints.forEach((point, index) => {
             point.connections.forEach(connectionIndex => {
                 const connectedPoint = gridPoints[connectionIndex];
                 if (connectedPoint) {
-                    const dx = connectedPoint.x - point.x;
-                    const dy = connectedPoint.y - point.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    // Calculate line opacity based on movement (more visible when moving)
-                    const baseOpacity = 0.08; // Very subtle base opacity like faint notebook lines
-                    const movementOpacity = Math.abs(point.vx) + Math.abs(point.vy) + 
-                                          Math.abs(connectedPoint.vx) + Math.abs(connectedPoint.vy);
-                    const opacity = baseOpacity + movementOpacity * 0.4;
-                    
-                    // Use a subtle gray color like notebook paper
-                    ctx.strokeStyle = `rgba(200, 200, 200, ${opacity})`;
-                    ctx.lineWidth = 0.5; // Very thin lines like notebook paper
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(point.x, point.y);
-                    ctx.lineTo(connectedPoint.x, connectedPoint.y);
-                    ctx.stroke();
+                    // Only draw horizontal connections (same y-coordinate)
+                    if (Math.abs(connectedPoint.y - point.y) < 1) {
+                        const dx = connectedPoint.x - point.x;
+                        const dy = connectedPoint.y - point.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        // Calculate line opacity based on movement (more visible when moving)
+                        const baseOpacity = 0.12; // Subtle base opacity
+                        const movementOpacity = Math.abs(point.vx) + Math.abs(point.vy) + 
+                                              Math.abs(connectedPoint.vx) + Math.abs(connectedPoint.vy);
+                        const opacity = baseOpacity + movementOpacity * 0.5;
+                        
+                        // Use golden color for the lines
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${opacity})`;
+                        ctx.lineWidth = 0.6; // Thin lines like notebook paper
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(point.x, point.y);
+                        ctx.lineTo(connectedPoint.x, connectedPoint.y);
+                        ctx.stroke();
+                    }
                 }
             });
         });
         
-        // Add subtle horizontal writing lines (like notebook paper)
-        const lineSpacing = baseGridSize / 4; // Lines between grid points
+        // Add additional horizontal writing lines between grid points
+        const lineSpacing = baseGridSize / 3; // Lines between grid points
         for (let y = lineSpacing; y < height; y += lineSpacing) {
             // Find the grid points that would be affected by this line
             const affectedPoints = gridPoints.filter(point => 
@@ -621,10 +622,10 @@ function animateHeroBackground() {
                     sum + Math.abs(point.vx) + Math.abs(point.vy), 0
                 ) / affectedPoints.length;
                 
-                const lineOpacity = 0.04 + avgMovement * 0.2; // Very subtle writing lines
+                const lineOpacity = 0.08 + avgMovement * 0.3; // Subtle writing lines
                 
-                ctx.strokeStyle = `rgba(180, 180, 180, ${lineOpacity})`;
-                ctx.lineWidth = 0.3; // Even thinner for writing lines
+                ctx.strokeStyle = `rgba(255, 215, 0, ${lineOpacity})`;
+                ctx.lineWidth = 0.4; // Even thinner for writing lines
                 
                 ctx.beginPath();
                 ctx.moveTo(0, y);
