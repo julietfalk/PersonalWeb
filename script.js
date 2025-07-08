@@ -462,6 +462,15 @@ function animateHeroBackground() {
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
         
+        // Add immediate visual feedback - draw a test circle
+        ctx.save();
+        ctx.fillStyle = '#d4af37';
+        ctx.globalAlpha = 0.3;
+        ctx.beginPath();
+        ctx.arc(width/2, height/2, 50, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+        
         // Update grid points based on ripples
         gridPoints.forEach(point => {
             let totalForceX = 0;
@@ -502,7 +511,7 @@ function animateHeroBackground() {
         ctx.save();
         ctx.strokeStyle = '#d4af37';
         ctx.lineWidth = 1;
-        ctx.globalAlpha = 0.15; // Very subtle
+        ctx.globalAlpha = 0.3; // Increased opacity for visibility
         
         for (let i = 0; i < gridPoints.length; i++) {
             for (let j = i + 1; j < gridPoints.length; j++) {
@@ -516,12 +525,12 @@ function animateHeroBackground() {
                         gridPoints[i].x, gridPoints[i].y, 
                         gridPoints[j].x, gridPoints[j].y
                     );
-                    gradient.addColorStop(0, 'rgba(212, 175, 55, 0.2)');
-                    gradient.addColorStop(0.5, 'rgba(255, 215, 0, 0.3)');
-                    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.2)');
+                    gradient.addColorStop(0, 'rgba(212, 175, 55, 0.4)');
+                    gradient.addColorStop(0.5, 'rgba(255, 215, 0, 0.6)');
+                    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.4)');
                     
                     ctx.strokeStyle = gradient;
-                    ctx.globalAlpha = (gridSize * 1.5 - distance) / (gridSize * 1.5) * 0.15;
+                    ctx.globalAlpha = (gridSize * 1.5 - distance) / (gridSize * 1.5) * 0.3;
                     
                     ctx.beginPath();
                     ctx.moveTo(gridPoints[i].x, gridPoints[i].y);
@@ -541,8 +550,8 @@ function animateHeroBackground() {
             }
         }
         
-        // Add subtle ambient ripples
-        if (Math.random() < 0.02 && ripples.length < maxRipples) {
+        // Add subtle ambient ripples more frequently
+        if (Math.random() < 0.05 && ripples.length < maxRipples) {
             ripples.push(new Ripple(
                 Math.random() * width,
                 Math.random() * height
@@ -552,6 +561,7 @@ function animateHeroBackground() {
         time++;
         requestAnimationFrame(draw);
     }
+    console.log('Starting animation loop');
     draw();
 }
 

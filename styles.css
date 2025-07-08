@@ -179,7 +179,6 @@ p, span, div, a, li, button, input, textarea {
     z-index: 0;
     pointer-events: none;
     display: block;
-    background: rgba(255, 0, 0, 0.1); /* Temporary red background for debugging */
 }
 
 .hero-container {
