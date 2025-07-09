@@ -554,25 +554,31 @@ function animateHeroBackground() {
                         totalForceY += Math.sin(angle) * force;
                     }
                 });
+                
+                // Apply forces with smoother physics
+                point.vx += totalForceX;
+                point.vy += totalForceY;
+                
+                // Return to original position (gentle return when interacting)
+                const returnStrength = 0.03;
+                point.vx += (point.originalX - point.x) * returnStrength;
+                point.vy += (point.originalY - point.y) * returnStrength;
+                
+                // Update position
+                point.x += point.vx;
+                point.y += point.vy;
+                
+                // Smooth damping when interacting
+                const damping = 0.99;
+                point.vx *= damping;
+                point.vy *= damping;
+            } else {
+                // When not interacting, immediately return to original position
+                point.x = point.originalX;
+                point.y = point.originalY;
+                point.vx = 0;
+                point.vy = 0;
             }
-            
-            // Apply forces with smoother physics
-            point.vx += totalForceX;
-            point.vy += totalForceY;
-            
-            // Return to original position (stronger return when not interacting)
-            const returnStrength = (isCursorInHero && isMouseMoving) ? 0.03 : 0.25; // Much stronger return when not moving
-            point.vx += (point.originalX - point.x) * returnStrength;
-            point.vy += (point.originalY - point.y) * returnStrength;
-            
-            // Update position
-            point.x += point.vx;
-            point.y += point.vy;
-            
-            // Stronger damping when not interacting (more stillness)
-            const damping = (isCursorInHero && isMouseMoving) ? 0.99 : 0.85;
-            point.vx *= damping;
-            point.vy *= damping;
         });
         
         // Draw notebook grid lines with water physics
@@ -590,10 +596,10 @@ function animateHeroBackground() {
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
                         // Calculate line opacity based on movement (more visible when moving)
-                        const baseOpacity = 0.12; // Subtle base opacity
-                        const movementOpacity = Math.abs(point.vx) + Math.abs(point.vy) + 
-                                              Math.abs(connectedPoint.vx) + Math.abs(connectedPoint.vy);
-                        const opacity = baseOpacity + movementOpacity * 0.5;
+                        const baseOpacity = (isCursorInHero && isMouseMoving) ? 0.12 : 0.05; // Much dimmer when not interacting
+                        const movementOpacity = (isCursorInHero && isMouseMoving) ? 
+                            (Math.abs(point.vx) + Math.abs(point.vy) + Math.abs(connectedPoint.vx) + Math.abs(connectedPoint.vy)) * 0.5 : 0;
+                        const opacity = baseOpacity + movementOpacity;
                         
                         // Use golden color for the lines
                         ctx.strokeStyle = `rgba(255, 215, 0, ${opacity})`;
@@ -610,27 +616,67 @@ function animateHeroBackground() {
         
         // Add additional horizontal writing lines between grid points
         const lineSpacing = baseGridSize / 3; // Lines between grid points
+        const heroTextElement = document.querySelector('.hero-title');
+        let heroTextBox = null;
+        if (heroTextElement) {
+            const rect = heroTextElement.getBoundingClientRect();
+            // Convert to canvas coordinates
+            const canvasRect = canvas.getBoundingClientRect();
+            heroTextBox = {
+                left: rect.left - canvasRect.left,
+                right: rect.right - canvasRect.left,
+                top: rect.top - canvasRect.top,
+                bottom: rect.bottom - canvasRect.top
+            };
+        }
+        const centerY = height / 2;
         for (let y = lineSpacing; y < height; y += lineSpacing) {
+            // Remove the middle line (skip if y is close to center)
+            if (Math.abs(y - centerY) < 2) continue;
             // Find the grid points that would be affected by this line
             const affectedPoints = gridPoints.filter(point => 
                 Math.abs(point.y - y) < baseGridSize / 2
             );
-            
             if (affectedPoints.length > 0) {
                 // Calculate average movement of affected points
                 const avgMovement = affectedPoints.reduce((sum, point) => 
                     sum + Math.abs(point.vx) + Math.abs(point.vy), 0
                 ) / affectedPoints.length;
-                
-                const lineOpacity = 0.08 + avgMovement * 0.3; // Subtle writing lines
-                
+                // Only animate (brighter) if cursor is in hero and moving
+                const isActive = isCursorInHero && isMouseMoving;
+                const baseOpacity = isActive ? 0.08 : 0.03;
+                const movementFactor = isActive ? 0.3 : 0.1;
+                const lineOpacity = baseOpacity + avgMovement * movementFactor;
                 ctx.strokeStyle = `rgba(255, 215, 0, ${lineOpacity})`;
-                ctx.lineWidth = 0.4; // Even thinner for writing lines
-                
+                ctx.lineWidth = 0.4;
                 ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(width, y);
-                ctx.stroke();
+                // If we have hero text, darken segments not near the text
+                if (heroTextBox && y > heroTextBox.top && y < heroTextBox.bottom) {
+                    // Draw left segment (before text)
+                    if (heroTextBox.left > 0) {
+                        ctx.moveTo(0, y);
+                        ctx.lineTo(heroTextBox.left - 10, y);
+                    }
+                    // Draw right segment (after text)
+                    if (heroTextBox.right < width) {
+                        ctx.moveTo(heroTextBox.right + 10, y);
+                        ctx.lineTo(width, y);
+                    }
+                    ctx.globalAlpha = 0.25; // Darker for outside text
+                    ctx.stroke();
+                    // Draw over the text area with normal opacity
+                    ctx.beginPath();
+                    ctx.moveTo(heroTextBox.left - 10, y);
+                    ctx.lineTo(heroTextBox.right + 10, y);
+                    ctx.globalAlpha = 1.0; // Normal for under text
+                    ctx.stroke();
+                    ctx.globalAlpha = 1.0;
+                } else {
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                    ctx.globalAlpha = 1.0;
+                    ctx.stroke();
+                }
             }
         }
         
