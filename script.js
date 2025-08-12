@@ -366,6 +366,35 @@ function initializeWritingCarousel() {
         prevBtn.disabled = position === 0;
         nextBtn.disabled = position === maxPosition;
         
+        // Update counter
+        const counter = document.querySelector('.carousel-counter');
+        if (counter) {
+            counter.textContent = `${position + 1} of ${maxPosition + 1}`;
+        }
+        
+        // Update hint text
+        const hint = document.querySelector('.carousel-hint');
+        if (hint) {
+            if (position === 0) {
+                hint.textContent = 'More articles available →';
+            } else {
+                hint.textContent = '← Previous articles';
+            }
+        }
+        
+        // Update progress bar
+        const progressFill = document.querySelector('.progress-fill');
+        if (progressFill) {
+            const progressPercent = ((position + 1) / (maxPosition + 1)) * 100;
+            progressFill.style.width = `${progressPercent}%`;
+        }
+        
+        // Update overlay visibility
+        const rightOverlay = document.querySelector('.carousel-overlay-right');
+        if (rightOverlay) {
+            rightOverlay.style.opacity = position === maxPosition ? '0' : '1';
+        }
+        
         currentPosition = position;
     }
     

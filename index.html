@@ -150,6 +150,7 @@
             <h2 class="section-title">Writing & Publications</h2>
             <div class="writing-carousel">
                 <div class="carousel-container">
+                    <div class="carousel-overlay carousel-overlay-right"></div>
                     <div class="carousel-track">
                         <article class="writing-card">
                             <div class="writing-meta">
@@ -214,16 +215,29 @@
                 </div>
                 
                 <div class="carousel-navigation">
-                    <button class="carousel-btn prev-btn" aria-label="Previous set of articles">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="carousel-dots">
-                        <span class="dot active" data-index="0"></span>
-                        <span class="dot" data-index="1"></span>
+                    <div class="carousel-info">
+                        <span class="carousel-counter">1 of 2</span>
+                        <span class="carousel-hint">More articles available →</span>
                     </div>
-                    <button class="carousel-btn next-btn" aria-label="Next set of articles">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                    
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev-btn" aria-label="Previous set of articles">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="carousel-dots">
+                            <span class="dot active" data-index="0"></span>
+                            <span class="dot" data-index="1"></span>
+                        </div>
+                        <button class="carousel-btn next-btn" aria-label="Next set of articles">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="carousel-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

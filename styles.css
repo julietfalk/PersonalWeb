@@ -565,6 +565,20 @@ section {
     min-height: 300px;
 }
 
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.carousel-overlay-right {
+    right: 0;
+    background: linear-gradient(to right, transparent, rgba(248, 246, 242, 0.8));
+}
+
 .carousel-track {
     display: flex;
     gap: 2rem;
@@ -583,10 +597,65 @@ section {
 
 .carousel-navigation {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 2rem;
+}
+
+.carousel-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #6b5b47;
+}
+
+.carousel-counter {
+    background: rgba(193, 127, 89, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 500;
+    border: 1px solid rgba(193, 127, 89, 0.2);
+}
+
+.carousel-hint {
+    opacity: 0.8;
+    font-style: italic;
+    animation: pulse-hint 2s ease-in-out infinite;
+}
+
+@keyframes pulse-hint {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.carousel-progress {
+    width: 200px;
+    height: 4px;
+    background: rgba(212, 196, 168, 0.5);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #c17f59, #a67c52);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 50%; /* Start at 50% since we're on first position */
 }
 
 .carousel-btn {
@@ -658,6 +727,16 @@ section {
     
     .carousel-track {
         gap: 1.5rem;
+    }
+    
+    .carousel-info {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .carousel-progress {
+        width: 150px;
     }
 }
 
