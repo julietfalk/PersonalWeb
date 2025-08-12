@@ -606,17 +606,11 @@ section {
     0%, 100% { 
         box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
     }
-    50% { 
-        box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.2);
+    33% { 
+        box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.4);
     }
-}
-
-@keyframes cardGlow {
-    0%, 100% { 
-        box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
-    }
-    50% { 
-        box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.2);
+    66% { 
+        box-shadow: 8px 12px 20px rgba(156, 39, 176, 0.4);
     }
 }
 
