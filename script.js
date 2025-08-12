@@ -266,6 +266,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Handle font loading to prevent flashing
     handleFontLoading();
+    
+    // Initialize magnetic hover effects
+    initializeMagneticEffects();
 
     // Scroll-triggered animations
     const observerOptions = {
@@ -461,6 +464,35 @@ function initializeWritingCarousel() {
     // Handle window resize to recalculate positions
     window.addEventListener('resize', () => {
         slideTo(currentPosition);
+    });
+}
+
+// Magnetic Hover Effects
+function initializeMagneticEffects() {
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mousemove', (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // Magnetic attraction effect
+            const moveX = x * 0.15;
+            const moveY = y * 0.15;
+            
+            button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            
+            // Add subtle rotation for 3D effect
+            const rotateX = (y / rect.height) * 10;
+            const rotateY = (x / rect.width) * 10;
+            
+            button.style.transform += ` rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translate(0, 0) rotateX(0deg) rotateY(0deg)';
+        });
     });
 }
 
