@@ -261,6 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Initialize writing carousel
+    initializeWritingCarousel();
+
     // Scroll-triggered animations
     const observerOptions = {
         threshold: 0.1,
@@ -324,4 +327,124 @@ const createScrollProgress = () => {
 
 // Enhanced cursor-responsive hero background animation with gold ripples
 // REMOVED: Hero background animation logic
+
+// Writing Carousel Functionality
+function initializeWritingCarousel() {
+    const carouselTrack = document.querySelector('.carousel-track');
+    const cards = document.querySelectorAll('.carousel-track .writing-card');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    let currentIndex = 0;
+    const totalCards = cards.length;
+    
+    if (!carouselTrack || cards.length === 0) return;
+    
+    // Function to show a specific card
+    function showCard(index) {
+        // Remove active class from all cards and dots
+        cards.forEach(card => card.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Add active class to current card and dot
+        cards[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        // Update button states
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === totalCards - 1;
+        
+        currentIndex = index;
+    }
+    
+    // Function to go to next card
+    function nextCard() {
+        const nextIndex = (currentIndex + 1) % totalCards;
+        showCard(nextIndex);
+    }
+    
+    // Function to go to previous card
+    function prevCard() {
+        const prevIndex = currentIndex === 0 ? totalCards - 1 : currentIndex - 1;
+        showCard(prevIndex);
+    }
+    
+    // Event listeners for navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevCard);
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextCard);
+    }
+    
+    // Event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showCard(index);
+        });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevCard();
+        } else if (e.key === 'ArrowRight') {
+            nextCard();
+        }
+    });
+    
+    // Auto-advance carousel (optional - can be disabled)
+    let autoAdvanceInterval;
+    
+    function startAutoAdvance() {
+        autoAdvanceInterval = setInterval(nextCard, 8000); // Change every 8 seconds
+    }
+    
+    function stopAutoAdvance() {
+        if (autoAdvanceInterval) {
+            clearInterval(autoAdvanceInterval);
+        }
+    }
+    
+    // Pause auto-advance on hover
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoAdvance);
+        carouselContainer.addEventListener('mouseleave', startAutoAdvance);
+    }
+    
+    // Initialize first card and start auto-advance
+    showCard(0);
+    startAutoAdvance();
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let endX = 0;
+    
+    carouselContainer.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+    
+    carouselContainer.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next card
+                nextCard();
+            } else {
+                // Swipe right - previous card
+                prevCard();
+            }
+        }
+    }
+}
 
