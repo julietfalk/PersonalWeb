@@ -85,7 +85,7 @@ body::before {
         radial-gradient(circle at 60% 60%, rgba(33, 150, 243, 0.04) 0%, transparent 60%);
     pointer-events: none;
     z-index: -1;
-    animation: particleFloat 20s ease-in-out infinite;
+    animation: particleFloat 30s ease-in-out infinite;
 }
 
 @keyframes particleFloat {
@@ -315,7 +315,7 @@ p, span, div, a, li, button, input, textarea {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     background: linear-gradient(135deg, #ff8e53, #ffb347);
-    animation: colorShift 2s ease-in-out infinite;
+    animation: colorShift 4s ease-in-out infinite;
 }
 
 @keyframes colorShift {
@@ -323,13 +323,9 @@ p, span, div, a, li, button, input, textarea {
         background: linear-gradient(135deg, #ff6b6b, #ff8e53);
         box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     }
-    33% { 
+    50% { 
         background: linear-gradient(135deg, #ff8e53, #ffb347);
         box-shadow: 0 6px 20px rgba(255, 142, 83, 0.5);
-    }
-    66% { 
-        background: linear-gradient(135deg, #ffb347, #ff6b6b);
-        box-shadow: 0 6px 20px rgba(255, 179, 71, 0.5);
     }
 }
 
@@ -343,7 +339,7 @@ p, span, div, a, li, button, input, textarea {
     background: rgba(156, 39, 176, 0.1);
     border-color: rgba(156, 39, 176, 0.6);
     transform: translateY(-2px) scale(1.05);
-    animation: secondaryColorShift 2s ease-in-out infinite;
+    animation: secondaryColorShift 4s ease-in-out infinite;
 }
 
 @keyframes secondaryColorShift {
@@ -351,13 +347,9 @@ p, span, div, a, li, button, input, textarea {
         border-color: rgba(156, 39, 176, 0.6);
         background: rgba(156, 39, 176, 0.1);
     }
-    33% { 
+    50% { 
         border-color: rgba(33, 150, 243, 0.7);
         background: rgba(33, 150, 243, 0.15);
-    }
-    66% { 
-        border-color: rgba(255, 193, 7, 0.7);
-        background: rgba(255, 193, 7, 0.15);
     }
 }
 
@@ -465,7 +457,7 @@ section {
 /* Scroll-triggered color morphing animations */
 .section-title.animate::after {
     transform: translateX(-50%) scaleX(1);
-    animation: titleColorMorph 3s ease-in-out infinite;
+    animation: titleColorMorph 6s ease-in-out infinite;
 }
 
 @keyframes titleColorMorph {
@@ -603,18 +595,15 @@ section {
 .project-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
-    animation: cardGlow 2s ease-in-out infinite;
+    animation: cardGlow 5s ease-in-out infinite;
 }
 
 @keyframes cardGlow {
     0%, 100% { 
         box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
     }
-    33% { 
-        box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.25);
-    }
-    66% { 
-        box-shadow: 8px 12px 20px rgba(156, 39, 176, 0.25);
+    50% { 
+        box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.2);
     }
 }
 
