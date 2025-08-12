@@ -99,6 +99,20 @@ p, span, div, a, li, button, input, textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+}
+
+.nav-logo a {
+    display: block;
+    line-height: 1;
 }
 
 .nav-logo a {
@@ -117,6 +131,8 @@ p, span, div, a, li, button, input, textarea {
     display: flex;
     list-style: none;
     gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .nav-link {
@@ -642,6 +658,17 @@ section {
     
     .carousel-track {
         gap: 1.5rem;
+    }
+}
+
+/* Responsive adjustments for navigation */
+@media (max-width: 768px) {
+    .nav-logo {
+        left: 1rem;
+    }
+    
+    .nav-container {
+        padding: 0 1rem;
     }
 }
 

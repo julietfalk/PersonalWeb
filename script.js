@@ -263,6 +263,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize writing carousel
     initializeWritingCarousel();
+    
+    // Handle font loading to prevent flashing
+    handleFontLoading();
 
     // Scroll-triggered animations
     const observerOptions = {
@@ -457,5 +460,28 @@ function initializeWritingCarousel() {
     window.addEventListener('resize', () => {
         slideTo(currentPosition);
     });
+}
+
+// Font Loading Handler
+function handleFontLoading() {
+    // Check if fonts are loaded
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            const logoLink = document.querySelector('.nav-logo a');
+            if (logoLink) {
+                logoLink.classList.remove('font-loading');
+                logoLink.classList.add('font-loaded');
+            }
+        });
+    } else {
+        // Fallback for browsers that don't support Font Loading API
+        setTimeout(() => {
+            const logoLink = document.querySelector('.nav-logo a');
+            if (logoLink) {
+                logoLink.classList.remove('font-loading');
+                logoLink.classList.add('font-loaded');
+            }
+        }, 100);
+    }
 }
 
