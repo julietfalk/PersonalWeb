@@ -455,6 +455,7 @@ section {
 /* Scroll-triggered color morphing animations */
 .section-title.animate::after {
     transform: translateX(-50%) scaleX(1);
+    animation: titleColorMorph 6s ease-in-out infinite;
 }
 
 @keyframes titleColorMorph {
@@ -467,10 +468,6 @@ section {
     66% { 
         background: linear-gradient(135deg, #2196f3, #00bcd4);
     }
-}
-
-.section-title.animate::after {
-    transform: translateX(-50%) scaleX(1);
 }
 
 /* About Section */
@@ -591,7 +588,17 @@ section {
 
 .project-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.25);
+    box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
+    animation: cardGlow 5s ease-in-out infinite;
+}
+
+@keyframes cardGlow {
+    0%, 100% { 
+        box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
+    }
+    50% { 
+        box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.2);
+    }
 }
 
 @keyframes cardGlow {
@@ -894,7 +901,8 @@ section {
 
 .writing-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.25);
+    box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
+    animation: cardGlow 5s ease-in-out infinite;
 }
 
 .writing-card::after {
