@@ -79,7 +79,17 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <!-- Clean space for visual balance -->
+                <div class="hero-video-container">
+                    <video class="hero-video" autoplay muted loop playsinline>
+                        <source src="videos/midjourney-loop.mp4" type="video/mp4">
+                        <!-- Fallback for browsers that don't support video -->
+                        <div class="video-fallback">
+                            <i class="fas fa-play-circle"></i>
+                            <span>AI Generated Video</span>
+                        </div>
+                    </video>
+                    <div class="video-overlay"></div>
+                </div>
             </div>
         </div>
     </section>
