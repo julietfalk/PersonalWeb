@@ -315,7 +315,6 @@ p, span, div, a, li, button, input, textarea {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     background: linear-gradient(135deg, #ff8e53, #ffb347);
-    animation: colorShift 4s ease-in-out infinite;
 }
 
 @keyframes colorShift {
@@ -339,7 +338,6 @@ p, span, div, a, li, button, input, textarea {
     background: rgba(156, 39, 176, 0.1);
     border-color: rgba(156, 39, 176, 0.6);
     transform: translateY(-2px) scale(1.05);
-    animation: secondaryColorShift 4s ease-in-out infinite;
 }
 
 @keyframes secondaryColorShift {
@@ -457,7 +455,6 @@ section {
 /* Scroll-triggered color morphing animations */
 .section-title.animate::after {
     transform: translateX(-50%) scaleX(1);
-    animation: titleColorMorph 6s ease-in-out infinite;
 }
 
 @keyframes titleColorMorph {
@@ -594,8 +591,7 @@ section {
 
 .project-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
-    animation: cardGlow 5s ease-in-out infinite;
+    box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.25);
 }
 
 @keyframes cardGlow {
@@ -898,8 +894,7 @@ section {
 
 .writing-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
-    animation: cardGlow 2s ease-in-out infinite;
+    box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.25);
 }
 
 .writing-card::after {
