@@ -43,7 +43,7 @@ window.addEventListener('scroll', () => {
         });
         
         if (navLogo) {
-            navLogo.style.background = 'linear-gradient(135deg, #8b7355, #a67c52)';
+            navLogo.style.background = 'linear-gradient(135deg, #ff6b6b, #ff8e53)';
             navLogo.style.webkitBackgroundClip = 'text';
             navLogo.style.webkitTextFillColor = 'transparent';
             navLogo.style.backgroundClip = 'text';
@@ -58,7 +58,7 @@ window.addEventListener('scroll', () => {
         });
         
         if (navLogo) {
-            navLogo.style.background = 'linear-gradient(135deg, #8b7355, #a67c52)';
+            navLogo.style.background = 'linear-gradient(135deg, #ff6b6b, #ff8e53)';
             navLogo.style.webkitBackgroundClip = 'text';
             navLogo.style.webkitTextFillColor = 'transparent';
             navLogo.style.backgroundClip = 'text';

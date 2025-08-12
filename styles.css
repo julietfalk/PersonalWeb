@@ -79,9 +79,10 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(193, 127, 89, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(212, 196, 168, 0.04) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(166, 124, 82, 0.02) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.06) 0%, transparent 60%),
+        radial-gradient(circle at 40% 40%, rgba(156, 39, 176, 0.05) 0%, transparent 60%),
+        radial-gradient(circle at 60% 60%, rgba(33, 150, 243, 0.04) 0%, transparent 60%);
     pointer-events: none;
     z-index: -1;
     animation: particleFloat 20s ease-in-out infinite;
@@ -148,9 +149,9 @@ p, span, div, a, li, button, input, textarea {
     font-family: 'Bebas Neue', 'Arial Black', 'Helvetica Bold', sans-serif;
     font-size: 1.5rem;
     font-weight: 400;
-    color: #8b7355;
+    color: #ff6b6b;
     text-decoration: none;
-    background: linear-gradient(135deg, #8b7355, #a67c52);
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -305,50 +306,58 @@ p, span, div, a, li, button, input, textarea {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #c17f59, #a67c52);
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
     color: white;
-    box-shadow: 0 4px 15px rgba(193, 127, 89, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(193, 127, 89, 0.4);
-    background: linear-gradient(135deg, #d18a6a, #b88a65);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(135deg, #ff8e53, #ffb347);
     animation: colorShift 2s ease-in-out infinite;
 }
 
 @keyframes colorShift {
     0%, 100% { 
-        background: linear-gradient(135deg, #c17f59, #a67c52);
-        box-shadow: 0 6px 20px rgba(193, 127, 89, 0.4);
+        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     }
-    50% { 
-        background: linear-gradient(135deg, #d18a6a, #b88a65);
-        box-shadow: 0 6px 20px rgba(212, 138, 106, 0.5);
+    33% { 
+        background: linear-gradient(135deg, #ff8e53, #ffb347);
+        box-shadow: 0 6px 20px rgba(255, 142, 83, 0.5);
+    }
+    66% { 
+        background: linear-gradient(135deg, #ffb347, #ff6b6b);
+        box-shadow: 0 6px 20px rgba(255, 179, 71, 0.5);
     }
 }
 
 .btn-secondary {
     background: transparent;
-    color: #6b5b47;
-    border: 2px solid rgba(107, 91, 71, 0.3);
+    color: #9c27b0;
+    border: 2px solid rgba(156, 39, 176, 0.4);
 }
 
 .btn-secondary:hover {
-    background: rgba(193, 127, 89, 0.1);
-    border-color: rgba(193, 127, 89, 0.5);
+    background: rgba(156, 39, 176, 0.1);
+    border-color: rgba(156, 39, 176, 0.6);
     transform: translateY(-2px) scale(1.05);
     animation: secondaryColorShift 2s ease-in-out infinite;
 }
 
 @keyframes secondaryColorShift {
     0%, 100% { 
-        border-color: rgba(193, 127, 89, 0.5);
-        background: rgba(193, 127, 89, 0.1);
+        border-color: rgba(156, 39, 176, 0.6);
+        background: rgba(156, 39, 176, 0.1);
     }
-    50% { 
-        border-color: rgba(212, 138, 106, 0.6);
-        background: rgba(212, 138, 106, 0.15);
+    33% { 
+        border-color: rgba(33, 150, 243, 0.7);
+        background: rgba(33, 150, 243, 0.15);
+    }
+    66% { 
+        border-color: rgba(255, 193, 7, 0.7);
+        background: rgba(255, 193, 7, 0.15);
     }
 }
 
@@ -461,13 +470,13 @@ section {
 
 @keyframes titleColorMorph {
     0%, 100% { 
-        background: linear-gradient(135deg, #c17f59, #a67c52);
+        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
     }
     33% { 
-        background: linear-gradient(135deg, #d18a6a, #b88a65);
+        background: linear-gradient(135deg, #9c27b0, #e91e63);
     }
     66% { 
-        background: linear-gradient(135deg, #e8a67c, #c19a78);
+        background: linear-gradient(135deg, #2196f3, #00bcd4);
     }
 }
 
@@ -601,8 +610,11 @@ section {
     0%, 100% { 
         box-shadow: 8px 12px 20px rgba(107, 91, 71, 0.15);
     }
-    50% { 
-        box-shadow: 8px 12px 20px rgba(193, 127, 89, 0.25);
+    33% { 
+        box-shadow: 8px 12px 20px rgba(255, 107, 107, 0.25);
+    }
+    66% { 
+        box-shadow: 8px 12px 20px rgba(156, 39, 176, 0.25);
     }
 }
 
