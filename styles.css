@@ -298,6 +298,7 @@ p, span, div, a, li, button, input, textarea {
     justify-content: flex-end;
     align-items: flex-start;
     padding-top: 2rem;
+    margin-right: 2rem;
 }
 
 .hero-video-container {
