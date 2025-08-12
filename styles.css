@@ -315,6 +315,7 @@ p, span, div, a, li, button, input, textarea {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     background: linear-gradient(135deg, #ff8e53, #ffb347);
+    animation: colorShift 30s ease-in-out infinite;
 }
 
 @keyframes colorShift {
@@ -322,9 +323,13 @@ p, span, div, a, li, button, input, textarea {
         background: linear-gradient(135deg, #ff6b6b, #ff8e53);
         box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     }
-    50% { 
+    33.33% { 
         background: linear-gradient(135deg, #ff8e53, #ffb347);
         box-shadow: 0 6px 20px rgba(255, 142, 83, 0.5);
+    }
+    66.66% { 
+        background: linear-gradient(135deg, #ffb347, #ff6b6b);
+        box-shadow: 0 6px 20px rgba(255, 179, 71, 0.5);
     }
 }
 
@@ -338,6 +343,7 @@ p, span, div, a, li, button, input, textarea {
     background: rgba(156, 39, 176, 0.1);
     border-color: rgba(156, 39, 176, 0.6);
     transform: translateY(-2px) scale(1.05);
+    animation: secondaryColorShift 30s ease-in-out infinite;
 }
 
 @keyframes secondaryColorShift {
@@ -345,9 +351,13 @@ p, span, div, a, li, button, input, textarea {
         border-color: rgba(156, 39, 176, 0.6);
         background: rgba(156, 39, 176, 0.1);
     }
-    50% { 
+    33.33% { 
         border-color: rgba(33, 150, 243, 0.7);
         background: rgba(33, 150, 243, 0.15);
+    }
+    66.66% { 
+        border-color: rgba(255, 193, 7, 0.7);
+        background: rgba(255, 193, 7, 0.15);
     }
 }
 
