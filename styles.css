@@ -537,7 +537,7 @@ section {
 /* Writing Carousel */
 .writing-carousel {
     position: relative;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -551,23 +551,17 @@ section {
 
 .carousel-track {
     display: flex;
+    gap: 2rem;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 1rem;
 }
 
 .carousel-track .writing-card {
-    min-width: 100%;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.carousel-track .writing-card.active {
+    min-width: calc(33.333% - 1.33rem);
+    flex: 0 0 calc(33.333% - 1.33rem);
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
+    transition: all 0.3s ease;
     position: relative;
 }
 
@@ -640,9 +634,29 @@ section {
 }
 
 /* Responsive adjustments for carousel */
+@media (max-width: 1024px) {
+    .carousel-track .writing-card {
+        min-width: calc(50% - 1rem);
+        flex: 0 0 calc(50% - 1rem);
+    }
+    
+    .carousel-track {
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .writing-carousel {
         max-width: 100%;
+    }
+    
+    .carousel-track .writing-card {
+        min-width: 100%;
+        flex: 0 0 100%;
+    }
+    
+    .carousel-track {
+        gap: 1rem;
     }
     
     .carousel-navigation {

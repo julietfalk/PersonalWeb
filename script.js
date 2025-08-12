@@ -336,62 +336,68 @@ function initializeWritingCarousel() {
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     
-    let currentIndex = 0;
+    let currentPosition = 0;
     const totalCards = cards.length;
+    const cardsPerView = 3;
+    const maxPosition = Math.max(0, totalCards - cardsPerView);
     
     if (!carouselTrack || cards.length === 0) return;
     
-    // Function to show a specific card
-    function showCard(index) {
-        // Remove active class from all cards and dots
-        cards.forEach(card => card.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
+    // Function to slide to a specific position
+    function slideTo(position) {
+        // Ensure position is within bounds
+        position = Math.max(0, Math.min(position, maxPosition));
         
-        // Add active class to current card and dot
-        cards[index].classList.add('active');
-        dots[index].classList.add('active');
+        // Calculate the transform value to show the correct set of cards
+        const cardWidth = cards[0].offsetWidth + 32; // 32px is the gap
+        const transformValue = -position * cardWidth;
+        
+        carouselTrack.style.transform = `translateX(${transformValue}px)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === position);
+        });
         
         // Update button states
-        prevBtn.disabled = index === 0;
-        nextBtn.disabled = index === totalCards - 1;
+        prevBtn.disabled = position === 0;
+        nextBtn.disabled = position === maxPosition;
         
-        currentIndex = index;
+        currentPosition = position;
     }
     
-    // Function to go to next card
-    function nextCard() {
-        const nextIndex = (currentIndex + 1) % totalCards;
-        showCard(nextIndex);
+    // Function to go to next set of cards
+    function nextSet() {
+        slideTo(currentPosition + 1);
     }
     
-    // Function to go to previous card
-    function prevCard() {
-        const prevIndex = currentIndex === 0 ? totalCards - 1 : currentIndex - 1;
-        showCard(prevIndex);
+    // Function to go to previous set of cards
+    function prevSet() {
+        slideTo(currentPosition - 1);
     }
     
     // Event listeners for navigation buttons
     if (prevBtn) {
-        prevBtn.addEventListener('click', prevCard);
+        prevBtn.addEventListener('click', prevSet);
     }
     
     if (nextBtn) {
-        nextBtn.addEventListener('click', nextCard);
+        nextBtn.addEventListener('click', nextSet);
     }
     
     // Event listeners for dots
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            showCard(index);
+            slideTo(index);
         });
     });
     
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
-            prevCard();
+            prevSet();
         } else if (e.key === 'ArrowRight') {
-            nextCard();
+            nextSet();
         }
     });
     
@@ -399,7 +405,7 @@ function initializeWritingCarousel() {
     let autoAdvanceInterval;
     
     function startAutoAdvance() {
-        autoAdvanceInterval = setInterval(nextCard, 8000); // Change every 8 seconds
+        autoAdvanceInterval = setInterval(nextSet, 10000); // Change every 10 seconds
     }
     
     function stopAutoAdvance() {
@@ -415,8 +421,8 @@ function initializeWritingCarousel() {
         carouselContainer.addEventListener('mouseleave', startAutoAdvance);
     }
     
-    // Initialize first card and start auto-advance
-    showCard(0);
+    // Initialize first position and start auto-advance
+    slideTo(0);
     startAutoAdvance();
     
     // Touch/swipe support for mobile
@@ -438,13 +444,18 @@ function initializeWritingCarousel() {
         
         if (Math.abs(diff) > swipeThreshold) {
             if (diff > 0) {
-                // Swipe left - next card
-                nextCard();
+                // Swipe left - next set
+                nextSet();
             } else {
-                // Swipe right - previous card
-                prevCard();
+                // Swipe right - previous set
+                prevSet();
             }
         }
     }
+    
+    // Handle window resize to recalculate positions
+    window.addEventListener('resize', () => {
+        slideTo(currentPosition);
+    });
 }
 
