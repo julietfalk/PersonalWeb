@@ -259,11 +259,30 @@ document.addEventListener('DOMContentLoaded', () => {
         isMouseOnScreen = true;
     });
     
+    // Handle mouse leaving the browser window
+    document.addEventListener('mouseleave', () => {
+        isMouseOnScreen = false;
+        // Reset trail positions to off-screen when mouse leaves
+        trail1X = -100;
+        trail1Y = -100;
+        trail2X = -100;
+        trail2Y = -100;
+        trail3X = -100;
+        trail3Y = -100;
+    });
+    
     // Check if mouse is off-screen every frame
     function checkMouseOnScreen() {
         const isOffScreen = mouseX < 0 || mouseY < 0 || mouseX > window.innerWidth || mouseY > window.innerHeight;
         if (isOffScreen) {
             isMouseOnScreen = false;
+            // Reset trail positions to off-screen when mouse leaves
+            trail1X = -100;
+            trail1Y = -100;
+            trail2X = -100;
+            trail2Y = -100;
+            trail3X = -100;
+            trail3Y = -100;
         }
     }
     
