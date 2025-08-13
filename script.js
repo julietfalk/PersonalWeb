@@ -197,19 +197,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('About to create cursor trail elements...');
     
+    // Declare variables outside try block so they're accessible to animateCursorTrail function
+    let cursorTrail, trailDot2, trailDot3;
+    
     try {
         // Initialize cursor trail with 3 separate dots
-        const cursorTrail = document.createElement('div');
+        cursorTrail = document.createElement('div');
         cursorTrail.className = 'cursor-trail';
         document.body.appendChild(cursorTrail);
         console.log('Main cursor trail created');
         
-        const trailDot2 = document.createElement('div');
+        trailDot2 = document.createElement('div');
         trailDot2.className = 'trail-dot-2';
         document.body.appendChild(trailDot2);
         console.log('Trail dot 2 created');
         
-        const trailDot3 = document.createElement('div');
+        trailDot3 = document.createElement('div');
         trailDot3.className = 'trail-dot-3';
         document.body.appendChild(trailDot3);
         console.log('Trail dot 3 created');
