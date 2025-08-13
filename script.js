@@ -223,16 +223,22 @@ document.addEventListener('DOMContentLoaded', () => {
         isMouseOnScreen = true;
     });
     
-    document.addEventListener('mouseleave', () => {
-        isMouseOnScreen = false;
-    });
+    // Check if mouse is off-screen every frame
+    function checkMouseOnScreen() {
+        const isOffScreen = mouseX < 0 || mouseY < 0 || mouseX > window.innerWidth || mouseY > window.innerHeight;
+        if (isOffScreen) {
+            isMouseOnScreen = false;
+        }
+    }
     
-    document.addEventListener('mouseenter', () => {
-        isMouseOnScreen = true;
-    });
+    // Also check on window resize
+    window.addEventListener('resize', checkMouseOnScreen);
 
     // Animate cursor trail with different delays for each dot
     function animateCursorTrail() {
+        // Check if mouse is off-screen every frame
+        checkMouseOnScreen();
+        
         if (!isMouseOnScreen) {
             // Hide all dots when cursor is off-screen
             cursorTrail.style.opacity = '0';
@@ -272,7 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     main: [trail1X, trail1Y], 
                     dot2: [trail2X, trail2Y], 
                     dot3: [trail3X, trail3Y],
-                    mouse: [mouseX, mouseY]
+                    mouse: [mouseX, mouseY],
+                    isMouseOnScreen
                 });
             }
         }
