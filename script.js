@@ -185,6 +185,11 @@ function typeWriter(element, text, speed = 100) {
 //     }
 // });
 
+// Check if we're on mobile - moved to global scope
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
 // Enhanced scroll animations and mouse tracking
 // Single DOMContentLoaded event listener to handle all initialization
 document.addEventListener('DOMContentLoaded', () => {
@@ -253,10 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let trail3X = -100, trail3Y = -100;
     let isMouseOnScreen = false;
     
-    // Check if we're on mobile
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
+
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
