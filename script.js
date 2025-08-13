@@ -221,27 +221,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Animate cursor trail with different delays for each dot
     function animateCursorTrail() {
-        // First dot (closest to cursor)
-        trail1X += (mouseX - trail1X) * 0.15;
-        trail1Y += (mouseY - trail1Y) * 0.15;
+        // Check if cursor is off-screen
+        const isOffScreen = mouseX < 0 || mouseY < 0 || mouseX > window.innerWidth || mouseY > window.innerHeight;
         
-        // Second dot (medium delay)
-        trail2X += (mouseX - trail2X) * 0.08;
-        trail2Y += (mouseY - trail2Y) * 0.08;
-        
-        // Third dot (longest delay)
-        trail3X += (mouseX - trail3X) * 0.05;
-        trail3Y += (mouseY - trail3Y) * 0.05;
-        
-        // Update positions
-        cursorTrail.style.left = trail1X + 'px';
-        cursorTrail.style.top = trail1Y + 'px';
-        
-        trailDot2.style.left = trail2X + 'px';
-        trailDot2.style.top = trail2Y + 'px';
-        
-        trailDot3.style.left = trail3X + 'px';
-        trailDot3.style.top = trail3Y + 'px';
+        if (isOffScreen) {
+            // Hide all dots when cursor is off-screen
+            cursorTrail.style.opacity = '0';
+            trailDot2.style.opacity = '0';
+            trailDot3.style.opacity = '0';
+        } else {
+            // Show all dots when cursor is on-screen
+            cursorTrail.style.opacity = '1';
+            trailDot2.style.opacity = '1';
+            trailDot3.style.opacity = '1';
+            
+            // First dot (closest to cursor)
+            trail1X += (mouseX - trail1X) * 0.15;
+            trail1Y += (mouseY - trail1Y) * 0.15;
+            
+            // Second dot (medium delay)
+            trail2X += (mouseX - trail2X) * 0.08;
+            trail2Y += (mouseY - trail2Y) * 0.08;
+            
+            // Third dot (longest delay)
+            trail3X += (mouseX - trail3X) * 0.05;
+            trail3Y += (mouseY - trail3Y) * 0.05;
+            
+            // Update positions
+            cursorTrail.style.left = trail1X + 'px';
+            cursorTrail.style.top = trail1Y + 'px';
+            
+            trailDot2.style.left = trail2X + 'px';
+            trailDot2.style.top = trail2Y + 'px';
+            
+            trailDot3.style.left = trail3X + 'px';
+            trailDot3.style.top = trail3Y + 'px';
+        }
         
         requestAnimationFrame(animateCursorTrail);
     }
