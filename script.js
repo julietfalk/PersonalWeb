@@ -195,10 +195,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // animateHeroBackground(); // REMOVED
     console.log('animateHeroBackground called');
     
-    // Initialize cursor trail
+    // Initialize cursor trail with 3 separate dots
     const cursorTrail = document.createElement('div');
     cursorTrail.className = 'cursor-trail';
     document.body.appendChild(cursorTrail);
+    
+    const trailDot2 = document.createElement('div');
+    trailDot2.className = 'trail-dot-2';
+    document.body.appendChild(trailDot2);
+    
+    const trailDot3 = document.createElement('div');
+    trailDot3.className = 'trail-dot-3';
+    document.body.appendChild(trailDot3);
 
     // Cursor trail effect with 3 dots
     let mouseX = 0, mouseY = 0;
@@ -229,11 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorTrail.style.left = trail1X + 'px';
         cursorTrail.style.top = trail1Y + 'px';
         
-        // Update pseudo-elements for the other dots
-        cursorTrail.style.setProperty('--trail2-x', trail2X + 'px');
-        cursorTrail.style.setProperty('--trail2-y', trail2Y + 'px');
-        cursorTrail.style.setProperty('--trail3-x', trail3X + 'px');
-        cursorTrail.style.setProperty('--trail3-y', trail3Y + 'px');
+        trailDot2.style.left = trail2X + 'px';
+        trailDot2.style.top = trail2Y + 'px';
+        
+        trailDot3.style.left = trail3X + 'px';
+        trailDot3.style.top = trail3Y + 'px';
         
         requestAnimationFrame(animateCursorTrail);
     }

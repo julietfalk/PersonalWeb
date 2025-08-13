@@ -10,36 +10,33 @@
     position: fixed;
     width: 8px;
     height: 8px;
-    background: radial-gradient(circle, rgba(156, 39, 176, 0.95) 0%, rgba(156, 39, 176, 0.8) 50%, transparent 100%);
+    background: rgba(156, 39, 176, 0.95);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: screen;
     filter: drop-shadow(0 0 8px rgba(156, 39, 176, 0.6));
 }
 
-.cursor-trail::before,
-.cursor-trail::after {
-    content: '';
+.trail-dot-2 {
     position: fixed;
     width: 6px;
     height: 6px;
-    background: radial-gradient(circle, rgba(255, 152, 0, 0.9) 0%, rgba(255, 152, 0, 0.7) 50%, transparent 100%);
+    background: rgba(255, 152, 0, 0.9);
     border-radius: 50%;
-    mix-blend-mode: screen;
     pointer-events: none;
     z-index: 9998;
     filter: drop-shadow(0 0 6px rgba(255, 152, 0, 0.5));
 }
 
-.cursor-trail::before {
-    left: var(--trail2-x, 0px);
-    top: var(--trail2-y, 0px);
-}
-
-.cursor-trail::after {
-    left: var(--trail3-x, 0px);
-    top: var(--trail3-y, 0px);
+.trail-dot-3 {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 152, 0, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    filter: drop-shadow(0 0 6px rgba(255, 152, 0, 0.5));
 }
 
 /* Keep cursor visible but add custom trail */
