@@ -382,7 +382,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeMagneticEffects();
     
     // Initialize floating shapes in hero section
-    initializeFloatingShapes();
+    console.log('About to initialize floating shapes...');
+    try {
+        initializeFloatingShapes();
+        console.log('Floating shapes initialized successfully');
+    } catch (error) {
+        console.error('Error initializing floating shapes:', error);
+    }
 
     // Scroll-triggered animations
     const observerOptions = {
@@ -635,8 +641,15 @@ function handleFontLoading() {
 
 // Floating Shapes in Hero Section
 function initializeFloatingShapes() {
+    console.log('initializeFloatingShapes function called');
+    
     const hero = document.querySelector('.hero');
-    if (!hero) return;
+    console.log('Hero element found:', hero);
+    
+    if (!hero) {
+        console.error('Hero element not found!');
+        return;
+    }
     
     // Create floating shapes
     const shapes = [
@@ -646,7 +659,11 @@ function initializeFloatingShapes() {
         { type: 'circle', size: '70px', animation: 'float4', duration: '28s', delay: '15s' }
     ];
     
+    console.log('About to create', shapes.length, 'shapes');
+    
     shapes.forEach((shape, index) => {
+        console.log('Creating shape', index + 1, ':', shape.type);
+        
         const shapeElement = document.createElement('div');
         shapeElement.className = `floating-shape ${shape.type}`;
         
@@ -662,13 +679,20 @@ function initializeFloatingShapes() {
         
         // Position randomly within hero bounds
         const heroRect = hero.getBoundingClientRect();
+        console.log('Hero bounds:', heroRect);
+        
         const x = Math.random() * (heroRect.width - 200) + 100;
         const y = Math.random() * (heroRect.height - 200) + 100;
         
         shapeElement.style.left = `${x}px`;
         shapeElement.style.top = `${y}px`;
         
+        console.log('Shape positioned at:', x, y);
+        
         hero.appendChild(shapeElement);
+        console.log('Shape', index + 1, 'added to hero');
     });
+    
+    console.log('All shapes created and added');
 }
 
