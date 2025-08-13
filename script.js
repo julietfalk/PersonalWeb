@@ -225,11 +225,9 @@ document.addEventListener('DOMContentLoaded', () => {
         trailDot3.style.left = '150px';
         trailDot3.style.top = '100px';
         
-        // Force them to be visible and add some text content
+        // Force them to be visible
         trailDot2.style.opacity = '1';
         trailDot3.style.opacity = '1';
-        trailDot2.textContent = 'RED';
-        trailDot3.textContent = 'GREEN';
         
         console.log('Trail dots positioned at:', {
             dot2: [trailDot2.style.left, trailDot2.style.top],
@@ -242,23 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const foundDot3 = document.querySelector('.trail-dot-3');
             console.log('DOM check - found elements:', { foundDot2, foundDot3 });
             console.log('All elements with trail-dot classes:', document.querySelectorAll('[class*="trail-dot"]'));
-            
-            // Try to find them by any means possible
-            console.log('All divs in body:', document.body.querySelectorAll('div'));
-            console.log('Body children count:', document.body.children.length);
-            
-            // Create a simple test div to see if JavaScript is working at all
-            const testDiv = document.createElement('div');
-            testDiv.style.position = 'fixed';
-            testDiv.style.top = '200px';
-            testDiv.style.left = '100px';
-            testDiv.style.width = '100px';
-            testDiv.style.height = '100px';
-            testDiv.style.background = 'blue';
-            testDiv.style.zIndex = '10000';
-            testDiv.textContent = 'TEST DIV';
-            document.body.appendChild(testDiv);
-            console.log('Test div created:', testDiv);
         }, 1000);
         
     } catch (error) {
