@@ -253,6 +253,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let trail3X = -100, trail3Y = -100;
     let isMouseOnScreen = false;
     
+    // Check if we're on mobile
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+    
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -448,8 +453,10 @@ function initializeWritingCarousel() {
     
     let currentPosition = 0;
     const totalCards = cards.length;
-    const cardsPerView = 3;
-    const maxPosition = 2; // We have 3 positions: 0, 1, 2 (for 5 articles showing 3 at a time)
+    
+    // Mobile: show 1 card, Desktop: show 3 cards
+    const cardsPerView = isMobile() ? 1 : 3;
+    const maxPosition = isMobile() ? totalCards - 1 : 2; // Mobile: all cards, Desktop: 3 positions
     
     if (!carouselTrack || cards.length === 0) return;
     
@@ -459,7 +466,7 @@ function initializeWritingCarousel() {
         position = Math.max(0, Math.min(position, maxPosition));
         
         // Calculate the transform value to show the correct set of cards
-        const cardWidth = cards[0].offsetWidth + 32; // 32px is the gap
+        const cardWidth = cards[0].offsetWidth + (isMobile() ? 16 : 32); // Smaller gap on mobile
         const transformValue = -position * cardWidth;
         
         carouselTrack.style.transform = `translateX(${transformValue}px)`;
@@ -472,8 +479,6 @@ function initializeWritingCarousel() {
         // Update button states
         prevBtn.disabled = position === 0;
         nextBtn.disabled = position === maxPosition;
-        
-
         
         currentPosition = position;
     }
