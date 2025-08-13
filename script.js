@@ -207,24 +207,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const trailDot3 = document.createElement('div');
     trailDot3.className = 'trail-dot-3';
     document.body.appendChild(trailDot3);
+    
+    console.log('Cursor trail elements created:', { cursorTrail, trailDot2, trailDot3 });
 
     // Cursor trail effect with 3 dots
-    let mouseX = 0, mouseY = 0;
-    let trail1X = 0, trail1Y = 0;
-    let trail2X = 0, trail2Y = 0;
-    let trail3X = 0, trail3Y = 0;
+    let mouseX = -100, mouseY = -100; // Start off-screen
+    let trail1X = -100, trail1Y = -100;
+    let trail2X = -100, trail2Y = -100;
+    let trail3X = -100, trail3Y = -100;
+    let isMouseOnScreen = false;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        isMouseOnScreen = true;
+    });
+    
+    document.addEventListener('mouseleave', () => {
+        isMouseOnScreen = false;
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        isMouseOnScreen = true;
     });
 
     // Animate cursor trail with different delays for each dot
     function animateCursorTrail() {
-        // Check if cursor is off-screen
-        const isOffScreen = mouseX < 0 || mouseY < 0 || mouseX > window.innerWidth || mouseY > window.innerHeight;
-        
-        if (isOffScreen) {
+        if (!isMouseOnScreen) {
             // Hide all dots when cursor is off-screen
             cursorTrail.style.opacity = '0';
             trailDot2.style.opacity = '0';
@@ -256,6 +265,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             trailDot3.style.left = trail3X + 'px';
             trailDot3.style.top = trail3Y + 'px';
+            
+            // Debug: log positions every 60 frames (about once per second)
+            if (Math.random() < 0.016) {
+                console.log('Trail positions:', { 
+                    main: [trail1X, trail1Y], 
+                    dot2: [trail2X, trail2Y], 
+                    dot3: [trail3X, trail3Y],
+                    mouse: [mouseX, mouseY]
+                });
+            }
         }
         
         requestAnimationFrame(animateCursorTrail);
