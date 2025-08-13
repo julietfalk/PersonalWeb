@@ -93,6 +93,69 @@ body::before {
     animation: particleFloat 30s ease-in-out infinite;
 }
 
+/* Hero background floating shapes */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.floating-shape {
+    position: absolute;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 140px solid rgba(156, 39, 176, 0.8);
+}
+
+.floating-shape.circle {
+    border-radius: 50%;
+    background: rgba(255, 152, 0, 0.6);
+}
+
+.floating-shape.square {
+    background: rgba(33, 150, 243, 0.5);
+    transform: rotate(45deg);
+}
+
+/* Floating animations */
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -20px) rotate(120deg); }
+    66% { transform: translate(-20px, 15px) rotate(240deg); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-25px, -30px) rotate(-120deg); }
+    66% { transform: translate(35px, 10px) rotate(-240deg); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(20px, 25px) rotate(90deg); }
+    66% { transform: translate(-30px, -15px) rotate(180deg); }
+}
+
+@keyframes float4 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-15px, -25px) rotate(-90deg); }
+    66% { transform: translate(25px, 20px) rotate(-180deg); }
+}
+
 @keyframes particleFloat {
     0%, 100% { 
         transform: translateY(0px) rotate(0deg);

@@ -378,6 +378,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize magnetic hover effects
     initializeMagneticEffects();
+    
+    // Initialize floating shapes in hero section
+    initializeFloatingShapes();
 
     // Scroll-triggered animations
     const observerOptions = {
@@ -626,5 +629,44 @@ function handleFontLoading() {
             }
         }, 100);
     }
+}
+
+// Floating Shapes in Hero Section
+function initializeFloatingShapes() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    // Create floating shapes
+    const shapes = [
+        { type: 'triangle', size: '80px', animation: 'float1', duration: '25s', delay: '0s' },
+        { type: 'circle', size: '60px', animation: 'float2', duration: '30s', delay: '5s' },
+        { type: 'square', size: '40px', animation: 'float3', duration: '35s', delay: '10s' },
+        { type: 'circle', size: '45px', animation: 'float4', duration: '28s', delay: '15s' }
+    ];
+    
+    shapes.forEach((shape, index) => {
+        const shapeElement = document.createElement('div');
+        shapeElement.className = `floating-shape ${shape.type}`;
+        
+        // Set size for circle and square
+        if (shape.type === 'circle' || shape.type === 'square') {
+            shapeElement.style.width = shape.size;
+            shapeElement.style.height = shape.size;
+        }
+        
+        // Set animation
+        shapeElement.style.animation = `${shape.animation} ${shape.duration} ease-in-out infinite`;
+        shapeElement.style.animationDelay = shape.delay;
+        
+        // Position randomly within hero bounds
+        const heroRect = hero.getBoundingClientRect();
+        const x = Math.random() * (heroRect.width - 200) + 100;
+        const y = Math.random() * (heroRect.height - 200) + 100;
+        
+        shapeElement.style.left = `${x}px`;
+        shapeElement.style.top = `${y}px`;
+        
+        hero.appendChild(shapeElement);
+    });
 }
 
