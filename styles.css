@@ -108,26 +108,27 @@ body::before {
 
 .floating-shape {
     position: absolute;
-    opacity: 0.03;
+    opacity: 0.15;
     pointer-events: none;
     z-index: -1;
+    filter: drop-shadow(0 0 20px currentColor);
 }
 
 .floating-shape.triangle {
     width: 0;
     height: 0;
-    border-left: 80px solid transparent;
-    border-right: 80px solid transparent;
-    border-bottom: 140px solid rgba(156, 39, 176, 0.8);
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 175px solid rgba(156, 39, 176, 0.9);
 }
 
 .floating-shape.circle {
     border-radius: 50%;
-    background: rgba(255, 152, 0, 0.6);
+    background: rgba(255, 152, 0, 0.8);
 }
 
 .floating-shape.square {
-    background: rgba(33, 150, 243, 0.5);
+    background: rgba(33, 150, 243, 0.7);
     transform: rotate(45deg);
 }
 

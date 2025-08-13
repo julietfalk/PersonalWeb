@@ -638,10 +638,10 @@ function initializeFloatingShapes() {
     
     // Create floating shapes
     const shapes = [
-        { type: 'triangle', size: '80px', animation: 'float1', duration: '25s', delay: '0s' },
-        { type: 'circle', size: '60px', animation: 'float2', duration: '30s', delay: '5s' },
-        { type: 'square', size: '40px', animation: 'float3', duration: '35s', delay: '10s' },
-        { type: 'circle', size: '45px', animation: 'float4', duration: '28s', delay: '15s' }
+        { type: 'triangle', size: '100px', animation: 'float1', duration: '25s', delay: '0s' },
+        { type: 'circle', size: '80px', animation: 'float2', duration: '30s', delay: '5s' },
+        { type: 'square', size: '60px', animation: 'float3', duration: '35s', delay: '10s' },
+        { type: 'circle', size: '70px', animation: 'float4', duration: '28s', delay: '15s' }
     ];
     
     shapes.forEach((shape, index) => {
