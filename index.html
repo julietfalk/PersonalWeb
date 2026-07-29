@@ -3,293 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juliet Falk - Personal Portfolio</title>
+    <title>Juliet Falk | AI, Design, Startups</title>
+    <meta name="description" content="Juliet Falk explores the cutting edge of AI, design, and startups, turning curiosity into prototypes and ideas into impact.">
+    <meta name="author" content="Juliet Falk">
+    <link rel="canonical" href="https://www.julietfalk.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.julietfalk.com/">
+    <meta property="og:title" content="Juliet Falk | AI, Design, Startups">
+    <meta property="og:description" content="Turning curiosity into prototypes and ideas into impact.">
+    <meta property="og:image" content="https://www.julietfalk.com/images/profile.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23101010'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23fafaf8' text-anchor='middle'>JF</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.cdnfonts.com">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/wdxl-lubricant-jpn">
-    
-    <style>
-      /* Prevent font flashing by setting initial styles */
-      .nav-logo a {
-        font-family: 'Bebas Neue', 'Arial Black', 'Helvetica Bold', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: #ff6b6b;
-        text-decoration: none;
-        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        /* Ensure consistent rendering across browsers */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-      }
-      
-      /* Hide text until font is loaded to prevent flashing */
-      .font-loading {
-        visibility: hidden;
-      }
-      
-      .font-loaded {
-        visibility: visible;
-        transition: visibility 0.1s ease;
-      }
-    </style>
+
+    <script>
+        // Applied before first paint so a saved theme doesn't flash the wrong colors
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.dataset.theme = saved;
+        } catch (e) {}
+    </script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home" class="font-loading">JF</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#writing" class="nav-link">Writing</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#home" class="nav-logo" aria-label="Juliet Falk, home">JF</a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#writing" class="nav-link">Writing</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+                    <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+                    <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+                </button>
+
+                <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <section id="home" class="hero">
-        <canvas id="hero-bg-canvas"></canvas>
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Hi, I'm <span class="highlight">Juliet Falk</span>!</h1>
-                <p class="hero-subtitle">AI • Quantum Computing • Design • Startups</p>
-                <p class="hero-description">
-                    I explore the cutting edge of AI, tech and startups. Turning curiosity into prototypes and ideas into impact.
+    <main id="main">
+        <section id="home" class="hero">
+            <div class="container">
+                <p class="eyebrow">AI &middot; Design &middot; Startups</p>
+
+                <h1 class="hero-title">Juliet<br>Falk</h1>
+
+                <p class="lede">
+                    I explore the cutting edge of AI, tech, and startups, turning
+                    curiosity into prototypes and ideas into <em>impact</em>.
                 </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#writing" class="btn btn-secondary">Read My Writing</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-video-container">
-                    <video class="hero-video" autoplay muted loop playsinline>
-                        <source src="videos/midjourney-loop.mp4" type="video/mp4">
-                        <!-- Fallback for browsers that don't support video -->
-                        <div class="video-fallback">
-                            <i class="fas fa-play-circle"></i>
-                            <span>AI Generated Video</span>
-                        </div>
-                    </video>
-                    <div class="video-overlay"></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        My work explores the intersections of artificial intelligence, quantum computing, design, and entrepreneurship. 
-                        This site is a space to share ongoing projects, emerging insights, and critical reflections on innovation and its implications.
-                    </p>
-                    <p>
-                        When I'm not coding or researching, you can find me writing about technology, 
-                        exploring new ideas, or contributing to open-source projects that push the boundaries 
-                        of what's possible.
-                    </p>
-                    <div class="skills">
-                        <h3>Skills & Technologies</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">AI/ML</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">Data Analysis</span>
-                            <span class="skill-tag">Technical Writing</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="images/profile.jpg" alt="Juliet Falk" class="profile-image">
+                <div class="hero-actions">
+                    <a href="#work" class="btn btn-primary">View my work</a>
+                    <a href="#writing" class="btn btn-ghost">Read my writing</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Fig Tree</h3>
-                        <p>A job search engine that gives you opportunities based on your goals, values, and skills.</p>
-                        <div class="project-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">API</span>
-                            <span class="tag">Web App</span>
-                            <span class="tag">Personalized</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://fig-tree-pathfinder.lovable.app" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Try It</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section id="about" class="section">
+            <div class="container">
+                <p class="eyebrow">01 / About</p>
+                <div class="about-grid">
+                    <div class="about-copy">
+                        <h2 class="section-title">Curiosity, applied.</h2>
+                        <p>
+                            I'm a Design student at Stanford, minoring in Art History, working
+                            at the intersection of artificial intelligence, design, and
+                            entrepreneurship. I've co-founded a wearable neurotech company, led
+                            growth at an AI startup through half a million users, and built brand
+                            systems for companies raising their first institutional rounds.
+                        </p>
+                        <p>
+                            I write about AI infrastructure, generative video, and quantum
+                            computing. What interests me most is the point where a technical
+                            breakthrough turns into something people actually use.
+                        </p>
 
-    <section id="writing" class="writing">
-        <div class="container">
-            <h2 class="section-title">Writing & Publications</h2>
-            <div class="writing-carousel">
-                <div class="carousel-container">
-                    <div class="carousel-track">
-                        <article class="writing-card">
-                            <div class="writing-meta">
-                                <span class="writing-category">AI & Environment</span>
-                                <span class="writing-date">2025</span>
-                            </div>
-                            <h3>Fueling The Future</h3>
-                            <p>The Environmental Price of AI Factories. Exploring how AI data centers are becoming industrial powerhouses and their impact on climate goals.</p>
-                            <a href="https://substack.com/home/post/p-170798608" class="writing-link" target="_blank">
-                                Read here <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-                        
-                        <article class="writing-card">
-                            <div class="writing-meta">
-                                <span class="writing-category">Generative AI</span>
-                                <span class="writing-date">2025</span>
-                            </div>
-                            <h3>Cut To The Web</h3>
-                            <p>Why generative video is more than content, it's the next interface of the internet. Exploring how video generation is reshaping the web experience.</p>
-                            <a href="https://substack.com/home/post/p-169783555" class="writing-link" target="_blank">
-                                Read here <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-                        
-                        <article class="writing-card">
-                            <div class="writing-meta">
-                                <span class="writing-category">AI Geopolitics</span>
-                                <span class="writing-date">2025</span>
-                            </div>
-                            <h3>Tariffed Intelligence</h3>
-                            <p>What Kimi, Qwen, and Nvidia tariffs tell us about the AI Cold War. Exploring China's AI acceleration and the emerging bipolar AI world.</p>
-                            <a href="https://substack.com/home/post/p-169175895" class="writing-link" target="_blank">
-                                Read here <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-                        
-                        <article class="writing-card">
-                            <div class="writing-meta">
-                                <span class="writing-category">AI Browsers</span>
-                                <span class="writing-date">2025</span>
-                            </div>
-                            <h3>X Marks The Browser</h3>
-                            <p>A mapped overview of the fast-growing AI browser ecosystem, and why your next search might be a conversation.</p>
-                            <a href="https://substack.com/home/post/p-168592863" class="writing-link" target="_blank">
-                                Read here <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-                        
-                        <article class="writing-card">
-                            <div class="writing-meta">
-                                <span class="writing-category">Quantum Computing</span>
-                                <span class="writing-date">2025</span>
-                            </div>
-                            <h3>A "Classiq" Breakthrough</h3>
-                            <p>How Classiq is shaping the future of quantum software, circuit synthesis, and EDA. Read about their $110M Series C and why they're a cornerstone in the quantum race.</p>
-                            <a href="https://substack.com/home/post/p-167207742?source=queue" class="writing-link" target="_blank">
-                                Read here <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-                    </div>
-                </div>
-                
-                <div class="carousel-navigation">
-                    <button class="carousel-btn prev-btn" aria-label="Previous set of articles">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="carousel-dots">
-                        <span class="dot active" data-index="0"></span>
-                        <span class="dot" data-index="1"></span>
-                        <span class="dot" data-index="2"></span>
-                    </div>
-                    <button class="carousel-btn next-btn" aria-label="Next set of articles">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <h3 class="micro-title">Design</h3>
+                        <ul class="tags">
+                            <li>Figma</li>
+                            <li>Photoshop</li>
+                            <li>Prototyping</li>
+                            <li>Brand systems</li>
+                            <li>Web design</li>
+                        </ul>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's Connect</h3>
-                    <p>I'm always interested in new opportunities, collaborations, or just having interesting conversations about AI, technology, and innovation.</p>
-                    <div class="contact-links">
-                        <a href="mailto:julietf@stanford.edu" class="contact-link">
-                            <i class="fas fa-envelope"></i>
-                            julietf@stanford.edu
-                        </a>
-                        <a href="https://github.com/julietfalk" class="contact-link">
-                            <i class="fab fa-github"></i>
-                            GitHub
-                        </a>
-                        <a href="https://linkedin.com/in/juliet-falk" class="contact-link">
-                            <i class="fab fa-linkedin"></i>
-                            LinkedIn
-                        </a>
-                        <a href="https://x.com/julietfalk1543" class="contact-link">
-                            <i class="fab fa-twitter"></i>
-                            X (Twitter)
-                        </a>
+                        <h3 class="micro-title">Technical</h3>
+                        <ul class="tags">
+                            <li>Python</li>
+                            <li>C++</li>
+                            <li>R</li>
+                            <li>Cursor</li>
+                        </ul>
+
+                        <h3 class="micro-title">Languages</h3>
+                        <ul class="tags">
+                            <li>English (native)</li>
+                            <li>German (fluent)</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+
+                    <figure class="about-figure">
+                        <img src="images/profile.jpg" alt="Portrait of Juliet Falk" width="648" height="648" loading="lazy" decoding="async">
+                    </figure>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="work" class="section section-alt">
+            <div class="container">
+                <p class="eyebrow">02 / Work</p>
+                <h2 class="section-title">Projects &amp; experience</h2>
+
+                <ol class="exp-list">
+                    <li class="exp-item">
+                        <div class="exp-when">
+                            <span class="exp-note">AI for manufacturing, pre&#8209;Series&nbsp;A</span>
+                        </div>
+                        <div class="exp-what">
+                            <h3 class="exp-role">Growth &amp; Design Intern</h3>
+                            <p class="exp-org">Takt</p>
+                            <ul class="exp-points">
+                                <li>Designed the product UI, <a href="https://taktconnect.com" target="_blank" rel="noopener">marketing site</a>, pitch deck, and brand system ahead of the company's Series A raise.</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="exp-item">
+                        <div class="exp-when">
+                            <span class="exp-note">Wearable flow&#8209;state headset</span>
+                        </div>
+                        <div class="exp-what">
+                            <h3 class="exp-role">Co&#8209;Founder &amp; Chief Operating Officer</h3>
+                            <p class="exp-org">Epiphany</p>
+                            <ul class="exp-points">
+                                <li>Grew a <a href="https://epiphanywaitlist.com/" target="_blank" rel="noopener">pre-launch waitlist</a> to 5,000 users through positioning, brand, and go-to-market design.</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="exp-item">
+                        <div class="exp-when">
+                            <span class="exp-note">Job search engine</span>
+                        </div>
+                        <div class="exp-what">
+                            <h3 class="exp-role">Fig Tree</h3>
+                            <ul class="exp-points">
+                                <li>Surfaces opportunities based on your goals, values, and skills, not just your job title.</li>
+                            </ul>
+                            <ul class="tags tags-sm exp-tags">
+                                <li>JavaScript</li>
+                                <li>Node.js</li>
+                                <li>API</li>
+                                <li>Web App</li>
+                            </ul>
+                            <a href="https://fig-tree-pathfinder.lovable.app" class="card-link exp-link" target="_blank" rel="noopener">
+                                Try it
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                            </a>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container">
+                <p class="eyebrow">03 / Education</p>
+                <div class="edu-grid">
+                    <div>
+                        <h2 class="section-title">Stanford University</h2>
+                        <p class="edu-degree">Bachelor of Science in Design, Art History minor</p>
+                        <p class="edu-meta">Stanford, CA &middot; Expected June 2028</p>
+
+                        <h3 class="micro-title">Relevant coursework</h3>
+                        <ul class="tags tags-sm">
+                            <li>Programming Methodology (Python, C++, R)</li>
+                            <li>Cognitive Psychology</li>
+                            <li>Mathematical Logic</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="micro-title">Awards &amp; fellowships</h3>
+                        <ul class="award-list">
+                            <li>Stanford Accelerator for Edtech Impact Summit Winner, 2025</li>
+                            <li>India Ascends Lightspeed 2026 Finalist</li>
+                            <li>Pear FCC Fellow</li>
+                            <li>Foundress Fellow</li>
+                            <li>WISE Finalist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="writing" class="section">
+            <div class="container">
+                <p class="eyebrow">04 / Writing</p>
+                <h2 class="section-title">Essays &amp; publications</h2>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <p class="card-meta"><span>AI &amp; Environment</span><span>2025</span></p>
+                        <h3 class="card-title">Fueling the Future</h3>
+                        <p class="card-body">
+                            The environmental price of AI factories: how data centers became
+                            industrial powerhouses, and what that means for climate goals.
+                        </p>
+                        <a href="https://substack.com/home/post/p-170798608" class="card-link" target="_blank" rel="noopener">
+                            Read
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <p class="card-meta"><span>Generative AI</span><span>2025</span></p>
+                        <h3 class="card-title">Cut to the Web</h3>
+                        <p class="card-body">
+                            Why generative video is more than content. It's the next interface
+                            of the internet.
+                        </p>
+                        <a href="https://substack.com/home/post/p-169783555" class="card-link" target="_blank" rel="noopener">
+                            Read
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <p class="card-meta"><span>AI Geopolitics</span><span>2025</span></p>
+                        <h3 class="card-title">Tariffed Intelligence</h3>
+                        <p class="card-body">
+                            What Kimi, Qwen, and Nvidia tariffs tell us about the AI Cold War
+                            and the emerging bipolar AI world.
+                        </p>
+                        <a href="https://substack.com/home/post/p-169175895" class="card-link" target="_blank" rel="noopener">
+                            Read
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <p class="card-meta"><span>AI Browsers</span><span>2025</span></p>
+                        <h3 class="card-title">X Marks the Browser</h3>
+                        <p class="card-body">
+                            A mapped overview of the fast-growing AI browser ecosystem, and why
+                            your next search might be a conversation.
+                        </p>
+                        <a href="https://substack.com/home/post/p-168592863" class="card-link" target="_blank" rel="noopener">
+                            Read
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <p class="card-meta"><span>Quantum Computing</span><span>2025</span></p>
+                        <h3 class="card-title">A "Classiq" Breakthrough</h3>
+                        <p class="card-body">
+                            How Classiq is shaping the future of quantum software, circuit
+                            synthesis, and EDA, and why their $110M Series C matters.
+                        </p>
+                        <a href="https://substack.com/home/post/p-167207742" class="card-link" target="_blank" rel="noopener">
+                            Read
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section section-alt">
+            <div class="container">
+                <p class="eyebrow">05 / Contact</p>
+                <div class="contact-grid">
+                    <div>
+                        <h2 class="section-title">Let's connect.</h2>
+                        <p class="lede lede-sm">
+                            I'm always interested in new opportunities, collaborations, or just
+                            good conversation about AI, technology, and innovation.
+                        </p>
+                        <a href="mailto:julietf@stanford.edu" class="btn btn-primary">Email me</a>
+                    </div>
+
+                    <ul class="contact-list">
+                        <li>
+                            <a href="mailto:julietf@stanford.edu">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                                <span>julietf@stanford.edu</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/julietfalk" target="_blank" rel="noopener">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+                                <span>GitHub</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/juliet-falk" target="_blank" rel="noopener">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-11h4v1.5A6 6 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://x.com/julietfalk1543" target="_blank" rel="noopener">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
+                                <span>X (Twitter)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Juliet Falk. All rights reserved.</p>
+        <div class="container footer-inner">
+            <span>&copy; <span id="year">2026</span> Juliet Falk</span>
+            <a href="#home">Back to top</a>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
