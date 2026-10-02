@@ -576,6 +576,24 @@ main,
     border: 1px dashed var(--border-strong);
 }
 
+/* A real image, once dropped into images/portfolio/, covers its slot.
+   If the file is missing the <img> removes itself and the label shows. */
+.shot-slot { position: relative; overflow: hidden; }
+
+.shot .shot-slot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+    border: 0;
+    border-radius: 0;
+}
+
+.shot-slot:has(img) { border-style: solid; border-color: var(--border); }
+.shot-slot:has(img) span { display: none; }
+
 .shot-slot span {
     padding: 0.3rem 0.7rem;
     background: var(--bg);
@@ -590,6 +608,8 @@ main,
     text-transform: uppercase;
     color: var(--text-muted);
 }
+
+.case-copy > .status-copy { max-width: 62ch; color: var(--text-muted); }
 
 .case-copy > .draft-note {
     margin-top: var(--space-4);
