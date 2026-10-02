@@ -5,10 +5,10 @@
    ========================================================================== */
 
 :root {
-    /* Galvant brand (approximate values: swap in the exact brand hexes) */
-    --g-cream:  #f3eadb;
-    --g-orange: #e5632b;
-    --g-plum:   #2c1a2a;
+    /* Galvant brand, from the brand kit */
+    --g-cream:  #f7f3e9;
+    --g-orange: #e16809;
+    --g-plum:   #3b2a47;
 
     /* Epiphany brand, from the launch site */
     --e-navy:   #0d1c31;
@@ -259,6 +259,11 @@ main,
 
 .plate-galvant .plate-kicker { color: var(--g-orange); }
 
+.g-logo {
+    width: min(100%, 13rem);
+    margin-bottom: var(--space-2);
+}
+
 .g-tagline {
     font-family: var(--font-galvant);
     font-size: clamp(2.2rem, 5.6vw, 4.4rem);
@@ -322,8 +327,9 @@ main,
 .g-swatches li {
     display: flex;
     align-items: flex-end;
-    height: 5.5rem;
+    min-height: 5.5rem;
     padding: 0.6rem 0.7rem;
+    line-height: 1.5;
     font-family: var(--font-mono);
     font-size: 0.66rem;
     letter-spacing: 0.06em;
@@ -331,7 +337,7 @@ main,
     border-radius: var(--radius);
 }
 
-.sw-cream  { background: #fbf6ec; color: var(--g-plum); border: 1px solid color-mix(in srgb, var(--g-plum) 14%, transparent); }
+.sw-cream  { background: #fcfaf4; color: var(--g-plum); border: 1px solid color-mix(in srgb, var(--g-plum) 14%, transparent); }
 .sw-orange { background: var(--g-orange); color: #fff; }
 .sw-plum   { background: var(--g-plum); color: var(--g-cream); }
 
@@ -548,16 +554,18 @@ main,
 .shot-wide { grid-column: 1 / -1; }
 
 .shot-slot,
-.shot img {
+.shot > img {
     width: 100%;
     aspect-ratio: 4 / 3;
     border-radius: var(--radius);
 }
 
 .shot-wide .shot-slot,
-.shot-wide img { aspect-ratio: 16 / 9; }
+.shot-wide > img { aspect-ratio: 16 / 9; }
 
-.shot img {
+.shot > img.shot-natural { aspect-ratio: auto; height: auto; }
+
+.shot > img {
     object-fit: cover;
     border: 1px solid var(--border);
 }
@@ -599,6 +607,64 @@ main,
     background: var(--bg);
     border-radius: 999px;
 }
+
+.logo-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+}
+
+.logo-tile {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 7;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border-radius: var(--radius);
+}
+
+.logo-tile img { width: min(100%, 20rem); }
+
+.logo-tile-cream {
+    background: var(--g-cream);
+    border: 1px solid color-mix(in srgb, var(--g-plum) 14%, var(--g-cream));
+}
+
+.logo-tile-plum { background: var(--g-plum); }
+
+.slide-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+}
+
+.slide-grid img {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.kit {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: var(--space-4);
+    align-items: center;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.kit-banner,
+.kit-cards img {
+    width: 100%;
+    box-shadow: var(--shadow-md);
+}
+
+.kit-banner { border-radius: 6px; }
+
+.kit-cards { display: grid; gap: var(--space-3); }
+
+.kit-cards img { border-radius: 12px; }
 
 .shot figcaption {
     margin-top: 0.6rem;
@@ -671,6 +737,10 @@ main,
     .stat-row li { grid-template-columns: 7rem minmax(0, 1fr); align-items: baseline; gap: var(--space-2); }
 
     .shots { grid-template-columns: 1fr; }
+    .logo-row,
+    .slide-grid,
+    .kit { grid-template-columns: 1fr; }
+    .kit-banner { max-width: 15rem; margin-inline: auto; }
 
     .wall-label dl { grid-template-columns: 1fr; }
 
