@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Juliet Falk</title>
+    <meta name="description" content="Selected product and brand design work by Juliet Falk.">
+    <meta name="author" content="Juliet Falk">
+    <!-- Kept out of search results: this page is shared by link with a password -->
+    <meta name="robots" content="noindex">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23101010'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23fafaf8' text-anchor='middle'>JF</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Serif+Display&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+
+    <script>
+        // Applied before first paint: saved theme, and the password bubble on a first visit
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.dataset.theme = saved;
+        } catch (e) {}
+        try {
+            if (localStorage.getItem('jf-portfolio-unlocked') !== '1') {
+                document.documentElement.classList.add('is-locked');
+            }
+        } catch (e) {
+            document.documentElement.classList.add('is-locked');
+        }
+    </script>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Juliet Falk, home">JF</a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#work" class="nav-link">Work</a>
+                <a href="portfolio.html" class="nav-link is-active" aria-current="page">Portfolio</a>
+                <a href="index.html#writing" class="nav-link">Writing</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+                    <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+                    <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+                </button>
+
+                <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Password bubble. Shown only while <html> has .is-locked, which the
+         script in <head> sets on a first visit. Without JavaScript it never shows. -->
+    <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+        <form class="gate-bubble" id="gate-form" autocomplete="off" novalidate>
+            <p class="eyebrow gate-eyebrow">Private view</p>
+            <h1 class="gate-title" id="gate-title">Portfolio</h1>
+            <p class="gate-copy">Enter the password to continue.</p>
+
+            <div class="gate-field">
+                <label class="visually-hidden" for="gate-input">Password</label>
+                <input class="gate-input" id="gate-input" type="password" placeholder="Password" autocapitalize="off" spellcheck="false" aria-describedby="gate-error">
+                <button class="gate-submit" type="submit" aria-label="Continue">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+
+            <p class="gate-error" id="gate-error" role="alert" hidden>That password didn't match. Try again.</p>
+            <p class="gate-help">Need access? Write to <span class="gate-email">julietf@stanford.edu</span></p>
+        </form>
+    </div>
+
+    <main id="main">
+        <section class="pf-hero">
+            <div class="container">
+                <p class="eyebrow">Portfolio &middot; 2025 to 2026</p>
+                <h1 class="pf-title">Selected <em>work</em></h1>
+                <p class="lede">
+                    Product, brand, and go-to-market design for two early companies.
+                    Both projects started with the same step: talking to the people
+                    the product was for.
+                </p>
+
+                <ol class="pf-index" aria-label="Case studies">
+                    <li>
+                        <a href="#galvant">
+                            <span class="pf-index-no">Case 01</span>
+                            <span class="pf-index-name">Galvant</span>
+                            <span class="pf-index-note">Product UI and brand system for AI in manufacturing</span>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#epiphany">
+                            <span class="pf-index-no">Case 02</span>
+                            <span class="pf-index-name">Epiphany</span>
+                            <span class="pf-index-note">Positioning and launch design for a flow-state headset</span>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============================ Case 01: Galvant ============================ -->
+        <section id="galvant" class="case">
+            <div class="container">
+                <div class="plate plate-galvant">
+                    <div class="plate-main">
+                        <p class="plate-kicker">Galvant &middot; Brand system, 2026</p>
+                        <p class="g-tagline">An AI workforce for your manufacturing back office</p>
+                        <ul class="g-lines" aria-label="Product lines">
+                            <li>Intelligence</li>
+                            <li>Sales</li>
+                            <li>Procurement</li>
+                            <li>Financial</li>
+                        </ul>
+                    </div>
+                    <div class="plate-side">
+                        <div class="g-specimen">
+                            <span class="g-aa">Aa</span>
+                            <span class="g-spec-meta">DM Serif Display<br>JetBrains Mono</span>
+                        </div>
+                        <ul class="g-swatches" aria-label="Brand palette">
+                            <li class="sw-cream"><span>Cream</span></li>
+                            <li class="sw-orange"><span>Orange</span></li>
+                            <li class="sw-plum"><span>Plum</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-body">
+                    <aside class="wall-label" aria-label="Project details">
+                        <p class="wall-no">Case 01</p>
+                        <h2 class="wall-title">Galvant</h2>
+                        <dl>
+                            <div><dt>Role</dt><dd>Growth &amp; Design Intern</dd></div>
+                            <div><dt>When</dt><dd>Jun to Sep 2026</dd></div>
+                            <div><dt>Company</dt><dd>AI for manufacturing, pre&#8209;Series&nbsp;A</dd></div>
+                            <div><dt>Scope</dt><dd>Product UI, marketing site, pitch deck, brand system</dd></div>
+                            <div><dt>Tools</dt><dd>Figma, Cursor, HTML and CSS</dd></div>
+                        </dl>
+                        <a href="https://galvant.ai" class="card-link" target="_blank" rel="noopener">
+                            galvant.ai
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                        </a>
+                    </aside>
+
+                    <div class="case-copy">
+                        <h3 class="case-headline">
+                            About 200 conversations with manufacturers, turned into a product
+                            and a brand the company could raise on.
+                        </h3>
+
+                        <p>
+                            Galvant builds AI for the back office of manufacturing companies.
+                            I joined ahead of its Series A to design what customers and
+                            investors would see: the product interface, the marketing site,
+                            the pitch deck, and the brand system that ties them together.
+                        </p>
+                        <p>
+                            The design work ran alongside discovery. I spoke with plant
+                            general managers, contract manufacturers, and finance leads across
+                            the U.S., Singapore, and Thailand, and brought what I heard back
+                            into product and positioning decisions.
+                        </p>
+
+                        <ul class="stat-row">
+                            <li><span class="stat-n">~200</span><span class="stat-l">discovery conversations</span></li>
+                            <li><span class="stat-n">$100K+</span><span class="stat-l">pipeline from 5 qualified opportunities</span></li>
+                            <li><span class="stat-n">3</span><span class="stat-l">countries: U.S., Singapore, Thailand</span></li>
+                        </ul>
+
+                        <h4 class="micro-title">What I designed</h4>
+                        <ol class="work-list">
+                            <li>
+                                <strong>Brand system.</strong>
+                                A full identity for the company's rename to Galvant: serif display
+                                type paired with a monospace, on a cream, orange, and plum palette.
+                            </li>
+                            <li>
+                                <strong>Product UI.</strong>
+                                The interface for four product lines: Intelligence, Sales,
+                                Procurement, and Financial.
+                            </li>
+                            <li>
+                                <strong>Site and deck.</strong>
+                                The marketing site at galvant.ai and the pitch deck for the
+                                Series A raise.
+                            </li>
+                        </ol>
+
+                        <div class="shots">
+                            <figure class="shot shot-wide">
+                                <div class="shot-slot"><span>Add image: product UI, key screen</span></div>
+                                <figcaption>Product UI</figcaption>
+                            </figure>
+                            <figure class="shot">
+                                <div class="shot-slot"><span>Add image: galvant.ai home page</span></div>
+                                <figcaption>Marketing site</figcaption>
+                            </figure>
+                            <figure class="shot">
+                                <div class="shot-slot"><span>Add image: two pitch deck slides</span></div>
+                                <figcaption>Pitch deck</figcaption>
+                            </figure>
+                        </div>
+
+                        <p class="draft-note">
+                            <strong>Draft note, remove before publishing.</strong>
+                            Still to add: two findings from the discovery conversations and the
+                            design decision each one changed, plus one option you rejected and why.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================ Case 02: Epiphany ============================ -->
+        <section id="epiphany" class="case">
+            <div class="container">
+                <div class="plate plate-epiphany">
+                    <div class="plate-main">
+                        <p class="plate-kicker">Epiphany &middot; Launch, 2025</p>
+                        <p class="e-tagline">Go with the Flow</p>
+                        <p class="e-sub">Performance headset + AI browser</p>
+                        <ul class="e-pillars" aria-label="Product pillars">
+                            <li>Prime your brain for deep work</li>
+                            <li>Block noise, guide the session</li>
+                            <li>Track focus over time</li>
+                        </ul>
+                    </div>
+                    <div class="plate-side" aria-hidden="true">
+                        <svg class="e-rings" viewBox="0 0 320 320">
+                            <circle cx="160" cy="160" r="150" fill="none"/>
+                            <circle cx="160" cy="160" r="118" fill="none"/>
+                            <circle cx="160" cy="160" r="86" fill="none"/>
+                            <circle cx="160" cy="160" r="54" fill="none"/>
+                            <circle class="e-core" cx="160" cy="160" r="22"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="case-body">
+                    <aside class="wall-label" aria-label="Project details">
+                        <p class="wall-no">Case 02</p>
+                        <h2 class="wall-title">Epiphany</h2>
+                        <dl>
+                            <div><dt>Role</dt><dd>Co&#8209;Founder &amp; Chief Operating Officer</dd></div>
+                            <div><dt>When</dt><dd>Jul 2025 to Jul 2026</dd></div>
+                            <div><dt>Company</dt><dd>Wearable flow&#8209;state headset</dd></div>
+                            <div><dt>Scope</dt><dd>Positioning, brand, launch page, pilots and user testing</dd></div>
+                            <div><dt>Team</dt><dd>Engineering, neuroscience, design</dd></div>
+                        </dl>
+                    </aside>
+
+                    <div class="case-copy">
+                        <h3 class="case-headline">
+                            A waitlist of 5,000 for a headset nobody could try yet.
+                        </h3>
+
+                        <p>
+                            Epiphany paired a wearable headset with an AI browser to help
+                            people get into deep focus on demand. As co-founder and COO I
+                            owned how the product was positioned and launched before it
+                            existed in anyone's hands.
+                        </p>
+                        <p>
+                            That meant designing the story as much as the screens: the
+                            positioning, the brand, and the launch page that carried the
+                            waitlist. Alongside it I ran day-to-day operations across
+                            engineering, neuroscience, and design, from prototype through
+                            pilots and user testing.
+                        </p>
+
+                        <ul class="stat-row">
+                            <li><span class="stat-n">5,000</span><span class="stat-l">people on the pre-launch waitlist</span></li>
+                            <li><span class="stat-n">$10K</span><span class="stat-l">raised from angels</span></li>
+                            <li><span class="stat-n">3</span><span class="stat-l">teams: engineering, neuroscience, design</span></li>
+                        </ul>
+
+                        <h4 class="micro-title">What I designed</h4>
+                        <ol class="work-list">
+                            <li>
+                                <strong>Positioning.</strong>
+                                One promise, deep focus on demand, carried by three product
+                                pillars: the headset, the AI browser, and focus tracking.
+                            </li>
+                            <li>
+                                <strong>Launch page and waitlist.</strong>
+                                The pre-launch site and sign-up flow that grew the waitlist
+                                to 5,000.
+                            </li>
+                            <li>
+                                <strong>Pilots and user testing.</strong>
+                                Early pilot programs, with feedback routed back to the
+                                engineering and neuroscience teams.
+                            </li>
+                        </ol>
+
+                        <div class="shots">
+                            <figure class="shot shot-wide">
+                                <div class="shot-slot"><span>Add image: launch page hero</span></div>
+                                <figcaption>Launch page</figcaption>
+                            </figure>
+                            <figure class="shot">
+                                <div class="shot-slot"><span>Add image: headset prototype</span></div>
+                                <figcaption>Prototype</figcaption>
+                            </figure>
+                            <figure class="shot">
+                                <div class="shot-slot"><span>Add image: waitlist sign-up flow</span></div>
+                                <figcaption>Waitlist flow</figcaption>
+                            </figure>
+                        </div>
+
+                        <p class="draft-note">
+                            <strong>Draft note, remove before publishing.</strong>
+                            Still to add: what you changed in the positioning or page that moved
+                            sign-ups, and one thing user testing taught you about the headset.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pf-end">
+            <div class="container">
+                <h2 class="section-title">Want the full walkthrough?</h2>
+                <p class="lede lede-sm">
+                    I can share detailed case studies and working files on request.
+                </p>
+                <a href="index.html#contact" class="btn btn-primary">Get in touch</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container footer-inner">
+            <span>&copy; <span id="year">2026</span> Juliet Falk</span>
+            <a href="index.html">Back to home</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>
