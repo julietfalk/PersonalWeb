@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epiphany | Juliet Falk</title>
+    <meta name="description" content="Case study: brand, waitlist site and app design for Epiphany.">
+    <meta name="author" content="Juliet Falk">
+    <!-- Kept out of search results: these pages are shared by link with a password -->
+    <meta name="robots" content="noindex">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23101010'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23fafaf8' text-anchor='middle'>JF</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@500;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+
+    <script>
+        // Applied before first paint: saved theme, and the password bubble on a first visit
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.dataset.theme = saved;
+        } catch (e) {}
+        try {
+            if (localStorage.getItem('jf-portfolio-unlocked') !== '1') {
+                document.documentElement.classList.add('is-locked');
+            }
+        } catch (e) {
+            document.documentElement.classList.add('is-locked');
+        }
+    </script>
+</head>
+<body class="">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Juliet Falk, home">JF</a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#work" class="nav-link">Work</a>
+                <a href="portfolio.html" class="nav-link is-active" aria-current="page">Portfolio</a>
+                <a href="index.html#writing" class="nav-link">Writing</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+                    <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+                    <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+                </button>
+
+                <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="story story-epiphany">
+            <header class="e-hero">
+                <div class="container e-hero-inner">
+                    <div>
+                        <a class="crumb" href="portfolio.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Portfolio</a>
+                        <p class="plate-kicker">Case 02 &middot; Epiphany, 2025 to 2026</p>
+                        <h1 class="e-tagline">Whoop for<br>your brain.</h1>
+                        <p class="e-sub">A headset and an app for getting into deep focus on demand, and tracking it over time.</p>
+                    </div>
+                    <img class="e-phone zoom" src="images/portfolio/epiphany/app-onboarding-3.jpg" alt="Epiphany app onboarding screen: Meet Epiphany" width="396" height="859">
+                </div>
+            </header>
+
+            <div class="container e-body">
+                <dl class="facts facts-plain">
+                    <div><dt>Role</dt><dd>Co&#8209;Founder &amp; COO</dd></div>
+                    <div><dt>When</dt><dd>Jul 2025 to Jul 2026</dd></div>
+                    <div><dt>My part</dt><dd>Brand, waitlist site, mobile app design</dd></div>
+                    <div><dt>Status</dt><dd>On pause</dd></div>
+                </dl>
+
+                <p class="e-lead">
+                    Epiphany started as research with a friend and turned into a
+                    company: a wearable that primes your brain for focus, paired with
+                    software that keeps you there. Alongside running operations, I
+                    designed the brand, the waitlist site, and the mobile app.
+                </p>
+
+                <ul class="stat-row">
+                    <li><span class="stat-n">5,000</span><span class="stat-l">people on the waitlist before launch</span></li>
+                    <li><span class="stat-n">$10K</span><span class="stat-l">raised from angels</span></li>
+                    <li><span class="stat-n">3</span><span class="stat-l">events: Lightspeed India, CES, Stanford EdTech Summit</span></li>
+                </ul>
+
+                <section class="e-q">
+                    <h2>How do you get 5,000 people to wait for a headset they can't try?</h2>
+                    <p>
+                        With a landing page that sold the vision before the hardware
+                        existed. It walked people through what the headset would do and
+                        what a session would feel like, then asked for an email. We
+                        took the same story on the road, to Lightspeed India, CES, and
+                        the Stanford EdTech Summit, and ran it through online channels.
+                    </p>
+                    <figure class="shot e-wide">
+                        <img class="zoom shot-natural" src="images/portfolio/epiphany/landing-hero.jpg" alt="Epiphany waitlist landing page: Turn Focus Into a Superpower" width="1352" height="845" loading="lazy">
+                        <figcaption>Waitlist landing page</figcaption>
+                    </figure>
+                    <div class="shots e-wide">
+                        <figure class="shot">
+                            <img class="zoom shot-natural" src="images/portfolio/epiphany/landing-how-it-works.jpg" alt="Landing page section explaining how Epiphany works" width="1350" height="1204" loading="lazy">
+                            <figcaption>How it works</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <img class="zoom shot-natural" src="images/portfolio/epiphany/landing-preorder.jpg" alt="Landing page pre-order section" width="1352" height="758" loading="lazy">
+                            <figcaption>Pre-order sign-up</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="e-q">
+                    <h2>What did testing change?</h2>
+                    <p>
+                        The whole idea of the app. Testing told us it needed to feel
+                        like a game and work like a tracker, something you check and
+                        want to improve. That is where "Whoop for your brain" came from.
+                    </p>
+                    <p>
+                        We designed two additions for the mobile app. <strong>Flow
+                        games</strong> ease the transition into focus. <strong>Flow
+                        hubs</strong> let productivity creators lead sessions, the way a
+                        host leads a podcast.
+                    </p>
+                    <p>
+                        Every session earns points and feeds a daily score, so there
+                        is always a number to beat.
+                    </p>
+                    <div class="phone-row e-wide">
+                        <figure><img class="zoom" src="images/portfolio/epiphany/app-home.jpg" alt="Epiphany app home screen with a daily focus score and flow timeline" loading="lazy"><figcaption>Home &middot; daily score</figcaption></figure>
+                        <figure><img class="zoom" src="images/portfolio/epiphany/app-flow.jpg" alt="Epiphany app screen for starting a focus session and earning points" loading="lazy"><figcaption>Start a session</figcaption></figure>
+                        <figure><img class="zoom" src="images/portfolio/epiphany/app-flow-jams.jpg" alt="Epiphany app screen for exploring live sessions from flow hubs" loading="lazy"><figcaption>Flow hubs &middot; live jams</figcaption></figure>
+                        <figure><img class="zoom" src="images/portfolio/epiphany/app-jam.jpg" alt="Epiphany app screen inside a group focus session" loading="lazy"><figcaption>Inside a jam</figcaption></figure>
+                    </div>
+                </section>
+
+                <section class="e-q e-plain">
+                    <h2>One score, on every screen.</h2>
+                    <p>
+                        The same score follows you off the phone. The browser shows a
+                        live view of your focus and lets you share your score, and one
+                        switch mutes notifications and blocks distracting sites. The
+                        desktop app pairs the headset.
+                    </p>
+                    <figure class="shot e-wide">
+                        <img class="zoom shot-natural" src="images/portfolio/epiphany/browser-dashboard.jpg" alt="Epiphany browser dashboard with a focus score, live visualization and session timeline" width="1182" height="689" loading="lazy">
+                        <figcaption>AI browser &middot; dashboard</figcaption>
+                    </figure>
+                    <figure class="shot e-wide">
+                        <img class="zoom shot-natural" src="images/portfolio/epiphany/desktop-pairing.jpg" alt="Epiphany desktop app pairing the headset" width="752" height="486" loading="lazy">
+                        <figcaption>Desktop app &middot; pairing the headset</figcaption>
+                    </figure>
+                </section>
+
+                <section class="e-q">
+                    <h2>Why pause it?</h2>
+                    <p>
+                        To give the hard part more time. The hardware and the science
+                        behind it need more iteration than a launch schedule allows,
+                        and we would rather tinker than ship something half right. It
+                        is still a project we care about.
+                    </p>
+                    <p>
+                        In the meantime it did a different job well. The waitlist was a
+                        real test of whether people are ready for focus tracking on
+                        their head, and 5,000 of them said yes.
+                    </p>
+                </section>
+
+                <section class="e-q e-recognition">
+                    <h2>Recognition</h2>
+                    <ul class="tags">
+                        <li>Stanford Accelerator for Edtech Impact Summit Winner, 2025</li>
+                        <li>India Ascends Lightspeed 2026 Finalist</li>
+                        <li>Pear FFC Fellow</li>
+                        <li>Foundress Fellow</li>
+                    </ul>
+                </section>
+            </div>
+
+            <nav class="container next-case" aria-label="More case studies">
+                <a href="portfolio-galvant.html">
+                    <span class="eyebrow">Next &middot; Case 01</span>
+                    <span class="next-name">Galvant <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+            </nav>
+        </article>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container footer-inner">
+            <span>&copy; <span id="year">2026</span> Juliet Falk</span>
+            <a href="index.html">Back to home</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>

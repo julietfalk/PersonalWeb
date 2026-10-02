@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Juliet Falk</title>
+    <meta name="description" content="Selected product and brand design work by Juliet Falk.">
+    <meta name="author" content="Juliet Falk">
+    <!-- Kept out of search results: these pages are shared by link with a password -->
+    <meta name="robots" content="noindex">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23101010'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23fafaf8' text-anchor='middle'>JF</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@500;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+
+    <script>
+        // Applied before first paint: saved theme, and the password bubble on a first visit
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.dataset.theme = saved;
+        } catch (e) {}
+        try {
+            if (localStorage.getItem('jf-portfolio-unlocked') !== '1') {
+                document.documentElement.classList.add('is-locked');
+            }
+        } catch (e) {
+            document.documentElement.classList.add('is-locked');
+        }
+    </script>
+</head>
+<body class="pf-index-page">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Juliet Falk, home">JF</a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#work" class="nav-link">Work</a>
+                <a href="portfolio.html" class="nav-link is-active" aria-current="page">Portfolio</a>
+                <a href="index.html#writing" class="nav-link">Writing</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+                    <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+                    <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+                </button>
+
+                <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="pf-hero">
+            <div class="container">
+                <p class="eyebrow">Portfolio &middot; 2025 to 2026</p>
+                <h1 class="pf-title">Selected <em>work</em></h1>
+                <p class="lede">
+                    Two early companies, and one habit that ran through both: talk to
+                    the people the product is for, then design what they need to see.
+                </p>
+            </div>
+        </section>
+
+        <section class="pf-cards-wrap">
+            <div class="container pf-cards">
+                <a class="pf-card pf-card-galvant" href="portfolio-galvant.html">
+                    <div class="pf-card-art pf-card-art-cover">
+                        <img src="images/portfolio/galvant/cover-mark.png" alt="" class="pf-card-cover">
+                    </div>
+                    <div class="pf-card-meta">
+                        <span class="pf-card-no">Case 01 &middot; 2026</span>
+                        <h2 class="pf-card-name">Galvant</h2>
+                        <p>I designed the brand and ran the outbound it had to win. Full identity, site, product UI, decks, and conference kit.</p>
+                        <span class="pf-card-cta">Read the case study <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a class="pf-card pf-card-epiphany" href="portfolio-epiphany.html">
+                    <div class="pf-card-art pf-card-art-cover">
+                        <img src="images/portfolio/epiphany/app-onboarding-3.jpg" alt="" class="pf-card-cover pf-card-cover-head">
+                        <p class="pf-card-line">Whoop for your brain</p>
+                    </div>
+                    <div class="pf-card-meta">
+                        <span class="pf-card-no">Case 02 &middot; 2025 to 2026</span>
+                        <h2 class="pf-card-name">Epiphany</h2>
+                        <p>Brand, waitlist site, and mobile app for a flow-state headset. 5,000 people signed up before it shipped.</p>
+                        <span class="pf-card-cta">Read the case study <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="pf-end">
+            <div class="container">
+                <h2 class="section-title">Want the full walkthrough?</h2>
+                <p class="lede lede-sm">I can share working files and talk through any of this in detail.</p>
+                <a href="index.html#contact" class="btn btn-primary">Get in touch</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container footer-inner">
+            <span>&copy; <span id="year">2026</span> Juliet Falk</span>
+            <a href="index.html">Back to home</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>
