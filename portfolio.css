@@ -1282,3 +1282,95 @@ img.zoom { cursor: zoom-in; }
     .compare-handle::after { width: 2.25rem; height: 2.25rem; }
     .next-case a { flex-direction: column; gap: var(--space-1); }
 }
+
+
+/* ---- Covers, phone screens, notes -------------------------------------- */
+
+.pf-card-art-cover { position: relative; display: block; padding: 0; }
+
+.pf-card-cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* The mark is wider than the card, so it sits whole on a matching orange */
+.pf-card-galvant .pf-card-art-cover { background: #e0631b; }
+.pf-card-galvant .pf-card-cover { object-fit: contain; }
+
+.pf-card-cover-head { object-position: 50% 30%; }
+
+.pf-card-epiphany .pf-card-art-cover { background: #0e1118; }
+
+.pf-card-epiphany .pf-card-art-cover .pf-card-line {
+    position: absolute;
+    left: var(--space-3);
+    bottom: var(--space-2);
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
+}
+
+.e-phone {
+    justify-self: center;
+    width: min(100%, 15rem);
+    height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 2rem;
+    box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7), 0 0 0 8px rgba(255, 255, 255, 0.04);
+    transform: rotate(3deg);
+}
+
+.e-body > .e-q > .e-wide,
+.e-body > .e-wide { max-width: none; }
+
+.e-body > .e-q { max-width: 62rem; }
+.e-body > .e-q > h2,
+.e-body > .e-q > p,
+.e-body > .e-q > ul { max-width: 46rem; }
+
+.e-plain h2::before { content: none; }
+
+.shot > img.shot-top { object-position: top; }
+
+.phone-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+}
+
+.phone-row img {
+    width: 100%;
+    aspect-ratio: 9 / 19;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid var(--border-strong);
+    border-radius: 1.4rem;
+    background: #0e1118;
+}
+
+.phone-row figcaption {
+    margin-top: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.case-copy > .aside-note {
+    padding-left: var(--space-2);
+    font-size: 0.86rem;
+    font-style: italic;
+    color: var(--text-muted);
+    border-left: 2px solid var(--g-orange);
+}
+
+@media (max-width: 900px) {
+    .e-phone { display: none; }
+}
+
+@media (max-width: 620px) {
+    .phone-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

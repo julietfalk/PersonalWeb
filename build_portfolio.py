@@ -129,9 +129,8 @@ INDEX = f'''        <section class="pf-hero">
         <section class="pf-cards-wrap">
             <div class="container pf-cards">
                 <a class="pf-card pf-card-galvant" href="portfolio-galvant.html">
-                    <div class="pf-card-art">
-                        <img src="{P}logo-orange.png" alt="" class="pf-card-logo">
-                        <p class="pf-card-line">An AI workforce for your manufacturing back office</p>
+                    <div class="pf-card-art pf-card-art-cover">
+                        <img src="{P}cover-mark.png" alt="" class="pf-card-cover">
                     </div>
                     <div class="pf-card-meta">
                         <span class="pf-card-no">Case 01 &middot; 2026</span>
@@ -142,14 +141,8 @@ INDEX = f'''        <section class="pf-hero">
                 </a>
 
                 <a class="pf-card pf-card-epiphany" href="portfolio-epiphany.html">
-                    <div class="pf-card-art">
-                        <svg class="e-rings" viewBox="0 0 320 320" aria-hidden="true">
-                            <circle cx="160" cy="160" r="150" fill="none"/>
-                            <circle cx="160" cy="160" r="118" fill="none"/>
-                            <circle cx="160" cy="160" r="86" fill="none"/>
-                            <circle cx="160" cy="160" r="54" fill="none"/>
-                            <circle class="e-core" cx="160" cy="160" r="22"/>
-                        </svg>
+                    <div class="pf-card-art pf-card-art-cover">
+                        <img src="{E}app-onboarding-3.jpg" alt="" class="pf-card-cover pf-card-cover-head">
                         <p class="pf-card-line">Whoop for your brain</p>
                     </div>
                     <div class="pf-card-meta">
@@ -308,6 +301,10 @@ GALVANT = f'''        <article class="story story-galvant">
                         gives a plant manager an easy read on whether their team has
                         actually adopted it.
                     </p>
+                    <p class="aside-note">
+                        I can't show that screen here because it holds private client
+                        information. The image below is the public demo of the same product.
+                    </p>
                 </div>
                 <figure class="chapter-fig">
                     <img class="zoom" src="{P}site-intelligence.jpg" alt="Galvant Intelligence answering a question about production runs" width="1600" height="882" loading="lazy">
@@ -437,13 +434,7 @@ EPIPHANY = f'''        <article class="story story-epiphany">
                         <h1 class="e-tagline">Whoop for<br>your brain.</h1>
                         <p class="e-sub">A headset and an app for getting into deep focus on demand, and tracking it over time.</p>
                     </div>
-                    <svg class="e-rings" viewBox="0 0 320 320" aria-hidden="true">
-                        <circle cx="160" cy="160" r="150" fill="none"/>
-                        <circle cx="160" cy="160" r="118" fill="none"/>
-                        <circle cx="160" cy="160" r="86" fill="none"/>
-                        <circle cx="160" cy="160" r="54" fill="none"/>
-                        <circle class="e-core" cx="160" cy="160" r="22"/>
-                    </svg>
+                    <img class="e-phone zoom" src="{E}app-onboarding-3.jpg" alt="Epiphany app onboarding screen: Meet Epiphany" width="396" height="859">
                 </div>
             </header>
 
@@ -477,10 +468,20 @@ EPIPHANY = f'''        <article class="story story-epiphany">
                         took the same story on the road, to Lightspeed India, CES, and
                         the Stanford EdTech Summit, and ran it through online channels.
                     </p>
-                    <figure class="shot">
-                        {slot('epiphany', 'launch-page.png', 'waitlist landing page', 'Epiphany waitlist landing page')}
+                    <figure class="shot e-wide">
+                        <img class="zoom shot-natural" src="{E}landing-hero.jpg" alt="Epiphany waitlist landing page: Turn Focus Into a Superpower" width="1352" height="845" loading="lazy">
                         <figcaption>Waitlist landing page</figcaption>
                     </figure>
+                    <div class="shots e-wide">
+                        <figure class="shot">
+                            <img class="zoom shot-natural" src="{E}landing-how-it-works.jpg" alt="Landing page section explaining how Epiphany works" width="1350" height="1204" loading="lazy">
+                            <figcaption>How it works</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <img class="zoom shot-natural" src="{E}landing-preorder.jpg" alt="Landing page pre-order section" width="1352" height="758" loading="lazy">
+                            <figcaption>Pre-order sign-up</figcaption>
+                        </figure>
+                    </div>
                 </section>
 
                 <section class="e-q">
@@ -496,16 +497,34 @@ EPIPHANY = f'''        <article class="story story-epiphany">
                         hubs</strong> let productivity creators lead sessions, the way a
                         host leads a podcast.
                     </p>
-                    <div class="shots">
-                        <figure class="shot">
-                            {slot('epiphany', 'app-tracking.png', 'mobile app, tracking screen', 'Epiphany mobile app tracking screen')}
-                            <figcaption>Mobile app &middot; tracking</figcaption>
-                        </figure>
-                        <figure class="shot">
-                            {slot('epiphany', 'app-flow-hubs.png', 'mobile app, flow games or flow hubs', 'Epiphany mobile app flow hubs screen')}
-                            <figcaption>Mobile app &middot; flow games and hubs</figcaption>
-                        </figure>
+                    <p>
+                        Every session earns points and feeds a daily score, so there
+                        is always a number to beat.
+                    </p>
+                    <div class="phone-row e-wide">
+                        <figure><img class="zoom" src="{E}app-home.jpg" alt="Epiphany app home screen with a daily focus score and flow timeline" loading="lazy"><figcaption>Home &middot; daily score</figcaption></figure>
+                        <figure><img class="zoom" src="{E}app-flow.jpg" alt="Epiphany app screen for starting a focus session and earning points" loading="lazy"><figcaption>Start a session</figcaption></figure>
+                        <figure><img class="zoom" src="{E}app-flow-jams.jpg" alt="Epiphany app screen for exploring live sessions from flow hubs" loading="lazy"><figcaption>Flow hubs &middot; live jams</figcaption></figure>
+                        <figure><img class="zoom" src="{E}app-jam.jpg" alt="Epiphany app screen inside a group focus session" loading="lazy"><figcaption>Inside a jam</figcaption></figure>
                     </div>
+                </section>
+
+                <section class="e-q e-plain">
+                    <h2>One score, on every screen.</h2>
+                    <p>
+                        The same score follows you off the phone. The browser shows a
+                        live view of your focus and lets you share your score, and one
+                        switch mutes notifications and blocks distracting sites. The
+                        desktop app pairs the headset.
+                    </p>
+                    <figure class="shot e-wide">
+                        <img class="zoom shot-natural" src="{E}browser-dashboard.jpg" alt="Epiphany browser dashboard with a focus score, live visualization and session timeline" width="1182" height="689" loading="lazy">
+                        <figcaption>AI browser &middot; dashboard</figcaption>
+                    </figure>
+                    <figure class="shot e-wide">
+                        <img class="zoom shot-natural" src="{E}desktop-pairing.jpg" alt="Epiphany desktop app pairing the headset" width="752" height="486" loading="lazy">
+                        <figcaption>Desktop app &middot; pairing the headset</figcaption>
+                    </figure>
                 </section>
 
                 <section class="e-q">
