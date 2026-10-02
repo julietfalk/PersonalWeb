@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galvant | Juliet Falk</title>
+    <meta name="description" content="Case study: brand, site, product UI and sales materials for Galvant.">
+    <meta name="author" content="Juliet Falk">
+    <!-- Kept out of search results: these pages are shared by link with a password -->
+    <meta name="robots" content="noindex">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23101010'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23fafaf8' text-anchor='middle'>JF</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@500;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+
+    <script>
+        // Applied before first paint: saved theme, and the password bubble on a first visit
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.dataset.theme = saved;
+        } catch (e) {}
+        try {
+            if (localStorage.getItem('jf-portfolio-unlocked') !== '1') {
+                document.documentElement.classList.add('is-locked');
+            }
+        } catch (e) {
+            document.documentElement.classList.add('is-locked');
+        }
+    </script>
+</head>
+<body class="">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Juliet Falk, home">JF</a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#work" class="nav-link">Work</a>
+                <a href="portfolio.html" class="nav-link is-active" aria-current="page">Portfolio</a>
+                <a href="index.html#writing" class="nav-link">Writing</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+                    <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+                    <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+                </button>
+
+                <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="story story-galvant">
+            <header class="container story-head">
+                <a class="crumb" href="portfolio.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Portfolio</a>
+
+                <div class="plate plate-galvant">
+                    <div class="plate-main">
+                        <img class="g-logo" src="images/portfolio/galvant/logo-orange.png" alt="Galvant" width="1400" height="235">
+                        <p class="plate-kicker">Case 01 &middot; Full brand, 2026</p>
+                        <h1 class="g-tagline">An AI workforce for your manufacturing back office</h1>
+                        <ul class="g-lines" aria-label="Product lines">
+                            <li>Intelligence</li>
+                            <li>Sales</li>
+                            <li>Procurement</li>
+                            <li>Financial</li>
+                        </ul>
+                    </div>
+                    <div class="plate-side">
+                        <div class="g-specimen">
+                            <span class="g-aa">Aa</span>
+                            <span class="g-spec-meta">DM Serif Display<br>Poppins<br>JetBrains Mono</span>
+                        </div>
+                        <ul class="g-swatches" aria-label="Brand palette">
+                            <li class="sw-cream"><button type="button" data-copy="#F7F3E9">Canvas Cream<br>#F7F3E9</button></li>
+                            <li class="sw-orange"><button type="button" data-copy="#E16809">Galvant Orange<br>#E16809</button></li>
+                            <li class="sw-plum"><button type="button" data-copy="#3B2A47">Deep Plum<br>#3B2A47</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <dl class="facts">
+                    <div><dt>Role</dt><dd>Growth &amp; Design Intern</dd></div>
+                    <div><dt>When</dt><dd>Jun to Sep 2026</dd></div>
+                    <div><dt>Company</dt><dd>AI for manufacturing, pre&#8209;Series&nbsp;A</dd></div>
+                    <div><dt>Scope</dt><dd>Brand, site, product UI, decks, conference kit</dd></div>
+                    <div><dt>Live</dt><dd><a href="https://galvant.ai" target="_blank" rel="noopener">galvant.ai</a></dd></div>
+                </dl>
+            </header>
+
+            <section class="container chapter">
+                <div class="chapter-head">
+                    <p class="eyebrow">The job</p>
+                    <h2 class="case-headline">I designed the brand and ran the outbound it had to win.</h2>
+                </div>
+                <div class="case-copy">
+                    <p>
+                        Galvant builds AI for the back office of manufacturing companies.
+                        I joined ahead of its Series A with two jobs at once: design what
+                        customers and investors would see, and bring in new customers myself.
+                    </p>
+                    <p>
+                        So I was on calls with plant general managers, contract
+                        manufacturers, and finance leads in about ten countries, and
+                        then designing for those same people the next morning. What I
+                        heard on calls went straight into the work.
+                    </p>
+                    <ul class="stat-row">
+                        <li><span class="stat-n">~200</span><span class="stat-l">conversations with manufacturers</span></li>
+                        <li><span class="stat-n">$100K+</span><span class="stat-l">pipeline from 5 qualified opportunities</span></li>
+                        <li><span class="stat-n">~10</span><span class="stat-l">countries across the Americas, Europe, and Asia</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="container chapter">
+                <div class="chapter-head">
+                    <p class="eyebrow">The rename</p>
+                    <h2 class="case-headline">From Takt to Galvant.</h2>
+                </div>
+                <div class="case-copy">
+                    <p>
+                        The company had to change its name for legal reasons, and the
+                        team landed on Galvant together: part galvanize, part gallivant.
+                        The energy of a factory floor, and the ease the product should
+                        bring to it.
+                    </p>
+                    <p>
+                        A new name was the chance to fix everything around it. The old
+                        site was a heavy green sans serif on a busy background, and it
+                        looked like every other software startup. I rebuilt the identity
+                        to look like it belonged in manufacturing: a serif with weight,
+                        drafting-style measurement lines, and one confident orange.
+                    </p>
+                </div>
+                <figure class="chapter-fig">
+                    <div class="compare" style="--ratio: 1600 / 879">
+                    <img class="compare-after" src="images/portfolio/galvant/site-home.jpg" alt="The new Galvant home page" loading="lazy">
+                    <img class="compare-before" src="images/portfolio/galvant/takt-site-before.jpg" alt="The old Takt home page" loading="lazy">
+                    <span class="compare-tag compare-tag-before">Takt, before</span>
+                    <span class="compare-tag compare-tag-after">Galvant, after</span>
+                    <span class="compare-handle" aria-hidden="true"></span>
+                    <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare Takt, before and Galvant, after">
+                </div>
+                    <figcaption>Home page &middot; drag to compare <span class="hand">so much green</span></figcaption>
+                </figure>
+                <figure class="chapter-fig chapter-fig-narrow">
+                    <div class="compare" style="--ratio: 16 / 9">
+                    <img class="compare-after" src="images/portfolio/galvant/customer-deck-1.jpg" alt="The new Galvant customer deck cover" loading="lazy">
+                    <img class="compare-before" src="images/portfolio/galvant/takt-deck-before.jpg" alt="The old Takt customer deck cover" loading="lazy">
+                    <span class="compare-tag compare-tag-before">Takt deck</span>
+                    <span class="compare-tag compare-tag-after">Galvant deck</span>
+                    <span class="compare-handle" aria-hidden="true"></span>
+                    <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare Takt deck and Galvant deck">
+                </div>
+                    <figcaption>Customer deck cover &middot; drag to compare</figcaption>
+                </figure>
+            </section>
+
+            <section class="container chapter">
+                <div class="chapter-head">
+                    <p class="eyebrow">What I heard, what I changed</p>
+                    <h2 class="case-headline">"Sure, but can you handle <em>our</em> process?"</h2>
+                </div>
+                <div class="case-copy">
+                    <p>
+                        That was the reaction I kept getting. People were interested but
+                        skeptical, because every corner of manufacturing has its own
+                        discipline and its own methods. A rubber molder does not believe
+                        a tool built for a nursery will work for them.
+                    </p>
+                    <p>
+                        So I made case studies the backbone of both the site and the
+                        decks. Each product page now leads with a real customer in a
+                        specific trade, and the deck walks through a range of them, so a
+                        prospect can find a company that looks like theirs.
+                    </p>
+                </div>
+                <figure class="chapter-fig">
+                    <img class="zoom" src="images/portfolio/galvant/site-quoting.jpg" alt="Galvant quoting page leading with a customer case study" width="1600" height="880" loading="lazy">
+                    <figcaption>Product page &middot; proof from a real customer comes first</figcaption>
+                </figure>
+            </section>
+
+            <section class="container chapter">
+                <div class="chapter-head">
+                    <p class="eyebrow">In the product</p>
+                    <h2 class="case-headline">Making usage visible, so people come back.</h2>
+                </div>
+                <div class="case-copy">
+                    <p>
+                        Getting a customer live is half of it. They also have to keep
+                        using the thing. Under the main chat bar we added usage stats for
+                        the whole company: total questions asked this month, and who on
+                        the team is asking the most.
+                    </p>
+                    <p>
+                        It turns a quiet tool into something a little competitive, and it
+                        gives a plant manager an easy read on whether their team has
+                        actually adopted it.
+                    </p>
+                </div>
+                <figure class="chapter-fig">
+                    <img class="zoom" src="images/portfolio/galvant/site-intelligence.jpg" alt="Galvant Intelligence answering a question about production runs" width="1600" height="882" loading="lazy">
+                    <figcaption>Intelligence &middot; a plain-language question, answered from factory data</figcaption>
+                </figure>
+            </section>
+
+            <section class="container chapter">
+                <div class="chapter-head">
+                    <p class="eyebrow">A direction I dropped</p>
+                    <h2 class="case-headline">Click-through, not a looping video.</h2>
+                </div>
+                <div class="case-copy">
+                    <p>
+                        For quoting and procurement I first planned looping videos, like
+                        the one on the Intelligence page. I scrapped that. A loop long
+                        enough to show every skill would be too long to watch, and a
+                        short one would undersell it.
+                    </p>
+                    <p>
+                        I built a step-by-step walkthrough instead. The visitor clicks
+                        through seven steps at their own pace, which holds attention
+                        better and lets each capability get its own moment.
+                    </p>
+                </div>
+                <figure class="chapter-fig">
+                    <img class="zoom" src="images/portfolio/galvant/site-walkthrough.jpg" alt="Galvant quoting walkthrough with seven clickable steps" width="1600" height="882" loading="lazy">
+                    <figcaption>Quoting &middot; seven steps the visitor clicks through</figcaption>
+                </figure>
+            </section>
+
+            <section class="container chapter">
+                <div class="chapter-head">
+                    <p class="eyebrow">Design in the funnel</p>
+                    <h2 class="case-headline">No single piece closed a deal. The sequence did.</h2>
+                </div>
+                <div class="case-copy">
+                    <p>
+                        What worked was using everything in order. I sent a lead to the
+                        site before the call, ran a live demo on the call, and followed
+                        up with the customer deck after it.
+                    </p>
+                </div>
+                <ol class="funnel chapter-fig">
+                    <li>
+                        <span class="funnel-step">Getting noticed</span>
+                        <strong>Webinar and conference kit</strong>
+                        <p>A webinar that teaches before it sells, and a banner and cards that say what Galvant does in one line.</p>
+                    </li>
+                    <li>
+                        <span class="funnel-step">Before the call</span>
+                        <strong>The website</strong>
+                        <p>Where I pointed every lead first, so they arrived knowing the product and having seen a company like theirs.</p>
+                    </li>
+                    <li>
+                        <span class="funnel-step">On the call</span>
+                        <strong>The product demo</strong>
+                        <p>A live walk through the product, asking it real questions.</p>
+                    </li>
+                    <li>
+                        <span class="funnel-step">After the call</span>
+                        <strong>The customer deck</strong>
+                        <p>The follow-up they could forward inside their company: the product, the proof, and a two-week path to going live.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="container gallery">
+                <p class="eyebrow">The pieces</p>
+
+                <figure class="shot">
+                    <div class="logo-row">
+                        <div class="logo-tile logo-tile-cream"><img src="images/portfolio/galvant/logo-orange.png" alt="Galvant logo in orange on cream" loading="lazy"></div>
+                        <div class="logo-tile logo-tile-plum"><img src="images/portfolio/galvant/logo-cream-on-orange.png" alt="Galvant logo in cream on plum" loading="lazy"></div>
+                    </div>
+                    <figcaption>Logo lockup &middot; light and dark</figcaption>
+                </figure>
+
+                <figure class="shot">
+                    <img class="zoom shot-natural" src="images/portfolio/galvant/product-ui.png" alt="Galvant Intelligence product interface" width="1600" height="960" loading="lazy">
+                    <figcaption>Product UI &middot; Intelligence</figcaption>
+                </figure>
+
+                <figure class="shot">
+                    <div class="slide-grid">
+                    <img class="zoom" src="images/portfolio/galvant/customer-deck-1.jpg" alt="Galvant customer deck, slide 1" width="1200" height="675" loading="lazy">
+                    <img class="zoom" src="images/portfolio/galvant/customer-deck-2.jpg" alt="Galvant customer deck, slide 2" width="1200" height="675" loading="lazy">
+                    <img class="zoom" src="images/portfolio/galvant/customer-deck-3.jpg" alt="Galvant customer deck, slide 3" width="1200" height="675" loading="lazy">
+                    <img class="zoom" src="images/portfolio/galvant/customer-deck-4.jpg" alt="Galvant customer deck, slide 4" width="1200" height="675" loading="lazy">
+                    </div>
+                    <figcaption>Customer deck</figcaption>
+                </figure>
+
+                <figure class="shot">
+                    <div class="slide-grid">
+                    <img class="zoom" src="images/portfolio/galvant/webinar-deck-1.jpg" alt="Galvant AI for Manufacturing webinar, slide 1" width="1200" height="675" loading="lazy">
+                    <img class="zoom" src="images/portfolio/galvant/webinar-deck-2.jpg" alt="Galvant AI for Manufacturing webinar, slide 2" width="1200" height="675" loading="lazy">
+                    <img class="zoom" src="images/portfolio/galvant/webinar-deck-3.jpg" alt="Galvant AI for Manufacturing webinar, slide 3" width="1200" height="675" loading="lazy">
+                    <img class="zoom" src="images/portfolio/galvant/webinar-deck-4.jpg" alt="Galvant AI for Manufacturing webinar, slide 4" width="1200" height="675" loading="lazy">
+                    </div>
+                    <figcaption>Webinar deck &middot; AI for Manufacturing</figcaption>
+                </figure>
+
+                <figure class="shot">
+                    <div class="kit">
+                        <img class="kit-banner zoom" src="images/portfolio/galvant/conference-banner.jpg" alt="Galvant conference banner" width="800" height="1875" loading="lazy">
+                        <div class="kit-cards">
+                            <img class="zoom" src="images/portfolio/galvant/business-card-front.png" alt="Galvant business card, front" width="1050" height="600" loading="lazy">
+                            <img class="zoom" src="images/portfolio/galvant/business-card-back.png" alt="Galvant business card, back" width="1050" height="600" loading="lazy">
+                        </div>
+                    </div>
+                    <figcaption>Conference kit &middot; banner and business cards</figcaption>
+                </figure>
+            </section>
+
+            <nav class="container next-case" aria-label="More case studies">
+                <a href="portfolio-epiphany.html">
+                    <span class="eyebrow">Next &middot; Case 02</span>
+                    <span class="next-name">Epiphany <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+            </nav>
+        </article>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container footer-inner">
+            <span>&copy; <span id="year">2026</span> Juliet Falk</span>
+            <a href="index.html">Back to home</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>

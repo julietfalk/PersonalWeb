@@ -6,14 +6,14 @@
     <title>Portfolio | Juliet Falk</title>
     <meta name="description" content="Selected product and brand design work by Juliet Falk.">
     <meta name="author" content="Juliet Falk">
-    <!-- Kept out of search results: this page is shared by link with a password -->
+    <!-- Kept out of search results: these pages are shared by link with a password -->
     <meta name="robots" content="noindex">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23101010'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23fafaf8' text-anchor='middle'>JF</text></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Serif+Display&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@500;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="portfolio.css">
 
@@ -32,7 +32,7 @@
         }
     </script>
 </head>
-<body>
+<body class="pf-index-page">
     <a href="#main" class="skip-link">Skip to content</a>
 
     <header class="nav" id="nav">
@@ -61,384 +61,58 @@
         </div>
     </header>
 
-    <!-- Password bubble. Shown only while <html> has .is-locked, which the
-         script in <head> sets on a first visit. Without JavaScript it never shows. -->
-    <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
-        <form class="gate-bubble" id="gate-form" autocomplete="off" novalidate>
-            <p class="eyebrow gate-eyebrow">Private view</p>
-            <h1 class="gate-title" id="gate-title">Portfolio</h1>
-            <p class="gate-copy">Enter the password to continue.</p>
-
-            <div class="gate-field">
-                <label class="visually-hidden" for="gate-input">Password</label>
-                <input class="gate-input" id="gate-input" type="password" placeholder="Password" autocapitalize="off" spellcheck="false" aria-describedby="gate-error">
-                <button class="gate-submit" type="submit" aria-label="Continue">
-                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                </button>
-            </div>
-
-            <p class="gate-error" id="gate-error" role="alert" hidden>That password didn't match. Try again.</p>
-            <p class="gate-help">Need access? Write to <span class="gate-email">julietf@stanford.edu</span></p>
-        </form>
-    </div>
-
     <main id="main">
         <section class="pf-hero">
             <div class="container">
                 <p class="eyebrow">Portfolio &middot; 2025 to 2026</p>
                 <h1 class="pf-title">Selected <em>work</em></h1>
                 <p class="lede">
-                    Product, brand, and go-to-market design for two early companies.
-                    Both projects started with the same step: talking to the people
-                    the product was for.
+                    Two early companies, and one habit that ran through both: talk to
+                    the people the product is for, then design what they need to see.
                 </p>
-
-                <ol class="pf-index" aria-label="Case studies">
-                    <li>
-                        <a href="#galvant">
-                            <span class="pf-index-no">Case 01</span>
-                            <span class="pf-index-name">Galvant</span>
-                            <span class="pf-index-note">Product UI and full brand for AI in manufacturing</span>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#epiphany">
-                            <span class="pf-index-no">Case 02</span>
-                            <span class="pf-index-name">Epiphany</span>
-                            <span class="pf-index-note">Positioning and launch design for a flow-state headset</span>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-                        </a>
-                    </li>
-                </ol>
             </div>
         </section>
 
-        <!-- ============================ Case 01: Galvant ============================ -->
-        <section id="galvant" class="case">
-            <div class="container">
-                <div class="plate plate-galvant">
-                    <div class="plate-main">
-                        <img class="g-logo" src="images/portfolio/galvant/logo-orange.png" alt="Galvant" width="1400" height="235">
-                        <p class="plate-kicker">Full brand, 2026</p>
-                        <p class="g-tagline">An AI workforce for your manufacturing back office</p>
-                        <ul class="g-lines" aria-label="Product lines">
-                            <li>Intelligence</li>
-                            <li>Sales</li>
-                            <li>Procurement</li>
-                            <li>Financial</li>
-                        </ul>
+        <section class="pf-cards-wrap">
+            <div class="container pf-cards">
+                <a class="pf-card pf-card-galvant" href="portfolio-galvant.html">
+                    <div class="pf-card-art">
+                        <img src="images/portfolio/galvant/logo-orange.png" alt="" class="pf-card-logo">
+                        <p class="pf-card-line">An AI workforce for your manufacturing back office</p>
                     </div>
-                    <div class="plate-side">
-                        <div class="g-specimen">
-                            <span class="g-aa">Aa</span>
-                            <span class="g-spec-meta">DM Serif Display<br>Poppins<br>JetBrains Mono</span>
-                        </div>
-                        <ul class="g-swatches" aria-label="Brand palette">
-                            <li class="sw-cream"><span>Canvas Cream<br>#F7F3E9</span></li>
-                            <li class="sw-orange"><span>Galvant Orange<br>#E16809</span></li>
-                            <li class="sw-plum"><span>Deep Plum<br>#3B2A47</span></li>
-                        </ul>
+                    <div class="pf-card-meta">
+                        <span class="pf-card-no">Case 01 &middot; 2026</span>
+                        <h2 class="pf-card-name">Galvant</h2>
+                        <p>I designed the brand and ran the outbound it had to win. Full identity, site, product UI, decks, and conference kit.</p>
+                        <span class="pf-card-cta">Read the case study <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                     </div>
-                </div>
+                </a>
 
-                <div class="case-body">
-                    <aside class="wall-label" aria-label="Project details">
-                        <p class="wall-no">Case 01</p>
-                        <h2 class="wall-title">Galvant</h2>
-                        <dl>
-                            <div><dt>Role</dt><dd>Growth &amp; Design Intern</dd></div>
-                            <div><dt>When</dt><dd>Jun to Sep 2026</dd></div>
-                            <div><dt>Company</dt><dd>AI for manufacturing, pre&#8209;Series&nbsp;A</dd></div>
-                            <div><dt>Scope</dt><dd>Product UI, full brand identity, marketing site, pitch deck, conference kit</dd></div>
-                            <div><dt>Tools</dt><dd>Figma, Cursor, React, Tailwind</dd></div>
-                        </dl>
-                        <a href="https://galvant.ai" class="card-link" target="_blank" rel="noopener">
-                            galvant.ai
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-                        </a>
-                    </aside>
-
-                    <div class="case-copy">
-                        <h3 class="case-headline">
-                            I designed the brand and ran the outbound it had to win.
-                        </h3>
-
-                        <p>
-                            Galvant builds AI for the back office of manufacturing companies.
-                            I joined ahead of its Series A to design what customers and
-                            investors would see: the product interface, the full brand,
-                            the marketing site, the pitch deck, and the kit the team takes
-                            to conferences.
-                        </p>
-                        <p>
-                            I held two jobs at once: design, and top-of-funnel sales. I spoke with plant
-                            general managers, contract manufacturers, and finance leads in
-                            about ten countries, from the U.S., Mexico, and Argentina to
-                            Europe, Singapore, and Thailand, and brought what I heard back
-                            into product and positioning decisions. Selling every day meant
-                            I knew what a manufacturer needed to see before agreeing to a
-                            call, so each piece was designed for one step of winning a new
-                            customer.
-                        </p>
-
-                        <ul class="stat-row">
-                            <li><span class="stat-n">~200</span><span class="stat-l">discovery conversations</span></li>
-                            <li><span class="stat-n">$100K+</span><span class="stat-l">pipeline from 5 qualified opportunities</span></li>
-                            <li><span class="stat-n">~10</span><span class="stat-l">countries across the Americas, Europe, and Asia</span></li>
-                        </ul>
-
-                        <h4 class="micro-title">Design in the funnel</h4>
-                        <ol class="funnel">
-                            <li>
-                                <span class="funnel-step">First look</span>
-                                <strong>Brand and site</strong>
-                                <p>Cold outreach needs somewhere credible to point. The rename and galvant.ai gave every email and call that place.</p>
-                            </li>
-                            <li>
-                                <span class="funnel-step">Interest</span>
-                                <strong>Webinar deck</strong>
-                                <p>Teaches before it sells, for manufacturers who are curious about AI but not yet buying.</p>
-                            </li>
-                            <li>
-                                <span class="funnel-step">In person</span>
-                                <strong>Conference kit</strong>
-                                <p>A banner and cards that say what Galvant does in one line, with a QR code straight to the site.</p>
-                            </li>
-                            <li>
-                                <span class="funnel-step">First call</span>
-                                <strong>Customer deck and demo</strong>
-                                <p>What a prospect sees in the first meeting: the product, the proof, and a two-week path to going live.</p>
-                            </li>
-                        </ol>
-
-                        <h4 class="micro-title">What I designed</h4>
-                        <ol class="work-list">
-                            <li>
-                                <strong>Full brand.</strong>
-                                The complete identity for the company's rename to Galvant: serif
-                                display type paired with a monospace, on a cream, orange, and plum
-                                palette, applied across every surface below.
-                            </li>
-                            <li>
-                                <strong>Product UI.</strong>
-                                The interface for four product lines: Intelligence, Sales,
-                                Procurement, and Financial.
-                            </li>
-                            <li>
-                                <strong>Site and decks.</strong>
-                                The marketing site at galvant.ai, the pitch deck for the
-                                Series A raise, the customer deck, and a webinar deck.
-                            </li>
-                            <li>
-                                <strong>Conference kit.</strong>
-                                The banner, business cards, and materials the team carries to
-                                industry conferences.
-                            </li>
-                        </ol>
-
-                        <div class="shots">
-                            <figure class="shot shot-wide">
-                                <img class="shot-natural" src="images/portfolio/galvant/product-ui.png" alt="Galvant Intelligence: a plain-language question answered with a table of production runs" width="1600" height="960" loading="lazy">
-                                <figcaption>Product UI &middot; Intelligence</figcaption>
-                            </figure>
-                            <figure class="shot shot-wide">
-                                <div class="logo-row">
-                                    <div class="logo-tile logo-tile-cream"><img src="images/portfolio/galvant/logo-orange.png" alt="Galvant logo in orange on cream" loading="lazy"></div>
-                                    <div class="logo-tile logo-tile-plum"><img src="images/portfolio/galvant/logo-cream-on-orange.png" alt="Galvant logo in cream on plum" loading="lazy"></div>
-                                </div>
-                                <figcaption>Logo lockup &middot; light and dark</figcaption>
-                            </figure>
-                            <figure class="shot shot-wide">
-                                <div class="slide-grid">
-                                    <img src="images/portfolio/galvant/customer-deck-1.jpg" alt="Galvant customer deck, slide 1" width="1200" height="675" loading="lazy">
-                                    <img src="images/portfolio/galvant/customer-deck-2.jpg" alt="Galvant customer deck, slide 2" width="1200" height="675" loading="lazy">
-                                    <img src="images/portfolio/galvant/customer-deck-3.jpg" alt="Galvant customer deck, slide 3" width="1200" height="675" loading="lazy">
-                                    <img src="images/portfolio/galvant/customer-deck-4.jpg" alt="Galvant customer deck, slide 4" width="1200" height="675" loading="lazy">
-                                </div>
-                                <figcaption>Customer deck</figcaption>
-                            </figure>
-                            <figure class="shot shot-wide">
-                                <div class="slide-grid">
-                                    <img src="images/portfolio/galvant/webinar-deck-1.jpg" alt="Galvant AI for Manufacturing webinar, slide 1" width="1200" height="675" loading="lazy">
-                                    <img src="images/portfolio/galvant/webinar-deck-2.jpg" alt="Galvant AI for Manufacturing webinar, slide 2" width="1200" height="675" loading="lazy">
-                                    <img src="images/portfolio/galvant/webinar-deck-3.jpg" alt="Galvant AI for Manufacturing webinar, slide 3" width="1200" height="675" loading="lazy">
-                                    <img src="images/portfolio/galvant/webinar-deck-4.jpg" alt="Galvant AI for Manufacturing webinar, slide 4" width="1200" height="675" loading="lazy">
-                                </div>
-                                <figcaption>Webinar deck &middot; AI for Manufacturing</figcaption>
-                            </figure>
-                            <figure class="shot shot-wide">
-                                <div class="kit">
-                                    <img class="kit-banner" src="images/portfolio/galvant/conference-banner.jpg" alt="Galvant conference banner" width="800" height="1875" loading="lazy">
-                                    <div class="kit-cards">
-                                        <img src="images/portfolio/galvant/business-card-front.png" alt="Galvant business card, front" width="1050" height="600" loading="lazy">
-                                        <img src="images/portfolio/galvant/business-card-back.png" alt="Galvant business card, back" width="1050" height="600" loading="lazy">
-                                    </div>
-                                </div>
-                                <figcaption>Conference kit &middot; banner and business cards</figcaption>
-                            </figure>
-                        </div>
-
-                        <p class="draft-note">
-                            <strong>Draft note, remove before publishing.</strong>
-                            Still to add: two findings from the discovery conversations and the
-                            design decision each one changed, one option you rejected and why, and
-                            which of these pieces actually moved replies or meetings.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================ Case 02: Epiphany ============================ -->
-        <section id="epiphany" class="case">
-            <div class="container">
-                <div class="plate plate-epiphany">
-                    <div class="plate-main">
-                        <p class="plate-kicker">Epiphany &middot; Launch, 2025</p>
-                        <p class="e-tagline">Go with the Flow</p>
-                        <p class="e-sub">Performance headset + AI browser</p>
-                        <ul class="e-pillars" aria-label="Product pillars">
-                            <li>Prime your brain for deep work</li>
-                            <li>Block noise, guide the session</li>
-                            <li>Track focus over time</li>
-                        </ul>
-                    </div>
-                    <div class="plate-side" aria-hidden="true">
-                        <svg class="e-rings" viewBox="0 0 320 320">
+                <a class="pf-card pf-card-epiphany" href="portfolio-epiphany.html">
+                    <div class="pf-card-art">
+                        <svg class="e-rings" viewBox="0 0 320 320" aria-hidden="true">
                             <circle cx="160" cy="160" r="150" fill="none"/>
                             <circle cx="160" cy="160" r="118" fill="none"/>
                             <circle cx="160" cy="160" r="86" fill="none"/>
                             <circle cx="160" cy="160" r="54" fill="none"/>
                             <circle class="e-core" cx="160" cy="160" r="22"/>
                         </svg>
+                        <p class="pf-card-line">Whoop for your brain</p>
                     </div>
-                </div>
-
-                <div class="case-body">
-                    <aside class="wall-label" aria-label="Project details">
-                        <p class="wall-no">Case 02</p>
-                        <h2 class="wall-title">Epiphany</h2>
-                        <dl>
-                            <div><dt>Role</dt><dd>Co&#8209;Founder &amp; Chief Operating Officer</dd></div>
-                            <div><dt>When</dt><dd>Jul 2025 to Jul 2026</dd></div>
-                            <div><dt>Status</dt><dd>On pause</dd></div>
-                            <div><dt>Company</dt><dd>Wearable flow&#8209;state headset</dd></div>
-                            <div><dt>Scope</dt><dd>Positioning, brand, launch page, pilots and user testing</dd></div>
-                            <div><dt>Team</dt><dd>Engineering, neuroscience, design</dd></div>
-                        </dl>
-                    </aside>
-
-                    <div class="case-copy">
-                        <h3 class="case-headline">
-                            A waitlist of 5,000 for a headset nobody could try yet.
-                        </h3>
-
-                        <p>
-                            Epiphany paired a wearable headset with an AI browser to help
-                            people get into deep focus on demand. As co-founder and COO I
-                            owned how the product was positioned and launched before it
-                            existed in anyone's hands.
-                        </p>
-                        <p>
-                            That meant designing the story as much as the screens: the
-                            positioning, the brand, and the launch page that carried the
-                            waitlist. Alongside it I ran day-to-day operations across
-                            engineering, neuroscience, and design, from prototype through
-                            pilots and user testing.
-                        </p>
-
-                        <ul class="stat-row">
-                            <li><span class="stat-n">5,000</span><span class="stat-l">people on the pre-launch waitlist</span></li>
-                            <li><span class="stat-n">$10K</span><span class="stat-l">raised from angels</span></li>
-                            <li><span class="stat-n">3</span><span class="stat-l">teams: engineering, neuroscience, design</span></li>
-                        </ul>
-
-                        <h4 class="micro-title">The product</h4>
-                        <ol class="work-list">
-                            <li>
-                                <strong>A performance headset.</strong>
-                                Wearable neurotech that primes the brain for focus before a
-                                work session starts.
-                            </li>
-                            <li>
-                                <strong>An AI browser.</strong>
-                                Blocks distractions, keeps you on task, and guides the session
-                                while you work.
-                            </li>
-                            <li>
-                                <strong>Focus tracking.</strong>
-                                Shows focus trends and flow states over time, so the next
-                                session can be better than the last.
-                            </li>
-                        </ol>
-
-                        <h4 class="micro-title">What I designed</h4>
-                        <ol class="work-list">
-                            <li>
-                                <strong>Positioning.</strong>
-                                One promise, deep focus on demand, carried by three product
-                                pillars: the headset, the AI browser, and focus tracking.
-                            </li>
-                            <li>
-                                <strong>Launch page and waitlist.</strong>
-                                The pre-launch site and sign-up flow that grew the waitlist
-                                to 5,000.
-                            </li>
-                            <li>
-                                <strong>Pilots and user testing.</strong>
-                                Early pilot programs, with feedback routed back to the
-                                engineering and neuroscience teams.
-                            </li>
-                        </ol>
-
-                        <div class="shots">
-                            <figure class="shot shot-wide">
-                                <div class="shot-slot"><img src="images/portfolio/epiphany/launch-page.png" alt="Epiphany launch page" loading="lazy" onerror="this.remove()"><span>Add image: launch page hero</span></div>
-                                <figcaption>Launch page</figcaption>
-                            </figure>
-                            <figure class="shot">
-                                <div class="shot-slot"><img src="images/portfolio/epiphany/headset-prototype.jpg" alt="Epiphany headset prototype" loading="lazy" onerror="this.remove()"><span>Add image: headset prototype</span></div>
-                                <figcaption>Prototype</figcaption>
-                            </figure>
-                            <figure class="shot">
-                                <div class="shot-slot"><img src="images/portfolio/epiphany/waitlist-flow.png" alt="Epiphany waitlist sign-up flow" loading="lazy" onerror="this.remove()"><span>Add image: waitlist sign-up flow</span></div>
-                                <figcaption>Waitlist flow</figcaption>
-                            </figure>
-                        </div>
-
-                        <h4 class="micro-title">Recognition</h4>
-                        <ul class="tags">
-                            <li>Stanford Accelerator for Edtech Impact Summit Winner, 2025</li>
-                            <li>India Ascends Lightspeed 2026 Finalist</li>
-                            <li>Pear FFC Fellow</li>
-                            <li>Foundress Fellow</li>
-                        </ul>
-
-                        <h4 class="micro-title">Where it stands</h4>
-                        <p class="status-copy">
-                            I put Epiphany on pause in July 2026. The waitlist, the
-                            positioning, and what we learned from pilots are still there to
-                            build on.
-                        </p>
-
-                        <p class="draft-note">
-                            <strong>Draft note, remove before publishing.</strong>
-                            Still to add: one line on why you paused, what you changed in the
-                            positioning or page that moved sign-ups, and one thing user testing
-                            taught you about the headset.
-                        </p>
+                    <div class="pf-card-meta">
+                        <span class="pf-card-no">Case 02 &middot; 2025 to 2026</span>
+                        <h2 class="pf-card-name">Epiphany</h2>
+                        <p>Brand, waitlist site, and mobile app for a flow-state headset. 5,000 people signed up before it shipped.</p>
+                        <span class="pf-card-cta">Read the case study <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
         <section class="pf-end">
             <div class="container">
                 <h2 class="section-title">Want the full walkthrough?</h2>
-                <p class="lede lede-sm">
-                    I can share detailed case studies and working files on request.
-                </p>
+                <p class="lede lede-sm">I can share working files and talk through any of this in detail.</p>
                 <a href="index.html#contact" class="btn btn-primary">Get in touch</a>
             </div>
         </section>
@@ -450,13 +124,6 @@
             <a href="index.html">Back to home</a>
         </div>
     </footer>
-
-    <dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
-        <img id="lightbox-img" src="" alt="">
-        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-    </dialog>
 
     <script src="script.js"></script>
     <script src="portfolio.js"></script>
