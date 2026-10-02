@@ -73,3 +73,26 @@
         input.removeAttribute('aria-invalid');
     });
 })();
+
+/* Image lightbox: click any portfolio image to see it large */
+(() => {
+    'use strict';
+
+    const box = document.getElementById('lightbox');
+    const big = document.getElementById('lightbox-img');
+    const close = document.getElementById('lightbox-close');
+
+    if (!box || !big || typeof box.showModal !== 'function') return;
+
+    document.addEventListener('click', (e) => {
+        const img = e.target.closest('.shot > img, .slide-grid img, .kit img');
+        if (!img) return;
+        big.src = img.currentSrc || img.src;
+        big.alt = img.alt;
+        box.showModal();
+    });
+
+    // Click anywhere (image, backdrop, or button) closes; Esc is built into <dialog>
+    box.addEventListener('click', () => box.close());
+    if (close) close.addEventListener('click', () => box.close());
+})();
